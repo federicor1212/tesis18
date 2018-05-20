@@ -1,0 +1,104 @@
+<div class="wrapper">
+  <nav-bar></nav-bar>
+  <div class="container-of-everything">
+    <side-bar></side-bar>
+    <div class="content-wrapper">
+      <div class="col-md-12">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Perfil
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="box box-default">
+            <div class="box-body">
+              <div class="row top5">
+                <div class="col-md-12">
+                  <form name="perfilForm" ng-submit="guardar()" class="form-horizontal" novalidate="">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Nombre</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" ng-model="perfil.nombre"
+                          ng-required="true">
+                        <span style="color:red" ng-show="perfilForm.nombre.$invalid && perfilForm.nombre.$touched">El campo nombre es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Apellido</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}"
+                          ng-model="perfil.apellido" ng-required="true">
+                        <span style="color:red" ng-show="perfilForm.apellido.$invalid && perfilForm.apellido.$touched">El campo Apellido es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese el Email. Formato: alumno@gmail.com"
+                          value="{{email}}" ng-model="perfil.email" ng-required="true">
+                        <span style="color:red" ng-show="perfilForm.email.$invalid && perfilForm.email.$touched">El campo Email es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contraseña</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Ingrese la contraseña" value="{{contrasenia}}"
+                          ng-model="perfil.contrasenia" ng-required="true">
+                        <span style="color:red" ng-show="perfilForm.contrasenia.$invalid && perfilForm.contrasenia.$touched">El campo contraseña es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Permiso</label>
+                      <div class="col-sm-9">
+                        <div class="form-radio form-radio-inline">
+                          <input class="form-radio-input" type="radio" id="inlineradioAdmin" ng-model="perfil.permiso" ng-value="1" value="1" ng-required="true">
+                          <label class="form-radio-label" for="inlineradioAdmin">Administrador</label>
+                        </div>
+                        <div class="form-radio form-radio-inline">
+                          <input class="form-radio-input" type="radio" id="inlineradioDocente" ng-model="perfil.permiso" ng-value="2" value="2" ng-required="true">
+                          <label class="form-radio-label" for="inlineradioDocente">Docente</label>
+                        </div>
+                        <span style="color:red" ng-show="perfilForm.permiso.$invalid && perfilForm.permiso.$touched">El campo permiso es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Estado</label>
+                      <div class="col-sm-9">
+                        <div class="form-radio form-radio-inline">
+                          <input class="form-radio-input" type="radio" id="inlineradioActivo" ng-model="perfil.estado" ng-value="1" value="1" ng-required="true">
+                          <label class="form-radio-label" for="inlineradioActivo">Activo</label>
+                        </div>
+                        <div class="form-radio form-radio-inline">
+                          <input class="form-radio-input" type="radio" id="inlineradioInactivo" ng-model="perfil.estado" ng-value="0" value="0" ng-required="true">
+                          <label class="form-radio-label" for="inlineradioInactivo">Inactivo</label>
+                        </div>
+                        <span style="color:red" ng-show="perfilForm.estado.$invalid && perfilForm.estado.$touched">El campo estado es obligatorio</span>
+                      </div>
+                    </div>
+                    <button type="submit">guardar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box box-default -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2017
+      <a href="#">Asistencia</a>
+    </strong> All rights reserved. reserved.
+  </footer>
+</div>

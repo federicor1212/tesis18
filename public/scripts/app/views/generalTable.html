@@ -1,0 +1,552 @@
+<div class="table-responsive">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th ng-repeat="header in headers track by $index">{{header}}</th>
+	      <th>
+	        <button id="btn-add" class="btn btn-success" ng-click="table.openModal(type)">Nuevo</button>
+	      </th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-if="type === 'usuarios'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.nombre}}</td>
+	      <td>{{d.apellido}}</td>
+	      <td>{{d.email}}</td>
+	      <td>{{d.permiso}}</td>
+	      <td>{{d.estado}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+	    <tr ng-if="type === 'alumno'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.nombre}}</td>
+	      <td>{{d.apellido}}</td>
+	      <td>{{d.telefono}}</td>
+	      <td>{{d.email}}</td>
+	      <td>{{d.matricula}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'carreras'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.desc_carr}}</td>
+	      <td>{{d.plan}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'docenteasignado'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.materia.desc_mat}}</td>
+	      <td>{{d.docente.apellido}}, {{d.docente.nombre}}</td>
+	      <td>{{d.desc_cargo}}</td>
+	      <td>{{d.email}}</td>
+	      <td>{{d.matricula}}</td>
+	      <td>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'dictados'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.materia.desc_mat}}</td>
+	      <td>{{d.cuat}}</td>
+	      <td>{{d.ano}}</td>
+	      <td>{{d.dia_cursada}}</td>
+	      <td>{{d.alt_hor}}</td>
+	      <td>{{d.cant_insc_act}}</td>
+	      <td>{{d.cant_clases}}</td>
+	      <td>{{d.cant_faltas_max}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'docentes'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.nombre}}</td>
+	      <td>{{d.apellido}}</td>
+	      <td>{{d.telefono}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'inscriptos'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.alumno.nombre}}, {{d.alumno.apellido}}</td>
+	      <td>{{d.materia.desc_mat}}</td>
+	      <td>{{d.cant_faltas_act}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+			<tr ng-if="type === 'materias'" ng-repeat="d in data">
+	      <td>{{d.id}}</td>
+	      <td>{{d.desc_mat}}</td>
+	      <td>{{d.carrera.desc_carr}}</td>
+	      <td>{{d.carrera.plan}}</td>
+	      <td>
+	        <button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
+	          <span class="glyphicon glyphicon-edit"></span>
+	        </button>
+	        <button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+	          <span class="glyphicon glyphicon-trash"></span>
+	        </button>
+	      </td>
+			</tr>
+
+	  </tbody>
+	</table>
+	<!-- show modal  -->
+	<div class="modal fade" id="modal-alumno" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Alumno</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmAlumno" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre"  ng-model="modal.nombre" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.nombre.$invalid && frmAlumno.nombre.$touched">El campo nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Apellido</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}" ng-model="modal.apellido" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.apellido.$invalid && frmAlumno.apellido.$touched">El campo Apellido es obligatorio</span>
+	            </div>
+	          </div>  
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Teléfono</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el Teléfono" value="{{telefono}}" ng-model="modal.telefono" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.telefono.$invalid && frmAlumno.telefono.$touched">El campo Teléfono es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Email</label>
+	            <div class="col-sm-9">
+	              <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese el Email. Formato: alumno@gmail.com" value="{{email}}" ng-model="modal.email" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.email.$invalid && frmAlumno.email.$touched">El campo Email es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Matrícula</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Ingrese la Matrícula" value="{{matricula}}" ng-model="modal.matricula" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.matricula.$invalid && frmAlumno.matricula.$touched">El campo Matrícula es obligatorio</span>
+	            </div>
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveAlumno(modal)" ng-disabled="frmAlumno.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-carrera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Carrera</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmCarrera" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" value="{{nombre}}" ng-model="modal.desc_carr" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.nombre.$invalid && frmAlumno.nombre.$touched">El campo nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Plan</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}" ng-model="modal.plan" ng-required="true">
+	              <span style="color:red" ng-show="frmAlumno.apellido.$invalid && frmAlumno.apellido.$touched">El campo Plan es obligatorio</span>
+	            </div>
+	          </div>  
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveCarrera(modal)" ng-disabled="frmCarrera.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Usuario</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input type="hidden" value="{{modal.usuarioid}}" id="iduser">
+	        <form name="frmUsuario" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" value="{{nombre}}" ng-model="modal.nombre" ng-required="true">
+	              <span style="color:red" ng-show="frmUsuario.nombre.$invalid && frmUsuario.nombre.$touched">El campo Nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Apellido</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}" ng-model="modal.apellido" ng-required="true">
+	              <span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Apellido es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Email</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Email" value="{{email}}" ng-model="modal.email" ng-required="true">
+	              <span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Email es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Permiso</label>
+	            <div class="col-sm-9">
+	            <select id="materia" class="form-control" name="materia" placeholder="Seleccione Permiso" value="{{permiso}}" ng-model="modal.permiso" ng-options="x for x in permisos" ng-required="true">
+				</select>
+	               <span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Permiso es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Estado</label>
+	            <div class="col-sm-9">
+	             <select id="materia" class="form-control" name="materia" placeholder="Seleccione Permiso" value="{{estado}}" ng-model="modal.estado" ng-options="x for x in estados" ng-required="true">
+				 </select>
+	              <span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Estado es obligatorio</span>
+	            </div>
+	          </div>  
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveUsuario(modal)" ng-disabled="frmUsuario.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-docasignado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Asignar un docente a una materia - Nuevo</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmDocAsignado" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Materia</label>
+	            <div class="col-sm-9">
+            		<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia">
+							<option value="{{x.id}}" ng-repeat="x in materias">{{x.materia.desc_mat}}</option>
+					</select>
+	              	<span style="color:red" ng-show="frmDocAsignado.materia.$invalid && frmDocAsignado.materia.$touched">Seleccionar una materia es obligatorio</span>
+	            </div>
+	          </div> 
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Docente</label>
+	            <div class="col-sm-9">
+            		<select id="docente" class="form-control" name="docente" placeholder="Seleccione docente" ng-model="modal.id_docente">
+							<option value="{{x.id}}" ng-repeat="x in docentes">{{x.apellido}} , {{x.nombre}}</option>
+					</select>
+	              	<span style="color:red" ng-show="frmDocAsignado.docente.$invalid && frmDocAsignado.docente.$touched">Seleccionar un docente es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cargo</label>
+	            <div class="col-sm-9">
+            		<select id="cargo" class="form-control" name="cargo" placeholder="Seleccione cargo" ng-model="modal.id_cargo">
+							<option value="{{x.id}}" ng-repeat="x in cargos">{{x.desc_cargo}}</option>
+					</select>
+	              	<span style="color:red" ng-show="frmDocAsignado.cargo.$invalid && frmDocAsignado.cargo.$touched">Seleccionar un cargo es obligatorio</span>
+	            </div>
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveDocasignado(modal)" ng-disabled="frmDocAsignado.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-dictado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Dictado</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmDictado" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Materia</label>
+	            <div class="col-sm-9">
+	            <select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia">
+								<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+							</select>
+	              <span style="color:red" ng-show="frmDictado.materia.$invalid && frmDictado.materia.$touched">Seleccionar una materia es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cuatrimestre</label>
+	            <div class="col-sm-9">
+	              <select class="form-control" id="cuatrimestre" name="cuatrimestre" placeholder="Seleccione el cuatrimestre" value="{{cuat}}" ng-model="modal.cuat" ng-required="true">
+	              	<option value="1">1</option>
+	              	<option value="2">2</option>
+	              </select>
+	              <span style="color:red" ng-show="frmDictado.cuat.$invalid && frmDictado.cuat.$touched">Seleccionar un cuatrimestre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Ano</label>
+	            <div class="col-sm-9">
+	              <select class="form-control" id="ano" name="ano" placeholder="Seleccione el ano" value="{{ano}}" ng-model="modal.ano" ng-required="true">
+	              	<option value="2017">2017</option>
+	              	<option value="2018">2018</option>
+	              	<option value="2019">2019</option>
+	              	<option value="2020">2020</option>
+	              </select>
+	              <span style="color:red" ng-show="frmDictado.ano.$invalid && frmDictado.ano.$touched">Seleccionar un ano es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Dia de cursada</label>
+	            <div class="col-sm-9">
+	              <select class="form-control" id="dia_cursada" name="dia_cursada" placeholder="Seleccione el dia de cursada" value="{{dia_cursada}}" ng-model="modal.dia_cursada" ng-required="true">
+	              	<option value="lunes">Lunes</option>
+	              	<option value="martes">Martes</option>
+	              	<option value="miercoles">Miercoles</option>
+	              	<option value="jueves">Jueves</option>
+	              	<option value="viernes">Viernes</option>
+	              	<option value="sabado">Sabado</option>
+	              </select>
+	              <span style="color:red" ng-show="frmDictado.dia_cursada.$invalid && frmDictado.dia_cursada.$touched">El campo dia de cursada es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Alternativa</label>
+	            <div class="col-sm-9">
+	              <select class="form-control" id="alt_hor" name="alt_hor" placeholder="Seleccione alternativa horaria" value="{{alt_hor}}" ng-model="modal.alt_hor" ng-required="true">
+	              	<option value="AM">AM</option>
+	              	<option value="IM">IM</option>
+	              	<option value="PM">PM</option>
+	              </select>
+	              <span style="color:red" ng-show="frmDictado.alt_hor.$invalid && frmDictado.alt_hor.$touched">El campo Alternativa es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cant. Inscriptos</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="cant_insc_act" name="cant_insc_act" placeholder="Ingrese cantidad de inscriptos" value="{{cant_insc_act}}" ng-model="modal.cant_insc_act" ng-required="true">
+	              <span style="color:red" ng-show="frmDictado.cant_insc_act.$invalid && frmDictado.cant_insc_act.$touched">El campo cant_insc_act es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cant. Clases</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="cant_clases" name="cant_clases" placeholder="Ingrese la cantidad de clases" value="{{cant_clases}}" ng-model="modal.cant_clases" ng-required="true">
+	              <span style="color:red" ng-show="frmDictado.cant_clases.$invalid && frmDictado.cant_clases.$touched">El campo Apellido es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cant. Faltas Max</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="cant_faltas_max" name="cant_faltas_max" placeholder="Ingrese la cantidad maxima de faltas" value="{{cant_faltas_max}}" ng-model="modal.cant_faltas_max" ng-required="true">
+	              <span style="color:red" ng-show="frmDictado.cant_faltas_max.$invalid && frmDictado.cant_faltas_max.$touched">El campo Apellido es obligatorio</span>
+	            </div>
+	          </div>  
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveDictado(modal)" ng-disabled="frmDictado.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-docente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Docente</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmDocente" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" value="{{nombre}}" ng-model="modal.nombre" ng-required="true">
+	              <span style="color:red" ng-show="frmDocente.nombre.$invalid && frmDocente.nombre.$touched">El campo nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Apellido</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}" ng-model="modal.apellido" ng-required="true">
+	              <span style="color:red" ng-show="frmDocente.apellido.$invalid && frmDocente.apellido.$touched">El campo Apellido es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Telefono</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el telefono" value="{{telefono}}" ng-model="modal.telefono" ng-required="true">
+	              <span style="color:red" ng-show="frmDocente.telefono.$invalid && frmDocente.telefono.$touched">El campo Telefono es obligatorio</span>
+	            </div>
+	          </div> 
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveDocente(modal)" ng-disabled="frmDocente.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-inscripto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Inscripto</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmInscriptos" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	            <select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Alumno" ng-model="modal.alumno" ng-required="true">
+								<option ng-repeat="x in alumnos" value="{{x.id}}"> {{x.nombre}}, {{x.apellido}}</option>
+							</select>
+	              <span style="color:red" ng-show="frmInscriptos.nombre.$invalid && frmInscriptos.nombre.$touched">El campo nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Materia</label>
+	            <div class="col-sm-9">
+	            <select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia">
+								<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+							</select>
+	              <span style="color:red" ng-show="frmInscriptos.materia.$invalid && frmInscriptos.materia.$touched">Seleccionar una materia es obligatorio</span>
+	            </div>
+	          </div> 
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Cant. Faltas Acumuladas</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="cant_faltas_act" name="cant_faltas_act" placeholder="Ingrese cantidad de faltas actuales" value="{{cant_faltas_act}}" ng-model="modal.cant_faltas_act" ng-required="true">
+	              <span style="color:red" ng-show="frmInscriptos.cant_faltas_act.$invalid && frmInscriptos.cant_faltas_act.$touched">El campo cantidad de faltas actuales es obligatorio</span>
+	            </div>
+	          </div>  
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveInscripto(modal)" ng-disabled="frmInscriptos.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="modal-materia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="background: white;">
+	    <div class="modal-table">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Gestion de Materia</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form name="frmMateria" class="form-horizontal" novalidate="">
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Nombre</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="desc_mat" name="desc_mat" placeholder="Ingrese el Nombre" value="{{desc_mat}}" ng-model="modal.desc_mat" ng-required="true">
+	              <span style="color:red" ng-show="frmMateria.desc_mat.$invalid && frmMateria.desc_mat.$touched">El campo nombre es obligatorio</span>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Carrera</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="carrera" name="carrera" placeholder="Seleccione la carrera" value="{{carrera}}" ng-model="modal.carrera.desc_carr" ng-required="true">
+	              <span style="color:red" ng-show="frmMateria.carrera.$invalid && frmMateria.carrera.$touched">Seleccionar una carrera es obligatorio</span>
+	            </div>
+	          </div>  
+	          <div class="form-group">
+	            <label class="col-sm-3 control-label">Plan</label>
+	            <div class="col-sm-9">
+	              <input type="text" class="form-control" id="plan" name="plan" placeholder="Seleccione el plan" value="{{plan}}" ng-model="modal.carrera.plan" ng-required="true">
+	              <span style="color:red" ng-show="frmMateria.plan.$invalid && frmMateria.plan.$touched">Seleccionar un plan es obligatorio</span>
+	            </div>
+	          </div>  
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="btn-save" ng-click="table.saveMateria(modal)" ng-disabled="frmMateria.$invalid">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>  
