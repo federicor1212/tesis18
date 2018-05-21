@@ -4,18 +4,17 @@ angular
   '$log',
   '$http',
   '$auth',
-  '$q',
   reportesService,
 ]);
 
-function reportesService($log, $http, $auth, $q) {
+function reportesService($log, $http, $auth) {
 
   function getReportes() {
-    var myChartObject = {
+    /*var myChartObject = {
       inscriptos: {
         data: null,
-        type: null,
-        options: null
+        type: "PieChart",
+        options: 'Cantidad de Asistencias'
       },
       asistentes: {
         data: null,
@@ -24,41 +23,6 @@ function reportesService($log, $http, $auth, $q) {
       },
     };
     var dfd = $q.defer();
-
-    myChartObject.inscriptos.type = "BarChart";
-    
-    onions = [
-        {v: "Onions"},
-        {v: 3},
-    ];
-
-    myChartObject.inscriptos.data = {"cols": [
-        {id: "t", label: "Topping", type: "string"},
-        {id: "s", label: "Slices", type: "number"}
-    ], "rows": [
-        {c: [
-            {v: "Mushrooms"},
-            {v: 3},
-        ]},
-        {c: onions},
-        {c: [
-            {v: "Olives"},
-            {v: 31}
-        ]},
-        {c: [
-            {v: "Zucchini"},
-            {v: 1},
-        ]},
-        {c: [
-            {v: "Pepperoni"},
-            {v: 2},
-        ]}
-    ]};
-
-    myChartObject.inscriptos.options = {
-        'title': 'Cantidad de inscriptos'
-    };
-    
 
     myChartObject.asistentes.type = "BarChart";
     
@@ -96,8 +60,8 @@ function reportesService($log, $http, $auth, $q) {
     dfd.resolve({data: myChartObject});
 
     return dfd.promise;
-    //desp descomentar la linea y borrar codigo y $q
-    //return $http({ method: "GET", url: '/api/reports', cache: false });
+    //desp descomentar la linea y borrar codigo y $q*/
+    return $http({ method: "POST", url: '/api/cantAsistencias', cache: false });
   }
 
   const service = {
