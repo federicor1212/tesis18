@@ -107,9 +107,11 @@ class ReportesController extends Controller
             $myObj->rows[2]->c[1]->v = $media[0]->total;
         }
 
-        $result->inscriptos = $myObj;
-        return  json_encode($result);
-    }  
+        $result->inscriptos = new \StdClass();
+        $result->inscriptos->data = $myObj;
+        $result->inscriptos->type = "PieChart";
+        $result->inscriptos->options = "Cantidad de Asistencias";
+        return  json_encode($result);    }  
     
     public function cantInscriptos(Request $request) {
         
