@@ -22,12 +22,20 @@ class ReportesController extends Controller
         $date_from = '2018-01-01';//$request->input('date_from');
         $date_to = '2018-05-20';//$request->input('date_to');
         $i=1;
-
-
-        $result[0] = ['asistencias','total'];
+        
+        $result = new \StdClass();
+        
+        $myObj = new \StdClass();
+        $myObj->cols=[];
+        $myObj->rows=[];
+        
+        $myObj->cols[0] = new \StdClass();
+        $myObj->cols[0]->id = "insc";
+        $myObj->cols[0]->label = "Inscriptos";
+        $myObj->cols[0]->type = "string";
         
         /*PRESENTES*/
-        $sql0 = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+        $presentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
@@ -39,18 +47,20 @@ class ReportesController extends Controller
             ->get();
         
         //Si no devuelve registros...
-        if (!$sql0->count()){
-            $result[$i] = ["Presentes", 0];
-            $i++;           
+        if (!$presentes->count()){
+            $myObj->rows[0]->c[0] = new \StdClass();
+            $myObj->rows[0]->c[0]->v = "Presentes";
+            $myObj->rows[0]->c[1] = new \StdClass();
+            $myObj->rows[0]->c[1]->v = 0;   
         }else{
-            foreach ($sql0 as $key => $value) {
-                $result[$i] = ["Presentes", $value->total];
-                $i++;
-            }   
+            $myObj->rows[0]->c[0] = new \StdClass();            
+            $myObj->rows[0]->c[0]->v = "Presentes";
+            $myObj->rows[0]->c[1] = new \StdClass();
+            $myObj->rows[0]->c[1]->v = $presentes[0]->total;
         }
         
         /*AUSENTES*/
-        $sql1 = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+        $ausentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
@@ -61,19 +71,20 @@ class ReportesController extends Controller
             ->groupBy('asistentes.cod_asist')   
             ->get();
 
-        //Si no devuelve registros...
-        if (!$sql1->count()){
-            $result[$i] = ["Ausentes", 0];
-            $i++;           
+        if (!$ausentes->count()){
+            $myObj->rows[1]->c[0] = new \StdClass();
+            $myObj->rows[1]->c[0]->v = "Ausentes";
+            $myObj->rows[1]->c[1] = new \StdClass();
+            $myObj->rows[1]->c[1]->v = 0;   
         }else{
-            foreach ($sql1 as $key => $value) {
-                $result[$i] = ["Ausentes", $value->total];
-                $i++;
-            }   
+            $myObj->rows[1]->c[0] = new \StdClass();            
+            $myObj->rows[1]->c[0]->v = "Ausentes";
+            $myObj->rows[1]->c[1] = new \StdClass();
+            $myObj->rows[1]->c[1]->v = $ausentes[0]->total;
         }
     
         /*MEDIA FALTA*/
-        $sql2 = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+        $media = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
@@ -84,17 +95,19 @@ class ReportesController extends Controller
             ->groupBy('asistentes.cod_asist')   
             ->get();
 
-        //Si no devuelve registros...
-        if (!$sql2->count()){
-            $result[$i] = ["Media Falta", 0];
-            $i++;           
+        if (!$media->count()){
+            $myObj->rows[2]->c[0] = new \StdClass();            
+            $myObj->rows[2]->c[0]->v = "Media Falta";
+            $myObj->rows[2]->c[1] = new \StdClass();
+            $myObj->rows[2]->c[1]->v = 0;       
         }else{
-            foreach ($sql2 as $key => $value) {
-                $result[$i] = ["Media Falta", $value->total];
-                $i++;
-            }   
-        }   
-    
+            $myObj->rows[2]->c[0] = new \StdClass();
+            $myObj->rows[2]->c[0]->v = "Media Falta";
+            $myObj->rows[2]->c[1] = new \StdClass();
+            $myObj->rows[2]->c[1]->v = $media[0]->total;
+        }
+
+        $result->inscriptos = $myObj;
         return  $result;
     }  
     
