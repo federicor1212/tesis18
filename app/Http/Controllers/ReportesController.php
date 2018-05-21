@@ -108,7 +108,7 @@ class ReportesController extends Controller
         }
 
         $result->inscriptos = $myObj;
-        return  $result;
+        return  json_encode($result);
     }  
     
     public function cantInscriptos(Request $request) {
