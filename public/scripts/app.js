@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('app', ['ui.router', 'satellizer','ui.bootstrap'])
+        .module('app', ['ui.router', 'satellizer','ui.bootstrap', 'googlechart'])
         .config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider) {
 
             // Satellizer configuration that specifies which API
@@ -72,6 +72,12 @@
                     url: '/perfil',
                     templateUrl: 'scripts/app/views/perfil.html',
                     controller: 'perfilController',
+                    authenticate: true
+                })
+                .state('reportes', {
+                    url: '/reportes',
+                    templateUrl: 'scripts/app/views/charts.html',
+                    controller: 'chartsController',
                     authenticate: true
                 })
 

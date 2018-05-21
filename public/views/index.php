@@ -19,6 +19,7 @@
     <script src="/../scripts/node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="/../scripts/node_modules/angular/angular.min.js"></script>
     <script src="/../scripts/node_modules/angular-aria/angular-aria.min.js"></script>    
+    <script src="/../scripts/node_modules/angular-google-chart/ng-google-chart.min.js"></script>    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- main style files -->
@@ -40,6 +41,7 @@
       <script src="scripts/app/controllers/usuariosController.js"></script>
       <script src="scripts/app/controllers/inscriptosController.js"></script>
       <script src="scripts/app/controllers/perfil.js"></script>
+      <script src="scripts/app/controllers/chartsController.js"></script>
     <!-- directives -->
       <script src="scripts/app/directives/navbar.js"></script>
       <script src="scripts/app/directives/sidebar.js"></script>
@@ -57,6 +59,7 @@
       <script src="scripts/app/services/userService.js"></script>
       <script src="scripts/app/services/interceptor.es6.js"></script>
       <script src="scripts/app/services/api.services.es6.js"></script>
+      <script src="scripts/app/services/reportesService.js"></script>
     <!-- factories -->
     
     <!-- Angular route file -->
