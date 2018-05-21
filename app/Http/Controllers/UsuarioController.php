@@ -27,10 +27,10 @@ class UsuarioController extends Controller
         $usuario = Usuario::all();
 
         foreach ($usuario as $u) {
-            if ($u['permiso'] == UserRoles::ADMIN) {
-                $u['permiso'] = 'Administrador';
+            if ($u['id_permiso'] == UserRoles::ADMIN) {
+                $u['id_permiso'] = 'Administrador';
             } else {
-                $u['permiso'] = 'Docente';
+                $u['id_permiso'] = 'Docente';
             }
 
             if ($u['estado'] == Status::ACTIVO) {
@@ -60,10 +60,10 @@ class UsuarioController extends Controller
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
         $usuario->password = Hash::make($request->input('password'));
-        if ($request->input('permiso') === 'Administrador') {
-            $usuario->permiso = UserRoles::ADMIN;
+        if ($request->input('id_permiso') === 'Administrador') {
+            $usuario->id_permiso = UserRoles::ADMIN;
         } else {
-            $usuario->permiso = UserRoles::DOCENTE;
+            $usuario->id_permiso = UserRoles::DOCENTE;
         }
 
         if ($request->input('estado') === 'Activo') {
