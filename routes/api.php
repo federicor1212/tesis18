@@ -118,3 +118,8 @@ Route::post('/eliminar-docente/{id}', 'DocenteController@destroy');
 
 //APP
 Route::get('/login', 'DocenteController@index');
+
+//Reportes
+Route::post('/cantAsistencias', 'ReportesController@cantAsistencias');
+Route::post('/cantInscriptos', 'ReportesController@cantInscriptos');
+Route::post('/cantAlumnosLibres', 'ReportesController@cantAlumnosLibres');
