@@ -31,8 +31,13 @@ class ReportesController extends Controller
         
         $myObj->cols[0] = new \StdClass();
         $myObj->cols[0]->id = "insc";
-        $myObj->cols[0]->label = "Inscriptos";
+        $myObj->cols[0]->label = "Inscriptos1";
         $myObj->cols[0]->type = "string";
+    
+    $myObj->cols[1] = new \StdClass();
+        $myObj->cols[1]->id = "insc";
+        $myObj->cols[1]->label = "Inscriptos2";
+        $myObj->cols[1]->type = "string";
         
         /*PRESENTES*/
         $presentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
@@ -42,10 +47,10 @@ class ReportesController extends Controller
             ->where('asistentes.cod_asist', '=','0')
             ->whereDate('asistentes.created_at', '>=',$date_from)
             ->whereDate('asistentes.created_at', '<=',$date_to)
-            ->select(DB::raw('count(1) AS total'))
-            ->groupBy('asistentes.cod_asist')               
+        ->select(DB::raw('count(1) AS total'))
+            ->groupBy('asistentes.cod_asist') 
             ->get();
-        
+
         //Si no devuelve registros...
         if (!$presentes->count()){
             $myObj->rows[0]->c[0] = new \StdClass();
@@ -106,12 +111,15 @@ class ReportesController extends Controller
             $myObj->rows[2]->c[1] = new \StdClass();
             $myObj->rows[2]->c[1]->v = $media[0]->total;
         }
-
+    
         $result->inscriptos = new \StdClass();
         $result->inscriptos->data = $myObj;
+        $result->inscriptos->options =  new \StdClass();
+        $result->inscriptos->options->title = "Cantidad de Asistencias";
         $result->inscriptos->type = "PieChart";
-        $result->inscriptos->options = "Cantidad de Asistencias";
-        return  json_encode($result);    }  
+
+        return json_encode($result);    
+       }
     
     public function cantInscriptos(Request $request) {
         
