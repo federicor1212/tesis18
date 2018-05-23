@@ -14,15 +14,21 @@ use Carbon\Carbon;
 
 class ReportesController extends Controller
 {
-
-    public function cantAsistencias(Request $request) {
-        
+    public function loadReports(Request $request) {
         $id_carrera = 1;//$request->input('id_carrera');
         $id_materia = 22;//$request->input('id_materia');
-        $date_from = '2018-01-01';//$request->input('date_from');
-        $date_to = '2018-05-20';//$request->input('date_to');
-        $i=1;
+        $ano = 2018;//$request->input('ano');
+        $cuat = 1;//$request->input('cuat');
         
+        $result = new \StdClass();
+        $result->asist = $this->cantAsistencias($id_carrera,$id_materia,$ano,$cuat);
+        $result->inscr = $this->cantInscriptos($id_carrera,$ano,$cuat);
+        $result->libre = $this->cantAlumnosLibres($id_carrera,$ano,$cuat);
+        
+        return json_encode($result);
+    }
+
+    public function cantAsistencias($id_carrera,$id_materia,$ano,$cuat) {  
         $result = new \StdClass();
         
         $myObj = new \StdClass();
@@ -34,22 +40,35 @@ class ReportesController extends Controller
         $myObj->cols[0]->label = "Inscriptos1";
         $myObj->cols[0]->type = "string";
     
-    $myObj->cols[1] = new \StdClass();
+        $myObj->cols[1] = new \StdClass();
         $myObj->cols[1]->id = "insc";
         $myObj->cols[1]->label = "Inscriptos2";
         $myObj->cols[1]->type = "string";
         
+        if ($id_materia != "") {
         /*PRESENTES*/
         $presentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
             ->where('asistentes.cod_asist', '=','0')
-            ->whereDate('asistentes.created_at', '>=',$date_from)
-            ->whereDate('asistentes.created_at', '<=',$date_to)
-        ->select(DB::raw('count(1) AS total'))
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->select(DB::raw('count(1) AS total'))
             ->groupBy('asistentes.cod_asist') 
             ->get();
+        } else {
+        /*PRESENTES*/
+        $presentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+            ->join('materias','dictados.id_materia','=','materias.id')      
+            ->where('materias.id_carrera', '=',$id_carrera)
+            ->where('asistentes.cod_asist', '=','0')
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->select(DB::raw('count(1) AS total'))
+            ->groupBy('asistentes.cod_asist') 
+            ->get();
+        }
 
         //Si no devuelve registros...
         if (!$presentes->count()){
@@ -64,17 +83,30 @@ class ReportesController extends Controller
             $myObj->rows[0]->c[1]->v = $presentes[0]->total;
         }
         
+        if ($id_materia != "") {
         /*AUSENTES*/
         $ausentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
             ->where('asistentes.cod_asist', '=','1')
-            ->whereDate('asistentes.created_at', '>=',$date_from)
-            ->whereDate('asistentes.created_at', '<=',$date_to)
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
             ->select(DB::raw('count(1) AS total'))
             ->groupBy('asistentes.cod_asist')   
             ->get();
+        } else {
+        /*AUSENTES*/
+        $ausentes = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+            ->join('materias','dictados.id_materia','=','materias.id')      
+            ->where('materias.id_carrera', '=',$id_carrera)
+            ->where('asistentes.cod_asist', '=','1')
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->select(DB::raw('count(1) AS total'))
+            ->groupBy('asistentes.cod_asist')   
+            ->get();
+        }
 
         if (!$ausentes->count()){
             $myObj->rows[1]->c[0] = new \StdClass();
@@ -87,18 +119,31 @@ class ReportesController extends Controller
             $myObj->rows[1]->c[1] = new \StdClass();
             $myObj->rows[1]->c[1]->v = $ausentes[0]->total;
         }
-    
+        
+        if ($id_materia != "") {
         /*MEDIA FALTA*/
         $media = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')      
             ->where('materias.id_carrera', '=',$id_carrera)
             ->where('materias.id', '=',$id_materia)
             ->where('asistentes.cod_asist', '=','2')
-            ->whereDate('asistentes.created_at', '>=',$date_from)
-            ->whereDate('asistentes.created_at', '<=',$date_to)
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
             ->select(DB::raw('count(1) AS total'))
             ->groupBy('asistentes.cod_asist')   
             ->get();
+        } else {
+        /*MEDIA FALTA*/
+        $media = Asistente::join('dictados','asistentes.id_dictado','=','dictados.id')
+            ->join('materias','dictados.id_materia','=','materias.id')      
+            ->where('materias.id_carrera', '=',$id_carrera)
+            ->where('asistentes.cod_asist', '=','2')
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->select(DB::raw('count(1) AS total'))
+            ->groupBy('asistentes.cod_asist')   
+            ->get();
+        }
 
         if (!$media->count()){
             $myObj->rows[2]->c[0] = new \StdClass();            
@@ -116,42 +161,9 @@ class ReportesController extends Controller
         $result->inscriptos->data = $myObj;
         $result->inscriptos->options =  new \StdClass();
         $result->inscriptos->options->title = "Cantidad de Asistencias";
-        $result->inscriptos->type = "PieChart";
+        if ($id_materia != "") {
 
-        return json_encode($result);    
-       }
-    
-    public function cantInscriptos(Request $request) {
-        
-        $id_carrera = 1;//$request->input('id_carrera');
-        $id_materia = "";//$request->input('id_materia');
-        $ano = 2018;//$request->input('ano');
-        $cuat = 1;//$request->input('cuat');
-        $i=1;
-
-
-        $result[0] = ['Materia','total'];
-
-        /*SIN MATERIA SELECCIONADA*/
-        if($id_materia == ""){
-            echo "vacio";
-            $sql = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
-                ->join('materias','dictados.id_materia','=','materias.id')
-                ->where('materias.id_carrera', '=',$id_carrera)
-                ->where('dictados.ano', '=',$ano)
-                ->where('dictados.cuat', '=',$cuat)
-                ->select('materias.desc_mat', DB::raw('count(1) AS total'))
-                ->groupBy('materias.desc_mat')              
-                ->get();
-
-            foreach ($sql as $key => $value) {
-                $result[$i] = [$value->desc_mat, $value->total];
-                $i++;
-            }
-        
-        /*CON MATERIA SELECCIONADA*/        
-        }else{
-            $sql = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
+            $cantInscripto = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
                 ->join('materias','dictados.id_materia','=','materias.id')
                 ->where('materias.id', '=',$id_materia)
                 ->where('materias.id_carrera', '=',$id_carrera)
@@ -161,26 +173,77 @@ class ReportesController extends Controller
                 ->groupBy('materias.desc_mat')              
                 ->get();
 
-            foreach ($sql as $key => $value) {
-                $result[$i] = [$value->desc_mat, $value->total];
-                $i++;
-            }
-            
+            $cantLibre = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
+            ->join('materias','dictados.id_materia','=','materias.id')
+            ->where('materias.id', '=',$id_materia)
+            ->where('materias.id_carrera', '=',$id_carrera)
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->where('inscriptos.libre','=','T')
+            ->select('materias.desc_mat', DB::raw('count(1) AS total'))
+            ->groupBy('materias.desc_mat')              
+            ->get();
+
+            $result->inscriptos->style = "particular";
+            $result->inscriptos->cantinsc = $cantInscripto[0]->total;
+            $result->inscriptos->cantlibre = $cantLibre[0]->total;
+        } else {
+            $result->inscriptos->style = "general";
         }
+        $result->inscriptos->type = "PieChart";
+
+        return $result;    
+    }
+    
+    public function cantInscriptos($id_carrera,$ano,$cuat) {
+        
+        $cantIns = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
+            ->join('materias','dictados.id_materia','=','materias.id')
+            ->where('materias.id_carrera', '=',$id_carrera)
+            ->where('dictados.ano', '=',$ano)
+            ->where('dictados.cuat', '=',$cuat)
+            ->select('materias.desc_mat', DB::raw('count(1) AS total'))
+            ->groupBy('materias.desc_mat')              
+            ->get();
+
+        $result = new \StdClass();
+
+        $myObj = new \StdClass();
+        $myObj->cols=[];
+        $myObj->rows=[];
+        
+        $myObj->cols[0] = new \StdClass();
+        $myObj->cols[0]->id = "insc";
+        $myObj->cols[0]->label = "Inscriptos1";
+        $myObj->cols[0]->type = "string";
+    
+        $myObj->cols[1] = new \StdClass();
+        $myObj->cols[1]->id = "insc";
+        $myObj->cols[1]->label = "Cantidad por materia";
+        $myObj->cols[1]->type = "number";
+
+        $result->asistentes = new \StdClass();
+        $result->asistentes->data = $myObj;
+        $result->asistentes->options =  new \StdClass();
+        $result->asistentes->options->title = "Alumnos Inscriptos";
+
+        foreach ($cantIns as $key => $value) {
+            $myObj->rows[$key]->c[0] = new \StdClass();            
+            $myObj->rows[$key]->c[0]->v = $cantIns[$key]->desc_mat;
+            $myObj->rows[$key]->c[1] = new \StdClass();
+            $myObj->rows[$key]->c[1]->v = $cantIns[$key]->total;       
+        }        
+        
+        $result->asistentes->type = "BarChart";
 
         return $result;
     }
     
-    public function cantAlumnosLibres(Request $request) {
-        
-        $id_carrera = 1;//$request->input('id_carrera');
-        $ano = 2018;//$request->input('ano');
-        $cuat = 1;//$request->input('cuat');
-        $i=1;
-
+    public function cantAlumnosLibres($id_carrera,$ano,$cuat) {
+    
         $result[0] = ['Materia','totalLibres'];
 
-        $sql = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
+        $cantLib = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')
             ->where('dictados.ano', '=',$ano)
             ->where('dictados.cuat', '=',$cuat)
@@ -189,10 +252,35 @@ class ReportesController extends Controller
             ->groupBy('materias.desc_mat')              
             ->get();
 
-        foreach ($sql as $key => $value) {
-            $result[$i] = [$value->desc_mat, $value->total];
-            $i++;
-        }
+        $result = new \StdClass();
+
+        $myObj = new \StdClass();
+        $myObj->cols=[];
+        $myObj->rows=[];
+        
+        $myObj->cols[0] = new \StdClass();
+        $myObj->cols[0]->id = "insc";
+        $myObj->cols[0]->label = "Inscriptos1";
+        $myObj->cols[0]->type = "string";
+    
+        $myObj->cols[1] = new \StdClass();
+        $myObj->cols[1]->id = "insc";
+        $myObj->cols[1]->label = "Cantidad por materia";
+        $myObj->cols[1]->type = "number";
+
+        $result->libres = new \StdClass();
+        $result->libres->data = $myObj;
+        $result->libres->options =  new \StdClass();
+        $result->libres->options->title = "Alumnos en condicion libre";
+
+        foreach ($cantLib as $key => $value) {
+            $myObj->rows[$key]->c[0] = new \StdClass();            
+            $myObj->rows[$key]->c[0]->v = $cantLib[$key]->desc_mat;
+            $myObj->rows[$key]->c[1] = new \StdClass();
+            $myObj->rows[$key]->c[1]->v = $cantLib[$key]->total;       
+        }        
+        
+        $result->libres->type = "BarChart";
         
         return $result;
     }

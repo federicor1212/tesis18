@@ -2,7 +2,7 @@
 <html ng-app="app">
   <head>
     <meta charset="utf-8">
-    <title>Asistencia 2017</title>
+    <title>Asistencia 2018</title>
 
     <!-- main library files -->
     <script src="/../scripts/node_modules/angular/angular.min.js"></script>

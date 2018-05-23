@@ -17,8 +17,37 @@
             <div class="box-body">
               <div class="row top5">
                 <div class="col-md-12">
-                  <div google-chart chart="data.inscriptos" style="height:600px; width:100%;"></div>
-                  <div google-chart chart="data.asistentes" style="height:600px; width:100%;"></div>
+                    <div google-chart chart="data.asist.inscriptos" style="height:600px; width:100%;"></div>
+                    <div ng-if="data.asist.inscriptos.style == 'particular'">
+                    <div>
+                        <div class="col-xs-12 col-sm-6 col-lg-4">
+                          <div class="box">             
+                              <div style="background-color: #d2d6de" class="info">
+                                <p style="text-align: center;" class="title">Cantidad de Alumnos Inscriptos</p>
+                                    <div style="text-align: center; font-size: 80px;">
+                                      {{data.asist.inscriptos.cantinsc}}
+                                    </div>
+                                </div>
+                            <div class="space"></div>
+                          </div> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-4">
+                          <div class="box">             
+                              <div style="background-color: #d2d6de" class="info">
+                                <p style="text-align: center;" class="title">Cantidad de Alumnos Libres</p>
+                                    <div style="text-align: center; font-size: 80px;">
+                                      {{data.asist.inscriptos.cantlibre}}
+                                    </div>
+                                </div>
+                            <div class="space"></div>
+                          </div> 
+                        </div>
+                      </div>
+                  </div>
+                  <div ng-if="data.asist.inscriptos.style == 'general'">
+                    <div google-chart chart="data.inscr.asistentes" style="height:600px; width:100%;"></div>
+                    <div google-chart chart="data.libre.libres" style="height:600px; width:100%;"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -36,7 +65,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2017
+    <strong>Copyright &copy; 2018
       <a href="#">Asistencia</a>
     </strong> All rights reserved. reserved.
   </footer>

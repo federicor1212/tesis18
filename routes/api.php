@@ -120,6 +120,6 @@ Route::post('/eliminar-docente/{id}', 'DocenteController@destroy');
 Route::get('/login', 'DocenteController@index');
 
 //Reportes
-Route::post('/cantAsistencias', 'ReportesController@cantAsistencias');
+Route::post('/cantAsistencias', 'ReportesController@loadReports');
 Route::post('/cantInscriptos', 'ReportesController@cantInscriptos');
 Route::post('/cantAlumnosLibres', 'ReportesController@cantAlumnosLibres');
