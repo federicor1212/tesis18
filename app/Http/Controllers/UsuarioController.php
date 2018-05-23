@@ -50,8 +50,9 @@ class UsuarioController extends Controller
     }
 
     public function store(Request $request) {
-        if ($request->input('usuarioid') != null) {
-            $usuario = Usuario::find($request->input('usuarioid'));
+
+        if ($request->input('id') != null) {
+            $usuario = Usuario::find($request->input('id'));
         } else {
             $usuario = new Usuario;
         }

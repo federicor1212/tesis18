@@ -9,24 +9,24 @@
       });
       $scope.guardar = function() {
         if ($scope.perfilForm.$invalid) {
-          swal('no ando !', '', 'error');
+          swal('Por favor verifique los datos ingresados', '', 'error');
         } else {
           if ($scope.perfil.id) {
             usuariosService.actualizarUsuario($scope.perfil).then(
               function() {
-                swal('ando !', '', 'success');
+                swal('Perfil actualizado exitosamente !', '', 'success');
               },
               function(error) {
-                swal('no ando !', error, 'error');
+                swal('Hubo un error actualizando el perfil!', error, 'error');
               }
             );
           } else {
             usuariosService.guardarUsuario($scope.perfil).then(
               function() {
-                swal('ando 2 !', '', 'success');
+                swal('Perfil guardado exitosamente', '', 'success');
               },
               function(error) {
-                swal('no ando !', error, 'error');
+                swal('Hubo un error actualizando el perfil', error, 'error');
               }
             );
           }

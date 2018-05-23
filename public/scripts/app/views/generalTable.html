@@ -208,14 +208,14 @@
 	            <label class="col-sm-3 control-label">Nombre</label>
 	            <div class="col-sm-9">
 	              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" value="{{nombre}}" ng-model="modal.desc_carr" ng-required="true">
-	              <span style="color:red" ng-show="frmAlumno.nombre.$invalid && frmAlumno.nombre.$touched">El campo nombre es obligatorio</span>
+	              <span style="color:red" ng-show="frmCarrera.nombre.$invalid && frmCarrera.nombre.$touched">El campo nombre es obligatorio</span>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-sm-3 control-label">Plan</label>
 	            <div class="col-sm-9">
 	              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" value="{{apellido}}" ng-model="modal.plan" ng-required="true">
-	              <span style="color:red" ng-show="frmAlumno.apellido.$invalid && frmAlumno.apellido.$touched">El campo Plan es obligatorio</span>
+	              <span style="color:red" ng-show="frmCarrera.apellido.$invalid && frmCarrera.apellido.$touched">El campo Plan es obligatorio</span>
 	            </div>
 	          </div>  
 	        </form>

@@ -24,8 +24,29 @@ angular
 		  }
 		  
 		  table.saveCarrera = function(carrera) {
-			carrera.nuevo ? carrerasService.guardarCarrera(carrera) : carrerasService.actualizarCarrera(carrera);
-			location.reload(true);
+			if (carrera.nuevo) {
+				carrerasService.guardarCarrera(carrera).then(
+	              function() {
+	                swal('Carrera guardada exitosamente !', '', 'success');
+					location.reload(true);
+	              },
+	              function(error) {
+	                swal('Hubo un error guardando la carrera!', error, 'error');
+	              }
+	            ); 
+			} else {
+				carrerasService.actualizarCarrera(carrera).then(
+	              function() {
+	                swal('Carrera actualizada exitosamente !', '', 'success');
+					location.reload(true);
+	              },
+	              function(error) {
+	                swal('Hubo un error actualizando la carrera!', error, 'error');
+	              }
+	            );
+			}
+
+			
 		  }
 
 		  table.saveDocasignado = function(docAsignado) {
@@ -171,7 +192,7 @@ angular
 		  				plan: null
 		  			}
 
-		  			carrerasService.getCarreras().then((response) => {
+		  			carrerasService.getCarrera().then((response) => {
 		  				$scope.carreras = response.data;
 		  			})
 

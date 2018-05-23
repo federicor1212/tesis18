@@ -54,11 +54,11 @@
                       <label class="col-sm-3 control-label">Permiso</label>
                       <div class="col-sm-9">
                         <div class="form-radio form-radio-inline">
-                          <input class="form-radio-input" type="radio" id="inlineradioAdmin" ng-model="perfil.permiso" ng-value="1" value="1" ng-required="true">
+                          <input class="form-radio-input" type="radio" id="inlineradioAdmin" ng-model="perfil.id_permiso" ng-value="1" value="1" ng-required="true">
                           <label class="form-radio-label" for="inlineradioAdmin">Administrador</label>
                         </div>
                         <div class="form-radio form-radio-inline">
-                          <input class="form-radio-input" type="radio" id="inlineradioDocente" ng-model="perfil.permiso" ng-value="2" value="2" ng-required="true">
+                          <input class="form-radio-input" type="radio" id="inlineradioDocente" ng-model="perfil.id_permiso" ng-value="2" value="2" ng-required="true">
                           <label class="form-radio-label" for="inlineradioDocente">Docente</label>
                         </div>
                         <span style="color:red" ng-show="perfilForm.permiso.$invalid && perfilForm.permiso.$touched">El campo permiso es obligatorio</span>
@@ -78,7 +78,7 @@
                         <span style="color:red" ng-show="perfilForm.estado.$invalid && perfilForm.estado.$touched">El campo estado es obligatorio</span>
                       </div>
                     </div>
-                    <button type="submit">guardar</button>
+                    <button class="btn" style="background-color: #d2d6de" type="submit">Guardar</button>
                   </form>
                 </div>
               </div>
@@ -97,7 +97,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2017
+    <strong>Copyright &copy; 2018
       <a href="#">Asistencia</a>
     </strong> All rights reserved. reserved.
   </footer>
