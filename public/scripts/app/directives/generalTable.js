@@ -26,13 +26,17 @@ angular
 		  table.saveCarrera = function(carrera) {
 			if (carrera.nuevo) {
 				carrerasService.guardarCarrera(carrera).then(
-	              function() {
-	                swal('Carrera guardada exitosamente !', '', 'success');
-					location.reload(true);
-	              },
-	              function(error) {
-	                swal('Hubo un error guardando la carrera!', error, 'error');
-	              }
+	              swal({
+					  title: "Exito!",
+					  text: "Carrera Guardada exitosamente",
+					  icon: "success",
+					  button: "OK",
+						})
+						.then((willContinue) => {
+						  if (willContinue) {
+						    location.reload(true);
+						  }
+						})
 	            ); 
 			} else {
 				carrerasService.actualizarCarrera(carrera).then(
@@ -343,11 +347,21 @@ angular
 		}
 
 	    table.confirmDelete = function(id, type) {
-	      var isConfirmDelete = confirm('Se eliminará el registro '+id+'. Esta seguro?');
-	      if (isConfirmDelete) {
+	      swal({
+			  title: "Estas seguro?",
+			  text: 'Se eliminará el registro '+id+'. Una vez eliminado no podra recuperarlo',
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
 			  switch (type) {
 					case 'alumno':
 						alumnoService.borrarAlumno(id).then(() => {
+						    swal("El registro fue eliminado exitosamente!", {
+						      icon: "success",
+						    });
 							location.reload(true);
 						});
 					break;
@@ -393,10 +407,11 @@ angular
 							location.reload(true);
 						});
 					break;
-				}
-	      } else {
-	        return false;
-	      }
+				};
+			  } else {
+			    swal("Los datos no fueron modificados!");
+			  }
+		  });
 	    }
 
 	    $scope.table = table;

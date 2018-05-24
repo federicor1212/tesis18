@@ -7,6 +7,11 @@
       usuariosService.getUserIdentity().then(function(data) {
         $scope.perfil = data.data;
       });
+      $scope.logOut = function() {
+        // Borra el token del storage
+        localStorage.clear();
+        $state.go('login', {});
+      }
       $scope.guardar = function() {
         if ($scope.perfilForm.$invalid) {
           swal('Por favor verifique los datos ingresados', '', 'error');

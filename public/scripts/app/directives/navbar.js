@@ -20,7 +20,11 @@
           }
         };
         usuariosService.getUserIdentity().then(function(data) {
-          $scope.username = data.data.nombre + ' ' + data.data.apellido;
+          $scope.username = data.data.nombre + ' ' + data.data.apellido;          
+        }).catch(function(fallback) {
+            localStorage.clear();
+            $state.go('login', {});
+            location.reload(true);
         });
         $scope.navbar = navbar;
       }

@@ -8,7 +8,7 @@
         controller: function($rootScope, $scope) {
           $scope.activeMenu = $state.current.name;;
           var sidebar = this;
-          $scope.sidebar = sidebar;          
+          $scope.sidebar = sidebar;
         }
       };
     }
