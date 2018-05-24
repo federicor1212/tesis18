@@ -7,6 +7,7 @@ use App\Inscripto;
 use App\Materia;
 use App\Alumno;
 use App\Dictado;
+use App\Enums\Generic;
 
 class InscriptoController extends Controller
 {
@@ -19,6 +20,11 @@ class InscriptoController extends Controller
         $dictados = Dictado::all();
 
         foreach ($inscripciones as $insc) {
+            if ($insc['libre'] == Generic::SI) {
+                $insc['libre'] = 'Si';
+            } else {
+                $insc['libre'] = 'No';
+            }
             $insc['alumno'] = $alumno->find($insc['id_alumno']);
             $insc['dictado'] = $dictados->find($insc['id_dictado']);
             $insc['materia'] = $materias->find($insc['dictado']->id_materia);

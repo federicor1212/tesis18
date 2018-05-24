@@ -5,6 +5,7 @@ angular
 .controller('carrerasController', function ($scope, $location, $auth, $state, carrerasService) {
 	var personal = {};
 	$scope.personal = personal;
+	$scope.date = new Date();
 	$scope.logOut = function() {
 		// Borra el token del storage
 		localStorage.clear();

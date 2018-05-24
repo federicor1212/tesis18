@@ -38,5 +38,6 @@
         }
       };
       $scope.perfil = perfil;
+      $scope.date = new Date();
     });
 })();

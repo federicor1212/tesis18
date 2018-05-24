@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use App\Permiso;
 use Hash;
 use App\Enums\Status;
 use App\Enums\UserRoles;
@@ -24,15 +25,11 @@ class UsuarioController extends Controller
     public function index($id = null) {
       
       if ($id == null){
-        $usuario = Usuario::all();
+        $usuario = Usuario::join('permisos','usuarios.id_permiso','=','permisos.id')            
+                 ->select('usuarios.id','usuarios.nombre','usuarios.apellido','usuarios.estado','usuarios.email','permisos.descripcion AS permiso')
+                 ->get();
 
         foreach ($usuario as $u) {
-            if ($u['id_permiso'] == UserRoles::ADMIN) {
-                $u['id_permiso'] = 'Administrador';
-            } else {
-                $u['id_permiso'] = 'Docente';
-            }
-
             if ($u['estado'] == Status::ACTIVO) {
                 $u['estado'] = 'Activo';
             } else {

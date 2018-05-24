@@ -26,5 +26,6 @@
           });
       };
       $scope.login = login;
+      $scope.date = new Date();
     });
 })();

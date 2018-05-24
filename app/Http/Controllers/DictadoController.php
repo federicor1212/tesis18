@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Dictado;
 use App\Materia; 
 use App\Asignado;
+use App\DictadosClases;
+use App\Dia;
+use Carbon\Carbon;
 use DB;
 
 class DictadoController extends Controller
@@ -14,12 +17,13 @@ class DictadoController extends Controller
 
       if ($id == null){
         
-        $materias = Materia::all();
-        $dictado = Dictado::all();
+        $dictado = Dictado::join('materias','dictados.id_materia','=','materias.id')
+                 ->join('dictados_clases','dictados.id','=','dictados_clases.id_dictado')
+                 ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
+                 ->join('dias','dictados_clases.id_dia','=','dias.id')
+                 ->select('dictados.id','materias.desc_mat','dictados.cuat','dictados.ano','dias.descripcion As dia_cursada','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max')
+                 ->get();
 
-        foreach ($dictado as $d) {
-            $d['materia'] = $materias->find($d['id_materia']);
-        }
         return $dictado;
       } else {
         return Dictado::find($id);

@@ -8,6 +8,6 @@
       $scope.data = data.data;
     })
     $scope.personal = personal;
-    
+    $scope.date = new Date();
   });
   })();

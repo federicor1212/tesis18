@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DictadosClases extends Model
 {
-    //
+    protected $table = 'dictados_clases';
+    
+    protected $fillable = ['id_dictado','id_dia','id_alternativa'];
+    
+    protected $dates = ['created_at','updated_at','deleted_at'];
 }

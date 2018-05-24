@@ -5,6 +5,7 @@ angular
 .controller('docentesController', function ($scope, $location, $auth, $state, docentesService) {
 	var personal = {};
 	$scope.personal = personal;
+	$scope.date = new Date();
 	$scope.logOut = function() {
 		// Borra el token del storage
 		localStorage.clear();
@@ -13,7 +14,7 @@ angular
 	docentesService.getDocente().then(function (data) {
     	$scope.tableData = data.data;
   	});
-  	$scope.headers = ['ID', 'Nombre', 'Apellido', 'Telefono'];
+  	$scope.headers = ['ID', 'Nombre', 'Apellido', 'Tel\u00E9fono'];
   	$scope.type = 'docentes';
 });
 })();
