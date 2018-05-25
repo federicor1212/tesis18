@@ -32,6 +32,22 @@ class MateriaController extends Controller
       }
     }
 
+    public function getMateriasCarrera($id) {
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
+          }
+
+      $materiasSelected = Materia::where('id_carrera',$id)->get();
+
+      return $materiasSelected;
+    }
+
     public function show($id) {
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();

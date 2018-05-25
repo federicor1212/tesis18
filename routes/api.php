@@ -45,6 +45,7 @@ Route::post('/eliminar-carrera/{id}', 'CarreraController@destroy');
 
 //Materias
 Route::get('/materia/{id?}', 'MateriaController@index');
+Route::get('/materias-carrera/{id?}', 'MateriaController@getMateriasCarrera');
 Route::post('/crear-materia', 'MateriaController@store');
 Route::post('/actualizar-materia/{id}', 'MateriaController@update');
 Route::post('/eliminar-materia/{id}', 'MateriaController@destroy');
