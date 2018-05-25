@@ -9,13 +9,14 @@ class DocenteController extends Controller
 {
     public function index($id = null) {
       $auth = new UsuarioController;
-      $request = new \Illuminate\Http\Request();
-      $token = $auth->getAuthenticatedUser($request);
-      $userData = json_decode($token->getContent());
-
-      if(isset($userData->error)){
-          return response()->json($userData, $token->status());
-      }
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
+          }
 
       if ($id == null){
         return Docente::all()->toArray();
@@ -28,10 +29,11 @@ class DocenteController extends Controller
           $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
         return Docente::find($id);
     }
@@ -40,10 +42,11 @@ class DocenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $docente = new Docente;
@@ -59,10 +62,11 @@ class DocenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $docente = Docente::find($id);
@@ -78,10 +82,11 @@ class DocenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $docente = Docente::find($id)->delete();

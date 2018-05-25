@@ -22,7 +22,7 @@ class UsuarioController extends Controller
         }
 
         try {
-            $user = JWTAuth::toUser($request->get('token'));
+            $user = JWTAuth::parseToken()->authenticate();
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
             return response()->json(['error' => 'Token is Expired'], 401);
 
@@ -40,10 +40,11 @@ class UsuarioController extends Controller
       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
       if ($id == null){
@@ -68,10 +69,11 @@ class UsuarioController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         return Usuario::find($id);
@@ -81,10 +83,11 @@ class UsuarioController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         if ($request->input('id') != null) {
@@ -114,6 +117,16 @@ class UsuarioController extends Controller
     }
     
     public function destroy(Request $request) {
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
+          }
+          
         $userToDelete = $request->input('0');
 
         if ($userToDelete != null) {

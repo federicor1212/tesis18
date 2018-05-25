@@ -11,10 +11,11 @@ class AsistenteController extends Controller
       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
       if ($id == null){
@@ -28,10 +29,11 @@ class AsistenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         return Asistente::find($id);
@@ -41,10 +43,11 @@ class AsistenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $asistente = new Asistente;
@@ -60,10 +63,11 @@ class AsistenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $asistente = Asistente::find($id);
@@ -78,10 +82,11 @@ class AsistenteController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
           
         $asistente = Asistente::find($id)->delete();

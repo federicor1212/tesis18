@@ -11,10 +11,11 @@ class AsistenciaCursoController extends Controller
       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
       if ($id == null){
@@ -28,10 +29,11 @@ class AsistenciaCursoController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         return AsistenciaCurso::find($id);
@@ -41,10 +43,11 @@ class AsistenciaCursoController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $asistenciaCurso = new AsistenciaCurso;
@@ -59,10 +62,11 @@ class AsistenciaCursoController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $asistenciaCurso = AsistenciaCurso::find($id);
@@ -77,10 +81,11 @@ class AsistenciaCursoController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
           
         $asistenciaCurso = AsistenciaCurso::find($id)->delete();

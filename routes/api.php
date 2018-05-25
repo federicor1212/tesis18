@@ -121,5 +121,3 @@ Route::get('/login', 'DocenteController@index');
 
 //Reportes
 Route::post('/cantAsistencias', 'ReportesController@loadReports');
-Route::post('/cantInscriptos', 'ReportesController@cantInscriptos');
-Route::post('/cantAlumnosLibres', 'ReportesController@cantAlumnosLibres');

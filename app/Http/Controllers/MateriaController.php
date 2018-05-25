@@ -12,10 +12,11 @@ class MateriaController extends Controller
       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
       if ($id == null){
@@ -35,10 +36,11 @@ class MateriaController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         return Materia::find($id);
@@ -48,10 +50,11 @@ class MateriaController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $materia = new Materia;
@@ -65,10 +68,11 @@ class MateriaController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
 
         $materia = Materia::find($id);
@@ -78,13 +82,14 @@ class MateriaController extends Controller
         return 'Materia record successfully updated with id ' . $materia->id;
     }
     public function destroy($id) {
-        $auth = new UsuarioController;
+       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          $userData = json_decode($token->getContent());
-
-          if(isset($userData->error)){
-              return response()->json($userData, $token->status());
+          if (!isset($token['id'])) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
           }
           
         $materia = Materia::find($id)->delete();
