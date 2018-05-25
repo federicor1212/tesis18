@@ -25,11 +25,16 @@ function materiasService($log, $http, $auth) {
     return $http({ method: "POST", url: '/api/eliminar-materia/' + materia});
   }
 
+  function buscarMateriasDeCarrera(carreraId) {
+    return $http({ method: "GET", url: `api/materias-carrera/${carreraId}`, cache: false });
+  }
+
   const service = {
     getMaterias,
     guardarMateria,
     actualizarMateria,
-    borrarMateria
+    borrarMateria,
+    buscarMateriasDeCarrera 
   };
 
   return service;

@@ -16,7 +16,7 @@ class ReportesController extends Controller
 {
     public function loadReports(Request $request) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
+          //$request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
@@ -24,10 +24,12 @@ class ReportesController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-        $id_carrera = 1;//$request->input('id_carrera');
-        $id_materia = 22;//$request->input('id_materia');
-        $ano = 2018;//$request->input('ano');
-        $cuat = 1;//$request->input('cuat');
+
+        $id_carrera = $request->input('idCarrera');
+        $id_materia = $request->input('idMateria');
+        $ano = $request->input('ano');
+        $cuat = $request->input('cuat');
+
         
         $result = new \StdClass();
         $result->asist = $this->cantAsistencias($id_carrera,$id_materia,$ano,$cuat);

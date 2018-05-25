@@ -63,6 +63,19 @@
     <!-- factories -->
     
     <!-- Angular route file -->
+
+    <style>
+      .custom-table-responsive {
+        overflow-y: auto;
+        max-height: 870px;
+      }
+      .main-header .sidebar-toggle:before {
+        content: none;
+      }
+      .container-of-everything {
+        height: 100%;
+      }
+    </style>
   </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div ui-view style="height: 100%;"></div>

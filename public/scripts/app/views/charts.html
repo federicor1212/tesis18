@@ -17,36 +17,88 @@
             <div class="box-body">
               <div class="row top5">
                 <div class="col-md-12">
-                    <div google-chart chart="data.asist.inscriptos" style="height:600px; width:100%;"></div>
-                    <div ng-if="data.asist.inscriptos.style == 'particular'">
+                  <form name="formChart" ng-submit="buscar()" class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Anio</label>
+                      <div class="col-sm-9">
+                        <select id="anio" class="form-control" name="anio" placeholder="Seleccione Anio" value="{{anio}}" ng-model="anio" ng-required="true">
+                          <option value="">-- Seleccionar Anio --</option>
+                          <option value="2018">2018</option>
+                          <option value="2017">2017</option>
+                          <option value="2016">2016</option>
+                          <option value="2015">2015</option>
+                          <option value="2014">2014</option>
+                        </select>
+                        <span style="color:red" ng-show="formChart.anio.$invalid && formChart.anio.$touched">El campo anio es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Cuatrimestre</label>
+                      <div class="col-sm-9">
+                        <select id="cuatrimestre" class="form-control" name="cuatrimestre" placeholder="Seleccione cuatrimestre" value="{{cuatrimestre}}"
+                          ng-model="cuatrimestre" ng-required="true">
+                          <option value="">-- Seleccionar Cuatrimestre --</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
+                        <span style="color:red" ng-show="formChart.cuatrimestre.$invalid && formChart.cuatrimestre.$touched">El campo cuatrimestre es obligatorio</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Carrera</label>
+                      <div class="col-sm-9">
+                        <select id="carrera" class="form-control" name="carrera" placeholder="Seleccione Carrera" value="{{carrera}}" ng-model="carrera"
+                          ng-required="true">
+                          <option value="">-- Seleccionar Carrera --</option>
+                          <option value="{{x.id}}" ng-repeat="x in carreras">{{x.desc_carr}}</option>
+                        </select>
+                        <span style="color:red" ng-show="formChart.carrera.$invalid && formChart.carrera.$touched">El campo carrera es obligatorio</span>
+                      </div>
+                    </div>
+                    <div ng-hide="!mostrarMateria" class="form-group">
+                      <label class="col-sm-3 control-label">Materia</label>
+                      <div class="col-sm-9">
+                        <select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" value="{{materia}}" ng-model="materia">
+                          <option value=" ">-- Seleccionar Materia --</option>
+                          <option value="{{x.id}} " ng-repeat="x in materias ">{{x.desc_mat}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="submit " id="btn-add " class="btn btn-success ">Buscar Reportes</button>
+                  </form>
+                  <div google-chart chart="inscriptos " style="height:600px; width:100%; "></div>
+                  <div ng-if="reportes && materia ">
                     <div>
-                        <div class="col-xs-12 col-sm-6 col-lg-4">
-                          <div class="box">             
-                              <div style="background-color: #d2d6de" class="info">
-                                <p style="text-align: center;" class="title">Cantidad de Alumnos Inscriptos</p>
-                                    <div style="text-align: center; font-size: 80px;">
-                                      {{data.asist.inscriptos.cantinsc}}
-                                    </div>
-                                </div>
-                            <div class="space"></div>
-                          </div> 
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-lg-4">
-                          <div class="box">             
-                              <div style="background-color: #d2d6de" class="info">
-                                <p style="text-align: center;" class="title">Cantidad de Alumnos Libres</p>
-                                    <div style="text-align: center; font-size: 80px;">
-                                      {{data.asist.inscriptos.cantlibre}}
-                                    </div>
-                                </div>
-                            <div class="space"></div>
-                          </div> 
+                      <div class="col-xs-12 col-sm-6 col-lg-4 ">
+                        <div class="box ">
+                          <div style="background-color: #d2d6de " class="info ">
+                            <p style="text-align: center; " class="title ">Cantidad de Alumnos Inscriptos</p>
+                            <div style="text-align: center; font-size: 80px; ">
+                              {{cantinsc}}
+                            </div>
+                          </div>
+                          <div class="space "></div>
                         </div>
                       </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 ">
+                        <div class="box ">
+                          <div style="background-color: #d2d6de " class="info ">
+                            <p style="text-align: center; " class="title ">Cantidad de Alumnos Libres</p>
+                            <div style="text-align: center; font-size: 80px; ">
+                              {{cantlibre}}
+                            </div>
+                          </div>
+                          <div class="space "></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div ng-if="data.asist.inscriptos.style == 'general'">
-                    <div google-chart chart="data.inscr.asistentes" style="height:600px; width:100%;"></div>
-                    <div google-chart chart="data.libre.libres" style="height:600px; width:100%;"></div>
+                  <div ng-if="!reportes ">
+                    No existen datos, por favor introducir una nueva seleccion
+                  </div>
+                  <div ng-if="!materia ">
+                    <div google-chart chart="asistentes " style="height:600px; width:100%; "></div>
+                    <div google-chart chart="libres " style="height:600px; width:100%; "></div>
                   </div>
                 </div>
               </div>
@@ -61,10 +113,12 @@
     </div>
     <!-- /.content-wrapper -->
   </div>
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
+  <footer class="main-footer ">
+    <div class="pull-right hidden-xs ">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; <a href="#">Asistencia</a> </strong> {{date| date:'yyyy'}}. All rights reserved.
+    <strong>Copyright &copy;
+      <a href="# ">Asistencia</a>
+    </strong> {{date| date:'yyyy'}}. All rights reserved.
   </footer>
 </div>
