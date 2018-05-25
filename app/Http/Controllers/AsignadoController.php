@@ -11,6 +11,15 @@ use App\Dictado;
 class AsignadoController extends Controller
 {
     public function index($id = null) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
       if ($id == null){
         $asignado = Asignado::all();
         $docentes = Docente::all();
@@ -30,10 +39,28 @@ class AsignadoController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         return Asignado::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $asignado = new Asignado;
         $asignado->id_dictado = $request->input('id_materia');
         $asignado->id_docente = $request->input('id_docente');
@@ -47,6 +74,15 @@ class AsignadoController extends Controller
     }
     
     public function update(Request $request, $id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $asignado = Asignado::find($id);
         $asignado->id_dictado = $request->input('id_dictado');
         $asignado->id_docente = $request->input('id_docente');
@@ -56,6 +92,15 @@ class AsignadoController extends Controller
     }
     
     public function destroy($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+          
         $asignado = Asignado::find($id)->destroy();
         return 'Asignado record successfully deleted';
     }

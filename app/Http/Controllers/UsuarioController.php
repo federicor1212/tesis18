@@ -14,16 +14,38 @@ use Carbon\Carbon;
 
 class UsuarioController extends Controller
 {
-
     public function getAuthenticatedUser(Request $request)
-    {
-        $user = JWTAuth::toUser($request->get('token'));
-        
+    {   
+        $sessionToken = \Session::get('token');
+        if ($sessionToken == null){
+            \Session::put('token', $request->get('token'));
+        }
+
+        try {
+            $user = JWTAuth::toUser($request->get('token'));
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'Token is Expired'], 401);
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'Token is Invalid'], 401);
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Token is not present'], 404);
+        }
+
         return $user;
     }
 
     public function index($id = null) {
-      
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
       if ($id == null){
         $usuario = Usuario::join('permisos','usuarios.id_permiso','=','permisos.id')            
                  ->select('usuarios.id','usuarios.nombre','usuarios.apellido','usuarios.estado','usuarios.email','permisos.descripcion AS permiso')
@@ -43,10 +65,27 @@ class UsuarioController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         return Usuario::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
 
         if ($request->input('id') != null) {
             $usuario = Usuario::find($request->input('id'));

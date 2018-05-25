@@ -8,7 +8,15 @@ use App\Alumno;
 class AlumnoController extends Controller
 {
     public function index($id = null) {
-      
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
       if ($id == null){
         return Alumno::all();
       } else {
@@ -17,10 +25,28 @@ class AlumnoController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         return Alumno::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $alumno = new Alumno;
         $alumno->nombre = $request->input('nombre');
         $alumno->apellido = $request->input('apellido');
@@ -32,6 +58,15 @@ class AlumnoController extends Controller
     }
     
     public function update(Request $request, $id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $alumno = Alumno::find($id);
         $alumno->nombre = $request->input('nombre');
         $alumno->apellido = $request->input('apellido');
@@ -42,6 +77,15 @@ class AlumnoController extends Controller
         return 'Alumno record successfully updated with id ' . $alumno->id;
     }
     public function destroy($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+          
         $alumno = Alumno::find($id)->delete();
         return 'Alumno record successfully deleted';
     }

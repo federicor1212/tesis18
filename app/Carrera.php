@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrera extends Model
 {
+	use SoftDeletes;
+    
     protected $table = 'carreras';
     
     protected $fillable = ['desc_carr','plan'];

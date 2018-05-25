@@ -8,7 +8,15 @@ use App\Asistente;
 class AsistenteController extends Controller
 {
     public function index($id = null) {
-      
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
       if ($id == null){
         return Asistente::all();
       } else {
@@ -17,10 +25,28 @@ class AsistenteController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         return Asistente::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $asistente = new Asistente;
         $asistente->id_alumno = $request->input('id_alumno');
         $asistente->id_dictado = $request->input('id_dictado');
@@ -31,6 +57,15 @@ class AsistenteController extends Controller
     }
     
     public function update(Request $request, $id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $asistente = Asistente::find($id);
         $asistente->id_alumno = $request->input('id_alumno');
         $asistente->id_dictado = $request->input('id_dictado');
@@ -40,6 +75,15 @@ class AsistenteController extends Controller
         return 'Asistente record successfully updated with id ' . $asistente->id;
     }
     public function destroy($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+          
         $asistente = Asistente::find($id)->delete();
         return 'Asistente record successfully deleted';
     }

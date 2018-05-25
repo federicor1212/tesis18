@@ -8,7 +8,14 @@ use App\Alternativa;
 class AlternativaController extends Controller
 {
     public function index($id = null) {
-      
+      $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+            }
       if ($id == null){
         return Alternativa::all();
       } else {
@@ -17,10 +24,26 @@ class AlternativaController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
         return Alternativa::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
         $alternativa = new Alternativa;
         $alternativa->codigo = $request->input('codigo');
         $alternativa->descripcion = $request->input('descripcion');
@@ -29,13 +52,30 @@ class AlternativaController extends Controller
     }
     
     public function update(Request $request, $id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
         $alternativa = Alternativa::find($id);
         $alternativa->codigo = $request->input('codigo');
         $alternativa->descripcion = $request->input('descripcion');
         $alternativa->save();
         return 'alternativa record successfully updated with id ' . $alternativa->id;
     }
+
     public function destroy($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
         $alternativa = Alternativa::find($id)->delete();
         return 'alternativa record successfully deleted';
     }

@@ -14,6 +14,14 @@ use DB;
 class DictadoController extends Controller
 {
     public function index($id = null) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
 
       if ($id == null){
         
@@ -31,6 +39,15 @@ class DictadoController extends Controller
     }
 
     public function dictadosSinProfesor(){
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $allDictados = Dictado::all();
         $allAsignados = Asignado::select(DB::raw('id_dictado, count(id_dictado) as cant_asignada'))->groupBy('id_dictado')->get();
 
@@ -50,10 +67,28 @@ class DictadoController extends Controller
     }
 
     public function show($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         return Dictado::find($id);
     }
 
     public function store(Request $request) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $dictado = new Dictado;
         $dictado->id_materia = $request->input('id_materia');
         $dictado->cuat = $request->input('cuat');
@@ -70,6 +105,15 @@ class DictadoController extends Controller
     }
     
     public function update(Request $request, $id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+
         $dictado = Dictado::find($id);
         $dictado->cuat = $request->input('cuat');
         $dictado->ano = $request->input('ano');
@@ -83,7 +127,17 @@ class DictadoController extends Controller
         $dictado->save();
         return 'Dictado record successfully updated with id ' . $dictado->id;
     }
+
     public function destroy($id) {
+        $auth = new UsuarioController;
+          $request = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($request);
+          $userData = json_decode($token->getContent());
+
+          if(isset($userData->error)){
+              return response()->json($userData, $token->status());
+          }
+          
         $dictado = Dictado::find($id)->delete();
         return 'Dictado record successfully deleted';
     }
