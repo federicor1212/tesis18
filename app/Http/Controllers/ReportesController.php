@@ -16,8 +16,8 @@ class ReportesController extends Controller
 {
     public function loadReports(Request $request) {
         $auth = new UsuarioController;
-          //$request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){

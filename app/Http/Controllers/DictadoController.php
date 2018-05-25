@@ -15,8 +15,8 @@ class DictadoController extends Controller
 {
     public function index($id = null) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -41,8 +41,8 @@ class DictadoController extends Controller
 
     public function dictadosSinProfesor(){
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -69,8 +69,8 @@ class DictadoController extends Controller
 
     public function show($id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -83,8 +83,8 @@ class DictadoController extends Controller
 
     public function store(Request $request) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -109,8 +109,8 @@ class DictadoController extends Controller
     
     public function update(Request $request, $id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -134,8 +134,8 @@ class DictadoController extends Controller
 
     public function destroy($id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if (!isset($token['id'])) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
