@@ -17,7 +17,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -43,7 +43,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -71,7 +71,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -85,7 +85,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -111,7 +111,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -136,7 +136,7 @@ class DictadoController extends Controller
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());

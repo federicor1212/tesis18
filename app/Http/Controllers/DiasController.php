@@ -11,7 +11,7 @@ class DiasController extends Controller
       $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -29,7 +29,7 @@ class DiasController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -43,7 +43,7 @@ class DiasController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -61,7 +61,7 @@ class DiasController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
@@ -79,7 +79,7 @@ class DiasController extends Controller
         $auth = new UsuarioController;
           $request = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($request);
-          if (!isset($token['id'])) {
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
