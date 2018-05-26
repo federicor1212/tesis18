@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Dictado;
 use App\Materia; 
 use App\Asignado;
-use App\DictadosClases;
+use App\DictadoClase;
 use App\Dia;
 use Carbon\Carbon;
 use DB;
@@ -31,6 +31,7 @@ class DictadoController extends Controller
                  ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
                  ->join('dias','dictados_clases.id_dia','=','dias.id')
                  ->select('dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max')
+                 ->orderby('materias.desc_mat')
                  ->get();
 
         return $dictado;
@@ -94,16 +95,22 @@ class DictadoController extends Controller
 
         $dictado = new Dictado;
         $dictado->id_materia = $request->input('id_materia');
-        $dictado->cuat = $request->input('cuat');
         $dictado->ano = $request->input('ano');
-        /*$dictado->id_dia = $request->input('id_dia');
-        $dictado->id_alternativa = $request->input('id_alternativa');*/
+        $dictado->cuat = $request->input('cuat');
         $dictado->cant_insc_act = $request->input('cant_insc_act');
         $dictado->cant_clases = $request->input('cant_clases');
         $dictado->cant_faltas_max = $request->input('cant_faltas_max');
-        $dictado->fecha_inicio = $request->input('fecha_inicio');
-        $dictado->fecha_fin = $request->input('fecha_fin');
+
+        /*$dictado->fecha_inicio = $request->input('fecha_inicio');
+        $dictado->fecha_fin = $request->input('fecha_fin');*/
         $dictado->save();
+
+        $dictadoClase = new DictadoClase;
+        $dictadoClase->id_dictado = $dictado->id;
+        $dictadoClase->id_dia = $request->input('id_dia');
+        $dictadoClase->id_alternativa = $request->input('id_alternativa');
+        $dictadoClase->save();
+
         return 'Dictado record successfully created with id' . $dictado->id;
     }
     
@@ -123,7 +130,6 @@ class DictadoController extends Controller
                                 'id_dia' => $request->input('id_dia')]
                               );
 
-
         $dictado = Dictado::find($id);
         $dictado->id_materia = $request->input('id_materia');
         $dictado->ano = $request->input('ano');
@@ -131,8 +137,9 @@ class DictadoController extends Controller
         $dictado->cant_insc_act = $request->input('cant_insc_act');
         $dictado->cant_clases = $request->input('cant_clases');
         $dictado->cant_faltas_max = $request->input('cant_faltas_max');
-        $dictado->fecha_inicio = $request->input('fecha_inicio');
-        $dictado->fecha_fin = $request->input('fecha_fin');
+        
+        /*$dictado->fecha_inicio = Carbon::parse($request->input('fecha_inicio'))->format('d/m/Y');
+        $dictado->fecha_fin = Carbon::parse($request->input('fecha_fin'))->format('d/m/Y');*/
         $dictado->save();
 
         return 'Dictado record successfully updated with id ' . $dictado->id;
@@ -149,6 +156,8 @@ class DictadoController extends Controller
             }
           }
           
+        $dictadoClase = DictadoClase::where('id_dictado','=',$id)->delete();
+
         $dictado = Dictado::find($id)->delete();
         return 'Dictado record successfully deleted';
     }
