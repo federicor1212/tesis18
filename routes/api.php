@@ -29,7 +29,7 @@ Route::post('/identity','UsuarioController@getAuthenticatedUser');
 Route::get('/usuario/{id?}', 'UsuarioController@index');
 Route::post('/crear-usuario', 'UsuarioController@store');
 Route::post('/actualizar-usuario/{id}', 'UsuarioController@store');
-Route::post('/eliminar-usuario', 'UsuarioController@destroy');
+Route::post('/eliminar-usuario/{id}', 'UsuarioController@destroy');
 
 //Alumnos
 Route::get('/alumno/{id?}', 'AlumnoController@index');
@@ -53,7 +53,7 @@ Route::post('/eliminar-materia/{id}', 'MateriaController@destroy');
 //Inscriptos
 Route::get('/inscripto/{id?}', 'InscriptoController@index');
 Route::post('/nuevo-inscripto', 'InscriptoController@store');
-Route::post('/actualizar-inscripcion/{id}', 'InscriptoController@update');
+Route::post('/	/{id}', 'InscriptoController@update');
 Route::post('/eliminar-inscripto/{id}', 'InscriptoController@destroy');
 
 //Docentes asignados

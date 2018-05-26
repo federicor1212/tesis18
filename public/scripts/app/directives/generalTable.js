@@ -14,74 +14,382 @@ angular
 		  var table = this;
 		  
 		  table.saveUsuario = function(usuario) {
-			usuario.nuevo ? usuariosService.guardarUsuario(usuario) : usuariosService.actualizarUsuario(usuario);
-		    location.reload(true);
+			if(usuario.nuevo) {
+				usuariosService.guardarUsuario(usuario).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El usuario fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando el usuario",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			} else {
+				usuariosService.actualizarUsuario(usuario).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El usuario fue actualizado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando el usuario",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			}
 		  }
 
 		  table.saveAlumno = function(alumno) {
-			alumno.nuevo ? alumnoService.guardarAlumno(alumno) : alumnoService.actualizarAlumno(alumno);
-		    location.reload(true);
+			if(alumno.nuevo) {
+				alumnoService.guardarAlumno(alumno).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El alumno fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando el alumno",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			} else {
+				alumnoService.actualizarAlumno(alumno).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El alumno fue actualizado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando el alumno",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			}
 		  }
 		  
 		  table.saveCarrera = function(carrera) {
 			if (carrera.nuevo) {
 				carrerasService.guardarCarrera(carrera).then(
-	              swal({
-					  title: "Exito!",
-					  text: "Carrera Guardada exitosamente",
-					  icon: "success",
-					  button: "OK",
-						})
-						.then((willContinue) => {
-						  if (willContinue) {
-						    location.reload(true);
-						  }
-						})
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "La carrera fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando la carrera",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
 	            ); 
 			} else {
 				carrerasService.actualizarCarrera(carrera).then(
 	              function() {
-	                swal('Carrera actualizada exitosamente !', '', 'success');
-					location.reload(true);
-	              },
-	              function(error) {
-	                swal('Hubo un error actualizando la carrera!', error, 'error');
+		              swal({
+						  title: "Exito!",
+						  text: "La carrera fue actualizando exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando la carrera",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
 	              }
-	            );
+	            ); 
 			}
-
-			
 		  }
 
 		  table.saveDocasignado = function(docAsignado) {
-			docAsignado.nuevo ? docentesAsignadosService.guardarDocenteAsignado(docAsignado) : docentesAsignadosService.actualizarDocenteAsignado(docAsignado);
-			location.reload(true);
+			if(docAsignado.nuevo) {
+				docentesAsignadosService.guardarDocenteAsignado(docAsignado).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El docente asignado fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando el docente asignado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			} else {
+				docentesAsignadosService.actualizarDocenteAsignado(docAsignado).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El docente asignado fue actualizado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando el docente asignado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			}
 		  }
 
 		  table.saveDictado = function(dictado) {
-			dictado.nuevo ? dictadosService.guardarDictado(dictado) : dictadosService.actualizarDictado(dictado);
-			location.reload(true);
+			if(dictado.nuevo) {
+				dictadosService.guardarDictado(dictado).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El dictado fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando el dictado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			} else {
+				dictadosService.actualizarDictado(dictado).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El dictado fue actualizado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando el dictado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			}  
 		  }
 
 		  table.saveDocente = function(docente) {
-			docente.nuevo ? docentesService.guardarDocente(docente) : docentesService.actualizarDocente(docente);
-			location.reload(true);
+			if(docente.nuevo) {
+				docentesService.guardarDocente(docente).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El docente fue creado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando el docente",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            ); 
+			} else {
+			 	docentesService.actualizarDocente(docente).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El docente fue actualizado exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizado el docente",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            );  
+			}
+
+
 		  }
 
 		  table.saveInscripto = function(inscripto) {
 			if(inscripto.nuevo){
 				inscriptosService.guardarInscripto(inscripto).then(
-	              swal({
-					  title: "Exito!",
-					  text: "El alumno fue inscripto exitosamente",
-					  icon: "success",
-					  button: "OK",
-						})
-						.then((willContinue) => {
-						  if (willContinue) {
-						    location.reload(true);
-						  }
-						})
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "El alumno fue inscripto exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error guardando la inscripcion",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
 	            ); 
 			} else {
 				inscriptosService.actualizarInscripto(inscripto).then(
@@ -112,12 +420,66 @@ angular
 	              }
 	            );
 			}  
-		    //location.reload(true);
 		  }
 
 		  table.saveMateria = function(materia) {
-			materia.nuevo ? materiasService.guardarMateria(materia) : materiasService.actualizarMateria(materia);
-		    location.reload(true);
+			if (materia.nuevo) {
+				materiasService.guardarMateria(materia).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "La materia fue creada exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+					}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error creando la materia",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            );
+			} else {
+				materiasService.actualizarMateria(materia).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "La materia fue actualizada exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+					}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando la materia",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            );
+			}
 		  }
 
 		  $scope.initScope = function(type) {
@@ -398,15 +760,38 @@ angular
 			  if (willDelete) {
 			  switch (type) {
 					case 'alumno':
-						alumnoService.borrarAlumno(id).then(() => {
-						    swal("El registro fue eliminado exitosamente!", {
-						      icon: "success",
-						    });
-						});
+						alumnoService.borrarAlumno(id).then(
+			              function() {
+			              swal({
+							  title: "Exito!",
+							  text: "Alumno eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el alumno",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              		}
+			         );
 					break;
 
 					case 'carreras':
 						carrerasService.borrarCarrera(id).then(
+			             function() {
 			              swal({
 							  title: "Exito!",
 							  text: "Carrera eliminada exitosamente",
@@ -418,43 +803,193 @@ angular
 								    location.reload(true);
 								  }
 								})
-			            ); 
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando la carrera",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              	}); 
 					break;
 
 					case 'usuarios':
-						usuariosService.borrarUsuario(id).then(() => {
-							location.reload(true);
-						});
+						usuariosService.borrarUsuario(id).then(
+			             function() {
+			              swal({
+							  title: "Exito!",
+							  text: "Usuario eliminando exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el usuario",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              	}); 
 					break;
 
 					case 'docenteasignado':
-						docentesAsignadosService.borrarDocenteAsignado(id).then(() => {
-							location.reload(true);
-						});
+						docentesAsignadosService.borrarDocenteAsignado(id).then(
+			             function() {
+			              swal({
+							  title: "Exito!",
+							  text: "Docente asignado eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el docente asignado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              });
 					break;
 
 					case 'dictados':
-						dictadosService.borrarDictado(id).then(() => {
-							location.reload(true);
-						});
+						dictadosService.borrarDictado(id).then(
+			             function() { 
+			              swal({
+							  title: "Exito!",
+							  text: "Dictado eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el dictado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              });
 					break;
 						
 					case 'docentes':
-						docentesService.borrarDocente(id).then(() => {
-							location.reload(true);
-						});
+						docentesService.borrarDocente(id).then(
+			             function() { 
+			              swal({
+							  title: "Exito!",
+							  text: "Docente eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el docente",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              });
 					break;
 
 					case 'inscriptos':
-						inscriptosService.borrarInscripto(id).then(() => {
-							location.reload(true);
-						});
+						inscriptosService.borrarInscripto(id).then(
+			             function() { 
+			              swal({
+							  title: "Exito!",
+							  text: "Inscripto eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el inscripto",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              });
 					break;
 						
 					case 'materias':
-						materiasService.borrarMateria(id).then(() => {
-							location.reload(true);
-						});
+						materiasService.borrarMateria(id).then(
+			             function() { 
+			              swal({
+							  title: "Exito!",
+							  text: "Materia eliminada exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando la materia",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              });
 					break;
 				};
 			  } else {

@@ -116,7 +116,7 @@ class UsuarioController extends Controller
         return 'Usuario record successfully saved with id' . $usuario->id;
     }
     
-    public function destroy(Request $request) {
+    public function destroy(Request $request, $id) {
       $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
@@ -126,11 +126,9 @@ class UsuarioController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-          
-        $userToDelete = $request->input('0');
 
-        if ($userToDelete != null) {
-            $usuario = Usuario::find($userToDelete)->delete();
+        if ($id != null) {
+            $usuario = Usuario::find($id)->delete();
             return 'Usuario record successfully deleted';
         } else {
             return 'Hubo un problema eliminando el usuario';
