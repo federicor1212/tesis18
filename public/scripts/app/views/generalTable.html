@@ -502,8 +502,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre</label>
 							<div class="col-sm-9">
-								<select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Nombre" ng-model="modal.alumno" ng-required="true">
-									<option ng-repeat="x in alumnos" value="{{x.id}}"> {{x.nombre}}, {{x.apellido}}</option>
+								<select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Nombre" ng-model="modal.alumno.nombre" ng-required="true" value="{{modal.alumno.nombre}}">
+									<option ng-repeat="x in alumnos" value="{{x.nombre}}"> {{x.nombre}}, {{x.apellido}}</option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.nombre.$invalid && frmInscriptos.nombre.$touched">El campo Nombre es obligatorio</span>
 							</div>
@@ -511,8 +511,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia">
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.materia.desc_mat" value={{modal.materia.desc_mat}}>
+									<option ng-repeat="x in materias" value="{{x.desc_mat}}">{{x.desc_mat}}</option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.materia.$invalid && frmInscriptos.materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
