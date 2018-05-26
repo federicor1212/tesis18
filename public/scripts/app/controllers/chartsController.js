@@ -30,6 +30,7 @@
         }
       });
       $scope.buscar = function() {
+
         reportesService
           .getReportes(
             $scope.carrera,

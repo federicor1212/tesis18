@@ -42,10 +42,12 @@ class ReportesController extends Controller
     public function cantAsistencias($id_carrera,$id_materia,$ano,$cuat) {  
         $result = new \StdClass();
         
+        $empty = 0;
+        
         $myObj = new \StdClass();
         $myObj->cols=[];
         $myObj->rows=[];
-        
+       
         $myObj->cols[0] = new \StdClass();
         $myObj->cols[0]->id = "insc";
         $myObj->cols[0]->label = "Inscriptos1";
@@ -86,7 +88,8 @@ class ReportesController extends Controller
             $myObj->rows[0]->c[0] = new \StdClass();
             $myObj->rows[0]->c[0]->v = "Presentes";
             $myObj->rows[0]->c[1] = new \StdClass();
-            $myObj->rows[0]->c[1]->v = 0;   
+            $myObj->rows[0]->c[1]->v = 0;
+            $empty +=1;
         }else{
             $myObj->rows[0]->c[0] = new \StdClass();            
             $myObj->rows[0]->c[0]->v = "Presentes";
@@ -123,7 +126,8 @@ class ReportesController extends Controller
             $myObj->rows[1]->c[0] = new \StdClass();
             $myObj->rows[1]->c[0]->v = "Ausentes";
             $myObj->rows[1]->c[1] = new \StdClass();
-            $myObj->rows[1]->c[1]->v = 0;   
+            $myObj->rows[1]->c[1]->v = 0;
+            $empty +=1;
         }else{
             $myObj->rows[1]->c[0] = new \StdClass();            
             $myObj->rows[1]->c[0]->v = "Ausentes";
@@ -160,7 +164,8 @@ class ReportesController extends Controller
             $myObj->rows[2]->c[0] = new \StdClass();            
             $myObj->rows[2]->c[0]->v = "Media Falta";
             $myObj->rows[2]->c[1] = new \StdClass();
-            $myObj->rows[2]->c[1]->v = 0;       
+            $myObj->rows[2]->c[1]->v = 0;
+            $empty +=1;       
         }else{
             $myObj->rows[2]->c[0] = new \StdClass();
             $myObj->rows[2]->c[0]->v = "Media Falta";
@@ -196,17 +201,33 @@ class ReportesController extends Controller
             ->get();
 
             $result->inscriptos->style = "particular";
-            $result->inscriptos->cantinsc = $cantInscripto[0]->total;
-            $result->inscriptos->cantlibre = $cantLibre[0]->total;
+            if (!empty($cantInscripto[0])) {
+                $result->inscriptos->cantinsc = $cantInscripto[0]->total;
+            } else {
+                $result->inscriptos->cantinsc = 0;
+            } 
+
+            if (!empty($cantInscripto[0])) {
+                $result->inscriptos->cantlibre = $cantLibre[0]->total;
+            } else {
+                $result->inscriptos->cantlibre = 0;
+            }
         } else {
             $result->inscriptos->style = "general";
         }
         $result->inscriptos->type = "PieChart";
+        
+        if ($empty == 3) {
+            $result->inscriptos->empty  = true;
+        } else {
+            $result->inscriptos->empty  = false;
+        }
 
         return $result;    
     }
     
     public function cantInscriptos($id_carrera,$ano,$cuat) {
+        $contEmpty = 0;
 
         $cantIns = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
             ->join('materias','dictados.id_materia','=','materias.id')
@@ -242,16 +263,26 @@ class ReportesController extends Controller
             $myObj->rows[$key]->c[0] = new \StdClass();            
             $myObj->rows[$key]->c[0]->v = $cantIns[$key]->desc_mat;
             $myObj->rows[$key]->c[1] = new \StdClass();
-            $myObj->rows[$key]->c[1]->v = $cantIns[$key]->total;       
+            $myObj->rows[$key]->c[1]->v = $cantIns[$key]->total;
+            if ($cantIns[$key]->total == 0) {
+                $contEmpty +=1;
+            }       
         }        
         
         $result->asistentes->type = "BarChart";
+
+        if ($contEmpty == count($cantIns)) {
+            $result->asistentes->empty = true;
+        } else {
+            $result->asistentes->empty = false;
+        }
 
         return $result;
     }
     
     public function cantAlumnosLibres($id_carrera,$ano,$cuat) {
-    
+        $contEmpty =    0;
+
         $result[0] = ['Materia','totalLibres'];
 
         $cantLib = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
@@ -288,11 +319,20 @@ class ReportesController extends Controller
             $myObj->rows[$key]->c[0] = new \StdClass();            
             $myObj->rows[$key]->c[0]->v = $cantLib[$key]->desc_mat;
             $myObj->rows[$key]->c[1] = new \StdClass();
-            $myObj->rows[$key]->c[1]->v = $cantLib[$key]->total;       
+            $myObj->rows[$key]->c[1]->v = $cantLib[$key]->total; 
+            if ($cantLib[$key]->total == 0) {
+                $contEmpty +=1;
+            }      
         }        
         
         $result->libres->type = "BarChart";
         
+        if ($contEmpty == count($cantLib)) {
+            $result->libres->empty = true;
+        } else {
+            $result->libres->empty = false;
+        }
+
         return $result;
     }
 }

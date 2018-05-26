@@ -66,7 +66,14 @@
                     </div>
                     <button type="submit " id="btn-add " class="btn btn-success ">Buscar Reportes</button>
                   </form>
-                  <div google-chart chart="inscriptos " style="height:600px; width:100%; "></div>
+                  <div ng-if="!inscriptos.empty">
+                    <div google-chart chart="inscriptos " style="height:600px; width:100%; "></div>
+                  </div>
+                  <br>
+                  <div ng-if="inscriptos.empty" style="position: center;">
+                    No se detecto informacion de asistencia para el periodo seleccionado, por favor seleccione un nuevo periodo
+                  </div>
+                  <br>
                   <div ng-if="reportes && materia ">
                     <div>
                       <div class="col-xs-12 col-sm-6 col-lg-4 ">
@@ -93,12 +100,21 @@
                       </div>
                     </div>
                   </div>
-                  <div ng-if="!reportes ">
-                    No existen datos, por favor introducir una nueva seleccion
-                  </div>
                   <div ng-if="!materia ">
-                    <div google-chart chart="asistentes " style="height:600px; width:100%; "></div>
-                    <div google-chart chart="libres " style="height:600px; width:100%; "></div>
+                    <div ng-if="asistentes.empty" style="position: center;">
+                      <br>
+                      No se detecto informacion de alumnos inscriptos para el periodo seleccionado, por favor seleccione un nuevo periodo
+                    </div>
+                    <div ng-if="libres.empty" style="position: center;">
+                      <br>
+                      No se detecto informacion de alumnos libres para el periodo seleccionado, por favor seleccione un nuevo periodo
+                    </div>
+                    <div ng-if="!asistentes.empty" style="position: center;">
+                      <div google-chart chart="asistentes " style="height:600px; width:100%; "></div>
+                    </div>
+                    <div ng-if="!libres.empty" style="position: center;">
+                      <div google-chart chart="libres " style="height:600px; width:100%; "></div>
+                    </div>
                   </div>
                 </div>
               </div>

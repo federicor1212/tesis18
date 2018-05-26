@@ -92,6 +92,9 @@ class DictadoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
+        
+        $dateInicio = $request->input('fecha_inicio');
+        $dateFin = $request->input('fecha_fin');
 
         $dictado = new Dictado;
         $dictado->id_materia = $request->input('id_materia');
@@ -100,9 +103,8 @@ class DictadoController extends Controller
         $dictado->cant_insc_act = $request->input('cant_insc_act');
         $dictado->cant_clases = $request->input('cant_clases');
         $dictado->cant_faltas_max = $request->input('cant_faltas_max');
-
-        /*$dictado->fecha_inicio = $request->input('fecha_inicio');
-        $dictado->fecha_fin = $request->input('fecha_fin');*/
+        $dictado->fecha_inicio = date('Y-m-d', strtotime($dateInicio));
+        $dictado->fecha_fin = date('Y-m-d', strtotime($dateFin));
         $dictado->save();
 
         $dictadoClase = new DictadoClase;
@@ -130,6 +132,8 @@ class DictadoController extends Controller
                                 'id_dia' => $request->input('id_dia')]
                               );
 
+        $dateInicio = $request->input('fecha_inicio');
+        $dateFin = $request->input('fecha_fin');
         $dictado = Dictado::find($id);
         $dictado->id_materia = $request->input('id_materia');
         $dictado->ano = $request->input('ano');
@@ -137,9 +141,8 @@ class DictadoController extends Controller
         $dictado->cant_insc_act = $request->input('cant_insc_act');
         $dictado->cant_clases = $request->input('cant_clases');
         $dictado->cant_faltas_max = $request->input('cant_faltas_max');
-        
-        /*$dictado->fecha_inicio = Carbon::parse($request->input('fecha_inicio'))->format('d/m/Y');
-        $dictado->fecha_fin = Carbon::parse($request->input('fecha_fin'))->format('d/m/Y');*/
+        $dictado->fecha_inicio = date('Y-m-d', strtotime($dateInicio));
+        $dictado->fecha_fin = date('Y-m-d', strtotime($dateFin));
         $dictado->save();
 
         return 'Dictado record successfully updated with id ' . $dictado->id;
