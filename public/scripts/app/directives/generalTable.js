@@ -145,10 +145,7 @@ angular
 		  				cant_faltas_max: null
 		  			}
 
-		  			$scope.modal.materia = {
-		  				desc_mat: null,
-						id: null
-		  			};
+		  			$scope.modal.materia = null;
 
 		  			materiasService.getMaterias().then((response) => {
 		  				$scope.materias = response.data;

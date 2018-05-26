@@ -34,7 +34,7 @@ Route::post('/eliminar-usuario', 'UsuarioController@destroy');
 //Alumnos
 Route::get('/alumno/{id?}', 'AlumnoController@index');
 Route::post('/crear-alumno', 'AlumnoController@store');
-Route::post('/actualizar-alumno/{id}', 'AlumnoController@store');
+Route::post('/actualizar-alumno/{id}', 'AlumnoController@update');
 Route::post('/eliminar-alumno/{id}', 'AlumnoController@destroy');
 
 //Carreras

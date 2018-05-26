@@ -19,17 +19,17 @@
                 <div class="col-md-12">
                   <form name="formChart" ng-submit="buscar()" class="form-horizontal">
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Anio</label>
+                      <label class="col-sm-3 control-label">Año</label>
                       <div class="col-sm-9">
                         <select id="anio" class="form-control" name="anio" placeholder="Seleccione Anio" value="{{anio}}" ng-model="anio" ng-required="true">
-                          <option value="">-- Seleccionar Anio --</option>
+                          <option value="">-- Seleccionar Año --</option>
                           <option value="2018">2018</option>
                           <option value="2017">2017</option>
                           <option value="2016">2016</option>
                           <option value="2015">2015</option>
                           <option value="2014">2014</option>
                         </select>
-                        <span style="color:red" ng-show="formChart.anio.$invalid && formChart.anio.$touched">El campo anio es obligatorio</span>
+                        <span style="color:red" ng-show="formChart.anio.$invalid && formChart.anio.$touched">El campo año es obligatorio</span>
                       </div>
                     </div>
                     <div class="form-group">
