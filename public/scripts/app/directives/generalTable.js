@@ -149,6 +149,7 @@ angular
 		  				desc_mat: null,
 						id: null
 		  			};
+
 		  			materiasService.getMaterias().then((response) => {
 		  				$scope.materias = response.data;
 		  			});
@@ -300,8 +301,8 @@ angular
 						break;
 
 					case 'dictados':
-						$scope.modal.materia = data.materia;
-						$scope.modal.cuat = data.cuat;
+						$scope.modal.materia = data.desc_mat;
+						$scope.modal.cuat = data.cuat.toString();
 						$scope.modal.ano = data.ano;
 						$scope.modal.dia_cursada = data.dia_cursada;
 						$scope.modal.alt_hor = data.alt_hor;
@@ -362,14 +363,23 @@ angular
 						    swal("El registro fue eliminado exitosamente!", {
 						      icon: "success",
 						    });
-							location.reload(true);
 						});
 					break;
 
 					case 'carreras':
-						carrerasService.borrarCarrera(id).then((response) => {
-							location.reload(true);
-						});
+						carrerasService.borrarCarrera(id).then(
+			              swal({
+							  title: "Exito!",
+							  text: "Carrera eliminada exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            ); 
 					break;
 
 					case 'usuarios':

@@ -358,8 +358,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" value="{{materia}}" ng-model="modal.id_materia">
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" value="{{modal.materia}}" ng-model="modal.materia">
+									<option value="{{x.desc_mat}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDictado.materia.$invalid && frmDictado.materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
@@ -367,8 +367,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cuatrimestre</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="cuatrimestre" name="cuatrimestre" placeholder="Seleccione el Cuatrimestre" value="{{cuat}}"
-								 ng-model="modal.cuat" ng-required="true">
+								<select class="form-control" id="cuat" name="cuat" placeholder="Seleccione el Cuatrimestre" value="{{modal.cuat}}" ng-model="modal.cuat">
 									<option value="1">1</option>
 									<option value="2">2</option>
 								</select>
