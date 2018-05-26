@@ -100,13 +100,14 @@ class UsuarioController extends Controller
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
         $usuario->password = Hash::make($request->input('password'));
-        if ($request->input('id_permiso') === 'Administrador') {
+
+        if ($request->input('id_permiso') === 1) {
             $usuario->id_permiso = UserRoles::ADMIN;
         } else {
             $usuario->id_permiso = UserRoles::DOCENTE;
         }
 
-        if ($request->input('estado') === 'Activo') {
+        if ($request->input('estado') === 1) {
             $usuario->estado = Status::ACTIVO;
         } else {
             $usuario->estado = Status::INACTIVO;
