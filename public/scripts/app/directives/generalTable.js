@@ -584,7 +584,7 @@ angular
 		  				$scope.alumnos = response.data;
 					})
 
-					materiasService.getMaterias().then((response) => {
+					dictadosService.getDictado().then((response) => {
 		  				$scope.materias = response.data;
 		  			});
 
