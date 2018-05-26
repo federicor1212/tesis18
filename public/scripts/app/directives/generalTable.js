@@ -544,6 +544,8 @@ angular
 		  				ano: null,
 		  				dia_cursada: null,
 		  				alt_hor: null,
+		  				fecha_inicio: null,
+		  				fecha_fin: null,
 		  				cant_insc_act: null,
 		  				cant_clases: null,
 		  				cant_faltas_max: null
@@ -702,11 +704,15 @@ angular
 						break;
 
 					case 'dictados':
+						$scope.modal.id_materia = data.id_materia.toString();
 						$scope.modal.materia = data.desc_mat;
 						$scope.modal.cuat = data.cuat.toString();
 						$scope.modal.ano = data.ano;
+						$scope.modal.id_dia = data.id_dia.toString();
 						$scope.modal.dia_cursada = data.dia_cursada;
-						$scope.modal.alt_hor = data.alt_hor;
+						$scope.modal.id_alternativa = data.id_alternativa.toString();
+						$scope.modal.fecha_inicio = new Date(data.fecha_inicio);
+						$scope.modal.fecha_fin = new Date(data.fecha_fin);
 						$scope.modal.cant_insc_act = data.cant_insc_act;
 						$scope.modal.cant_clases = data.cant_clases;
 						$scope.modal.cant_faltas_max = data.cant_faltas_max;

@@ -358,16 +358,18 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" value="{{modal.materia}}" ng-model="modal.materia">
-									<option value="{{x.desc_mat}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+								<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_materia}}" ng-model="modal.id_materia" ng-required="true">
+									<option value="">-- Seleccione --</option>
+									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
 								</select>
-								<span style="color:red" ng-show="frmDictado.materia.$invalid && frmDictado.materia.$touched">Seleccionar una Materia es obligatorio</span>
+								<span style="color:red" ng-show="frmDictado.id_materia.$invalid && frmDictado.id_materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cuatrimestre</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="cuat" name="cuat" placeholder="Seleccione el Cuatrimestre" value="{{modal.cuat}}" ng-model="modal.cuat">
+								<select class="form-control" id="cuat" name="cuat" placeholder="Seleccione el Cuatrimestre" value="{{modal.cuat}}" ng-model="modal.cuat" ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
 								</select>
@@ -377,7 +379,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">A&ntilde;o</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="ano" name="ano" placeholder="Seleccione el año" value="{{ano}}" ng-model="modal.ano" ng-required="true">
+								<select class="form-control" id="ano" name="ano" placeholder="Seleccione el año" value="{{modal.ano}}" ng-model="modal.ano" ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option value="2017">2017</option>
 									<option value="2018">2018</option>
 									<option value="2019">2019</option>
@@ -389,28 +392,45 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">D&iacute;a de cursada</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="dia_cursada" name="dia_cursada" placeholder="Seleccione el Día de cursada" value="{{dia_cursada}}"
-								 ng-model="modal.dia_cursada" ng-required="true">
-									<option value="lunes">Lunes</option>
-									<option value="martes">Martes</option>
-									<option value="miercoles">Miercoles</option>
-									<option value="jueves">Jueves</option>
-									<option value="viernes">Viernes</option>
-									<option value="sabado">Sabado</option>
+								<select class="form-control" id="id_dia" name="id_dia" placeholder="Seleccione el Día de cursada" value="{{id_dia}}"
+								 ng-model="modal.id_dia" ng-required="true">
+									<option value="">-- Seleccione --</option>
+									<option value="1">Lunes</option>
+									<option value="2">Martes</option>
+									<option value="3">Miercoles</option>
+									<option value="4">Jueves</option>
+									<option value="5">Viernes</option>
+									<option value="6">Sabado</option>
+									<option value="7">Domingo</option>
 								</select>
-								<span style="color:red" ng-show="frmDictado.dia_cursada.$invalid && frmDictado.dia_cursada.$touched">El campo Día de cursada es obligatorio</span>
+								<span style="color:red" ng-show="frmDictado.id_dia.$invalid && frmDictado.id_dia.$touched">El campo Día de cursada es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Alternativa</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="alt_hor" name="alt_hor" placeholder="Seleccione Alternativa" value="{{alt_hor}}" ng-model="modal.alt_hor"
+								<select class="form-control" id="id_alternativa" name="id_alternativa" placeholder="Seleccione Alternativa" value="{{modal.id_alternativa}}" ng-model="modal.id_alternativa"
 								 ng-required="true">
-									<option value="AM">AM</option>
-									<option value="IM">IM</option>
-									<option value="PM">PM</option>
+									<option value="">-- Seleccione --</option>
+									<option value="1">AM</option>
+									<option value="2">IM</option>
+									<option value="3">PM</option>
 								</select>
-								<span style="color:red" ng-show="frmDictado.alt_hor.$invalid && frmDictado.alt_hor.$touched">El campo Alternativa es obligatorio</span>
+								<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Fecha de Inicio</label>
+							<div class="col-sm-9">
+								<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{modal.fecha_inicio}}" ng-model="modal.fecha_inicio" ng-required="true">
+								<span style="color:red" ng-show="frmDictado.fecha_inicio.$invalid && frmDictado.fecha_inicio.$touched">El campo Fecha de Inicio es obligatorio</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Fecha de Fin</label>
+							<div class="col-sm-9">
+								<input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{modal.fecha_fin}}" ng-model="modal.fecha_fin" ng-required="true">
+								<span style="color:red" ng-show="frmDictado.fecha_fin.$invalid && frmDictado.fecha_fin.$touched">El campo Fecha de Fin es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
