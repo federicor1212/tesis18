@@ -18,7 +18,7 @@ function inscriptosService($log, $http, $auth) {
   }
 
   function actualizarInscripto(inscripto) {
-    return $http({ method: "POST", url: '/api/actualizar-inscripto/' + inscripto.id, data: inscripto});
+    return $http({ method: "POST", url: '/api/actualizar-inscripcion/' + inscripto.id, data: inscripto});
   }
 
   function borrarInscripto(inscripto) {

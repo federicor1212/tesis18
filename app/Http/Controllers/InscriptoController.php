@@ -48,8 +48,8 @@ class InscriptoController extends Controller
 
     public function show($id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -62,8 +62,8 @@ class InscriptoController extends Controller
 
     public function store(Request $request) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
@@ -81,15 +81,14 @@ class InscriptoController extends Controller
     
     public function update(Request $request, $id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){
                 return response()->json($userData, $token->status());
             }
           }
-
         $inscripto = Inscripto::find($id);
         $inscripto->id_alumno = $request->input('id_alumno');
         $inscripto->id_dictado = $request->input('id_dictado');
@@ -100,8 +99,8 @@ class InscriptoController extends Controller
 
     public function destroy($id) {
         $auth = new UsuarioController;
-          $request = new \Illuminate\Http\Request();
-          $token = $auth->getAuthenticatedUser($request);
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
           if ($token instanceof \Illuminate\Http\JsonResponse) {
             $userData = json_decode($token->getContent());
             if(isset($userData->error)){

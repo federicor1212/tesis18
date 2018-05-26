@@ -69,8 +69,50 @@ angular
 		  }
 
 		  table.saveInscripto = function(inscripto) {
-			inscripto.nuevo ? inscriptosService.guardarInscripto(inscripto) : inscriptosService.actualizarInscripto(inscripto);
-		    location.reload(true);
+			if(inscripto.nuevo){
+				inscriptosService.guardarInscripto(inscripto).then(
+	              swal({
+					  title: "Exito!",
+					  text: "El alumno fue inscripto exitosamente",
+					  icon: "success",
+					  button: "OK",
+						})
+						.then((willContinue) => {
+						  if (willContinue) {
+						    location.reload(true);
+						  }
+						})
+	            ); 
+			} else {
+				inscriptosService.actualizarInscripto(inscripto).then(
+	              function() {
+		              swal({
+						  title: "Exito!",
+						  text: "Inscripcion actualizada exitosamente",
+						  icon: "success",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+					}, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error actualizando la inscripcion",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              }
+	            );
+			}  
+		    //location.reload(true);
 		  }
 
 		  table.saveMateria = function(materia) {
