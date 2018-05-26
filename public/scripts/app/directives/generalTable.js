@@ -711,8 +711,14 @@ angular
 						$scope.modal.id_dia = data.id_dia.toString();
 						$scope.modal.dia_cursada = data.dia_cursada;
 						$scope.modal.id_alternativa = data.id_alternativa.toString();
-						$scope.modal.fecha_inicio = new Date(data.fecha_inicio);
-						$scope.modal.fecha_fin = new Date(data.fecha_fin);
+						var startDateInit = new Date(Date.parse(data.fecha_inicio));
+						var day = 60 * 60 * 24 * 1000;
+						var endDateInit = new Date(startDateInit.getTime() + day);
+						$scope.modal.fecha_inicio = endDateInit;
+						var startDateFin = new Date(Date.parse(data.fecha_fin));
+						var day = 60 * 60 * 24 * 1000;
+						var endDateFin = new Date(startDateFin.getTime() + day);
+						$scope.modal.fecha_fin = endDateFin;
 						$scope.modal.cant_insc_act = data.cant_insc_act;
 						$scope.modal.cant_clases = data.cant_clases;
 						$scope.modal.cant_faltas_max = data.cant_faltas_max;
