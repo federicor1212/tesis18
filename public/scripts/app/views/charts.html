@@ -73,7 +73,7 @@
                   </div>
                   <br>
                   <div ng-if="inscriptos.empty" style="position: center; padding-bottom: 10px"> 
-                    No se detecto informacion de asistencia para el periodo seleccionado, por favor seleccione un nuevo periodo
+                    No se encontró información de asistencia para el período seleccionado, por favor seleccione un nuevo período.
                   </div>
                   
                   <div ng-if="reportes && materia ">
@@ -104,10 +104,10 @@
                   </div>
                   <div ng-if="!materia ">
                     <div ng-if="asistentes.empty" style="position: center; padding-bottom: 10px">
-                      No se detecto informacion de alumnos inscriptos para el periodo seleccionado, por favor seleccione un nuevo periodo
+                      No se encontró información de alumnos inscriptos para el período seleccionado, por favor seleccione un nuevo período.
                     </div>
                     <div ng-if="libres.empty" style="position: center; padding-bottom: 10px">
-                      No se detecto informacion de alumnos libres para el periodo seleccionado, por favor seleccione un nuevo periodo
+                      No se encontró información de alumnos libres para el período seleccionado, por favor seleccione un nuevo período.
                     </div>
                     <div ng-if="!asistentes.empty" style="position: center;">
                       <div google-chart chart="asistentes " style="height:600px; width:100%; "></div>
