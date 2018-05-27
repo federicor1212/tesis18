@@ -207,7 +207,7 @@ class ReportesController extends Controller
                 $result->inscriptos->cantinsc = 0;
             } 
 
-            if (!empty($cantInscripto[0])) {
+            if (!empty($cantLibre[0])) {
                 $result->inscriptos->cantlibre = $cantLibre[0]->total;
             } else {
                 $result->inscriptos->cantlibre = 0;

@@ -190,7 +190,7 @@ class DictadoController extends Controller
             }
 
             DB::commit();
-        } catch {
+        } catch (Exception $e){
             DB::rollBack();
         };
     

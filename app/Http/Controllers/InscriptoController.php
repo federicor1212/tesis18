@@ -89,11 +89,14 @@ class InscriptoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-        $inscripto = Inscripto::find($id);
-        $inscripto->id_alumno = $request->input('id_alumno');
-        $inscripto->id_dictado = $request->input('id_dictado');
+        
+        $alumnoData = json_decode($request->id_alumno);
+        $inscripto = new Inscripto;
+        $inscripto->id_alumno = $alumnoData->id;
+        $inscripto->id_dictado = $request->input('id');
         $inscripto->cant_faltas_act = $request->input('cant_faltas_act');
         $inscripto->save();
+
         return 'Inscripto record successfully updated with id ' . $inscripto->id;
     }
 
