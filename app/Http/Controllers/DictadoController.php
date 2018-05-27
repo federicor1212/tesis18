@@ -171,19 +171,28 @@ class DictadoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
+        
+        try {
+            DB::beginTransaction();
+            
+            $dictadoClase = DictadoClase::find($request->input('id_dictado_clase'));
+            $dictadoClase->delete();
 
-        $dictadoClase = DictadoClase::find($request->input('id_dictado_clase'));
-        $dictadoClase->delete();
+            $qtyDictadosClases = DictadoClase::join('dictados','dictados_clases.id_dictado','=','dictados.id')
+                              ->where('dictados_clases.id_dictado', '=',$request->input('id'))                
+                              ->select(DB::raw('count(1) AS qty'))
+                              ->get();
 
-        $qtyDictadosClases = DictadoClase::join('dictados','dictados_clases.id_dictado','=','dictados.id')
-                          ->where('dictados_clases.id_dictado', '=',$request->input('id'))                
-                          ->select(DB::raw('count(1) AS qty'))
-                          ->get();
+            foreach ($qtyDictadosClases as $value) {    
+                /*Si se elimina el último dictado clase tmb tengo que eliminar el dictado!*/
+                if($value->qty == 0)
+                    $dictado = Dictado::find($request->input('id'))->delete();
+            }
 
-        foreach ($qtyDictadosClases as $value) {    
-            /*Si se elimina el último dictado clase tmb tengo que eliminar el dictado!*/
-            if($value->qty == 0)
-                $dictado = Dictado::find($request->input('id'))->delete();
-        }    
+            DB::commit();
+        } catch {
+            DB::rollBack();
+        };
+    
     }    
 }
