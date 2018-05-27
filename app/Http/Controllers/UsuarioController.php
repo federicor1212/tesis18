@@ -20,7 +20,7 @@ class UsuarioController extends Controller
         if ($sessionToken == null){
             \Session::put('token', $request->get('token'));
         }
-
+        
         try {
             $user = JWTAuth::parseToken()->authenticate();
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
