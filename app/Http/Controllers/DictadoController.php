@@ -116,16 +116,17 @@ class DictadoController extends Controller
           $dictadoClase->id_dia = $request->input('id_dia');
           $dictadoClase->id_alternativa = $request->input('id_alternativa');
           $dictadoClase->save();
+          return 'Dictado record successfully created with id' . $dictado->id;
         } else {
           $dictadoClase = new DictadoClase;
           $dictadoClase->id_dictado = $existeMateria->id;
           $dictadoClase->id_dia = $request->input('id_dia');
           $dictadoClase->id_alternativa = $request->input('id_alternativa');
           $dictadoClase->save();
+          return 'Dictado record successfully created with id' . $dictadoClase->id;
         }
 
 
-        return 'Dictado record successfully created with id' . $dictado->id;
     }
     
     public function update(Request $request, $id) {
