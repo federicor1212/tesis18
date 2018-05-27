@@ -12,6 +12,11 @@
       materiasService
     ) {
       var personal = {};
+      $scope.logOut = function() {
+      // Borra el token del storage
+      localStorage.clear();
+      $state.go('login', {});
+    }
       $scope.materia = null;
       carrerasService.getCarrera().then(function(carreras) {
         $scope.carreras = carreras.data;
