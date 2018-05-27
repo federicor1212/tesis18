@@ -637,34 +637,42 @@
           $scope.modal.nuevo = true;
           switch (type) {
             case 'alumno':
+              $scope.frmAlumno.$setUntouched();
               $('#modal-alumno').modal('show');
               break;
 
             case 'carreras':
+              $scope.frmCarrera.$setUntouched();
               $('#modal-carrera').modal('show');
               break;
 
             case 'usuarios':
+              $scope.frmUsuario.$setUntouched();
               $('#modal-usuario').modal('show');
               break;
 
             case 'docenteasignado':
+              $scope.frmDocAsignado.$setUntouched();
               $('#modal-docasignado').modal('show');
               break;
 
             case 'dictados':
+              $scope.frmDictado.$setUntouched();
               $('#modal-dictado').modal('show');
               break;
 
             case 'docentes':
+              $scope.frmDocente.$setUntouched();
               $('#modal-docente').modal('show');
               break;
 
             case 'inscriptos':
+              $scope.frmInscriptos.$setUntouched();
               $('#modal-inscripto').modal('show');
               break;
 
             case 'materias':
+              $scope.frmMateria.$setUntouched();
               $('#modal-materia').modal('show');
               break;
 
