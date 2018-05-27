@@ -312,11 +312,11 @@
 				<div class="modal-body">
 					<form name="frmDocAsignado" class="form-horizontal" novalidate="">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Materia</label>
+							<label class="col-sm-3 control-label">Dictados</label>
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia" ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.materia.desc_mat}}</option>
+									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.materia.$invalid && frmDocAsignado.materia.$touched">Seleccionar una materia es obligatorio</span>
 							</div>

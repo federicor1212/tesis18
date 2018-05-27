@@ -50,22 +50,22 @@ class DictadoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-        $allDictados = Dictado::all();
-        $allAsignados = Asignado::select(DB::raw('id_dictado, count(id_dictado) as cant_asignada'))->groupBy('id_dictado')->get();
+        $date = Carbon::now();
 
-        foreach ($allDictados as $dict) {
-            $lookupDictado = $allAsignados->where('id_dictado',$dict['id'])->first();
-            $dict['materia'] = Materia::where('id',$dict['id_materia'])->first();
-            if (count($lookupDictado) > 0) {
-                if ($lookupDictado['cant_asignada'] < 2) {
-                    $dictadoToDisplay[] = $dict;
-                }
-            } else {
-                $dictadoToDisplay[] = $dict;
-            }
+        if ($date->month >= 1 && $date->month <=7) {
+          $cuat = 1;
+        } else {
+          $cuat = 2;
         }
+        $allDictados = Dictado::join('materias','dictados.id_materia','=','materias.id')
+                        ->join('dictados_clases','dictados.id','dictados_clases.id_dictado')
+                        ->where('dictados.ano','=',$date->year) 
+                        ->where('dictados.cuat','=',$cuat)
+                        ->select('dictados.id AS id','materias.desc_mat')
+                        ->get(); 
+        
 
-        return $dictadoToDisplay;
+        return $allDictados;
     }
 
     public function show($id) {
