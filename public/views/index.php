@@ -23,6 +23,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- main style files -->
+    <link rel="stylesheet" href="/../scripts/style/css/font-awesome-4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/../scripts/style/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/../scripts/style/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/../scripts/style/css/main.css" media="screen" title="no title" charset="utf-8">
