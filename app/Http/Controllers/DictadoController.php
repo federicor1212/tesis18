@@ -31,7 +31,7 @@ class DictadoController extends Controller
                  ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
                  ->join('dias','dictados_clases.id_dia','=','dias.id')
                  ->select('dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max','dictados_clases.id AS id_dictado_clase')
-                 ->orderby('dictados.id')
+                 ->orderby('materias.desc_mat', 'dictados.ano', 'dictados.cuat')
                  ->get();
 
         return $dictado;
@@ -50,22 +50,22 @@ class DictadoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-        $allDictados = Dictado::all();
-        $allAsignados = Asignado::select(DB::raw('id_dictado, count(id_dictado) as cant_asignada'))->groupBy('id_dictado')->get();
+        $date = Carbon::now();
 
-        foreach ($allDictados as $dict) {
-            $lookupDictado = $allAsignados->where('id_dictado',$dict['id'])->first();
-            $dict['materia'] = Materia::where('id',$dict['id_materia'])->first();
-            if (count($lookupDictado) > 0) {
-                if ($lookupDictado['cant_asignada'] < 2) {
-                    $dictadoToDisplay[] = $dict;
-                }
-            } else {
-                $dictadoToDisplay[] = $dict;
-            }
+        if ($date->month >= 1 && $date->month <=7) {
+          $cuat = 1;
+        } else {
+          $cuat = 2;
         }
+        $allDictados = Dictado::join('materias','dictados.id_materia','=','materias.id')
+                        ->join('dictados_clases','dictados.id','dictados_clases.id_dictado')
+                        ->where('dictados.ano','=',$date->year) 
+                        ->where('dictados.cuat','=',$cuat)
+                        ->select('dictados.id AS id','materias.desc_mat')
+                        ->get(); 
+        
 
-        return $dictadoToDisplay;
+        return $allDictados;
     }
 
     public function show($id) {
