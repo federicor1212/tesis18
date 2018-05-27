@@ -96,22 +96,34 @@ class DictadoController extends Controller
         $dateInicio = $request->input('fecha_inicio');
         $dateFin = $request->input('fecha_fin');
 
-        $dictado = new Dictado;
-        $dictado->id_materia = $request->input('id_materia');
-        $dictado->ano = $request->input('ano');
-        $dictado->cuat = $request->input('cuat');
-        $dictado->cant_insc_act = $request->input('cant_insc_act');
-        $dictado->cant_clases = $request->input('cant_clases');
-        $dictado->cant_faltas_max = $request->input('cant_faltas_max');
-        $dictado->fecha_inicio = date('Y-m-d', strtotime($dateInicio));
-        $dictado->fecha_fin = date('Y-m-d', strtotime($dateFin));
-        $dictado->save();
+        $existeMateria = Dictado::where('id_materia',$request->input('id_materia'))->where('cuat',$request->input('cuat'))
+                         ->where('ano',$request->input('ano'))->first();        
 
-        $dictadoClase = new DictadoClase;
-        $dictadoClase->id_dictado = $dictado->id;
-        $dictadoClase->id_dia = $request->input('id_dia');
-        $dictadoClase->id_alternativa = $request->input('id_alternativa');
-        $dictadoClase->save();
+        if (count($existeMateria) == 0) {
+          $dictado = new Dictado;
+          $dictado->id_materia = $request->input('id_materia');
+          $dictado->ano = $request->input('ano');
+          $dictado->cuat = $request->input('cuat');
+          $dictado->cant_insc_act = $request->input('cant_insc_act');
+          $dictado->cant_clases = $request->input('cant_clases');
+          $dictado->cant_faltas_max = $request->input('cant_faltas_max');
+          $dictado->fecha_inicio = date('Y-m-d', strtotime($dateInicio));
+          $dictado->fecha_fin = date('Y-m-d', strtotime($dateFin));
+          $dictado->save();
+          
+          $dictadoClase = new DictadoClase;
+          $dictadoClase->id_dictado = $dictado->id;
+          $dictadoClase->id_dia = $request->input('id_dia');
+          $dictadoClase->id_alternativa = $request->input('id_alternativa');
+          $dictadoClase->save();
+        } else {
+          $dictadoClase = new DictadoClase;
+          $dictadoClase->id_dictado = $existeMateria->id;
+          $dictadoClase->id_dia = $request->input('id_dia');
+          $dictadoClase->id_alternativa = $request->input('id_alternativa');
+          $dictadoClase->save();
+        }
+
 
         return 'Dictado record successfully created with id' . $dictado->id;
     }

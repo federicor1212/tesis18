@@ -312,7 +312,7 @@
 				<div class="modal-body">
 					<form name="frmDocAsignado" class="form-horizontal" novalidate="">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Materia</label>
+							<label class="col-sm-3 control-label">Dictado</label>
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia" ng-required="true">
 									<option value="">-- Seleccione --</option>
@@ -584,7 +584,7 @@
 							<div class="col-sm-9">
 								 <select id="materia" class="form-control" name="materia" placeholder="Seleccione la Carrera" ng-model="modal.carrera.desc_carr" value={{modal.carrera.id}}>
 								 	<option value="">-- Seleccione --</option>
-									<option ng-repeat="x in carreras" value="{{x}}" >{{x.desc_carr}} / {{x.plan}}</option>
+									<option ng-repeat="x in carreras" value="{{x.desc_carr}}" >{{x.desc_carr}} / {{x.plan}}</option>
 								</select>
 								<span style="color:red" ng-show="frmMateria.carrera.$invalid && frmMateria.carrera.$touched">Seleccionar una Carrera es obligatorio</span>
 							</div>
