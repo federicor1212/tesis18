@@ -40,11 +40,10 @@ class LoginController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 $user = JWTAuth::toUser($token);
-if ($user->estado == 1 && ($user->id_permiso == 1 || $isDocente == 1)) {
+
+if ($user->estado == 1 && ($user->id_permiso == 1 || $isDocente['is_docente'] == 1)) {
 return response()->json(compact('token')); 
 } else { return response()->json(['error' => 'invalid_credentials'], 401);}
-        // if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
    }    
-} 
+ 
 }
