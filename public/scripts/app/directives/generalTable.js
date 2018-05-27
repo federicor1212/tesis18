@@ -29,7 +29,7 @@
             usuariosService.guardarUsuario(usuario).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El usuario fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -41,7 +41,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando el usuario',
                   icon: 'error',
                   button: 'OK'
@@ -56,7 +56,7 @@
             usuariosService.actualizarUsuario(usuario).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El usuario fue actualizado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -68,7 +68,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando el usuario',
                   icon: 'error',
                   button: 'OK'
@@ -87,7 +87,7 @@
             alumnoService.guardarAlumno(alumno).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El alumno fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -99,7 +99,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando el alumno',
                   icon: 'error',
                   button: 'OK'
@@ -114,7 +114,7 @@
             alumnoService.actualizarAlumno(alumno).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El alumno fue actualizado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -126,7 +126,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando el alumno',
                   icon: 'error',
                   button: 'OK'
@@ -145,7 +145,7 @@
             carrerasService.guardarCarrera(carrera).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'La carrera fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -157,7 +157,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando la carrera',
                   icon: 'error',
                   button: 'OK'
@@ -172,7 +172,7 @@
             carrerasService.actualizarCarrera(carrera).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'La carrera fue actualizando exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -184,7 +184,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando la carrera',
                   icon: 'error',
                   button: 'OK'
@@ -203,7 +203,7 @@
             docentesAsignadosService.guardarDocenteAsignado(docAsignado).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El docente asignado fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -215,7 +215,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando el docente asignado',
                   icon: 'error',
                   button: 'OK'
@@ -232,7 +232,7 @@
               .then(
                 function() {
                   swal({
-                    title: 'Exito!',
+                    title: 'Éxito!',
                     text: 'El docente asignado fue actualizado exitosamente',
                     icon: 'success',
                     button: 'OK'
@@ -244,7 +244,7 @@
                 },
                 function(error) {
                   swal({
-                    title: 'Atencion!',
+                    title: 'Atención!',
                     text: 'Hubo un error actualizando el docente asignado',
                     icon: 'error',
                     button: 'OK'
@@ -263,7 +263,7 @@
             dictadosService.guardarDictado(dictado).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El dictado fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -275,7 +275,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando el dictado',
                   icon: 'error',
                   button: 'OK'
@@ -290,7 +290,7 @@
             dictadosService.actualizarDictado(dictado).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El dictado fue actualizado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -302,7 +302,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando el dictado',
                   icon: 'error',
                   button: 'OK'
@@ -321,7 +321,7 @@
             docentesService.guardarDocente(docente).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El docente fue creado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -333,7 +333,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando el docente',
                   icon: 'error',
                   button: 'OK'
@@ -348,7 +348,7 @@
             docentesService.actualizarDocente(docente).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El docente fue actualizado exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -360,7 +360,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizado el docente',
                   icon: 'error',
                   button: 'OK'
@@ -384,7 +384,7 @@
             inscriptosService.guardarInscripto(nuevoInscripto).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'El alumno fue inscripto exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -396,7 +396,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error guardando la inscripcion',
                   icon: 'error',
                   button: 'OK'
@@ -411,7 +411,7 @@
             inscriptosService.actualizarInscripto(inscripto).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'Inscripcion actualizada exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -423,7 +423,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando la inscripcion',
                   icon: 'error',
                   button: 'OK'
@@ -446,7 +446,7 @@
             materiasService.guardarMateria(nuevaMateria).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'La materia fue creada exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -458,7 +458,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error creando la materia',
                   icon: 'error',
                   button: 'OK'
@@ -473,7 +473,7 @@
             materiasService.actualizarMateria(materia).then(
               function() {
                 swal({
-                  title: 'Exito!',
+                  title: 'Éxito!',
                   text: 'La materia fue actualizada exitosamente',
                   icon: 'success',
                   button: 'OK'
@@ -485,7 +485,7 @@
               },
               function(error) {
                 swal({
-                  title: 'Atencion!',
+                  title: 'Atención!',
                   text: 'Hubo un error actualizando la materia',
                   icon: 'error',
                   button: 'OK'
@@ -802,7 +802,7 @@
               dictadosService.borrarDictado(dictado).then(
                 function() {
                   swal({
-                    title: 'Exito!',
+                    title: 'Éxito!',
                     text: 'Dictado eliminado exitosamente',
                     icon: 'success',
                     button: 'OK'
@@ -814,7 +814,7 @@
                 },
                 function(error) {
                   swal({
-                    title: 'Atencion!',
+                    title: 'Atención!',
                     text: 'Hubo un error eliminando el dictado',
                     icon: 'error',
                     button: 'OK'
@@ -848,7 +848,7 @@
                   alumnoService.borrarAlumno(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Alumno eliminado exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -860,7 +860,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando el alumno',
                         icon: 'error',
                         button: 'OK'
@@ -877,7 +877,7 @@
                   carrerasService.borrarCarrera(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Carrera eliminada exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -889,7 +889,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando la carrera',
                         icon: 'error',
                         button: 'OK'
@@ -906,7 +906,7 @@
                   usuariosService.borrarUsuario(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Usuario eliminando exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -918,7 +918,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando el usuario',
                         icon: 'error',
                         button: 'OK'
@@ -935,7 +935,7 @@
                   docentesAsignadosService.borrarDocenteAsignado(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Docente asignado eliminado exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -947,7 +947,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando el docente asignado',
                         icon: 'error',
                         button: 'OK'
@@ -965,7 +965,7 @@
                   docentesService.borrarDocente(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Docente eliminado exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -977,7 +977,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando el docente',
                         icon: 'error',
                         button: 'OK'
@@ -994,7 +994,7 @@
                   inscriptosService.borrarInscripto(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Inscripto eliminado exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -1006,7 +1006,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando el inscripto',
                         icon: 'error',
                         button: 'OK'
@@ -1023,7 +1023,7 @@
                   materiasService.borrarMateria(id).then(
                     function() {
                       swal({
-                        title: 'Exito!',
+                        title: 'Éxito!',
                         text: 'Materia eliminada exitosamente',
                         icon: 'success',
                         button: 'OK'
@@ -1035,7 +1035,7 @@
                     },
                     function(error) {
                       swal({
-                        title: 'Atencion!',
+                        title: 'Atención!',
                         text: 'Hubo un error eliminando la materia',
                         icon: 'error',
                         button: 'OK'
