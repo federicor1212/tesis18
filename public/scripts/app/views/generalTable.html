@@ -87,7 +87,7 @@
 					<button class="btn btn-warning btn-xs btn-detail" ng-click="table.openEditModal(d,type)">
 						<span class="glyphicon glyphicon-edit"></span>
 					</button>
-					<button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDelete(d.id, type)">
+					<button class="btn btn-danger btn-xs btn-delete" ng-click="table.confirmDeleteDDO(d)">
 						<span class="glyphicon glyphicon-trash"></span>
 					</button>
 				</td>
@@ -267,27 +267,29 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Email" value="{{email}}" ng-model="modal.email"
+								<input type="text" class="form-control" id="email" name="email" placeholder="Ingrese el Email" value="{{email}}" ng-model="modal.email"
 								 ng-required="true">
-								<span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Email es obligatorio</span>
+								<span style="color:red" ng-show="frmUsuario.email.$invalid && frmUsuario.email.$touched">El campo Email es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Permiso</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Permiso" value="{{permiso}}" ng-model="modal.permiso"
+								<select id="permiso" class="form-control" name="permiso" placeholder="Seleccione Permiso" value="{{permiso}}" ng-model="modal.permiso"
 								 ng-options="x for x in permisos" ng-required="true">
+								 <option value="">-- Seleccione --</option>
 								</select>
-								<span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Permiso es obligatorio</span>
+								<span style="color:red" ng-show="frmUsuario.permiso.$invalid && frmUsuario.permiso.$touched">El campo Permiso es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Estado</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Estado" value="{{estado}}" ng-model="modal.estado"
+								<select id="estado" class="form-control" name="estado" placeholder="Seleccione Estado" value="{{estado}}" ng-model="modal.estado"
 								 ng-options="x for x in estados" ng-required="true">
+								<option value="">-- Seleccione --</option>
 								</select>
-								<span style="color:red" ng-show="frmUsuario.apellido.$invalid && frmUsuario.apellido.$touched">El campo Estado es obligatorio</span>
+								<span style="color:red" ng-show="frmUsuario.estado.$invalid && frmUsuario.estado.$touched">El campo Estado es obligatorio</span>
 							</div>
 						</div>
 					</form>
@@ -305,14 +307,15 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Asignar un docente a una materia - Nuevo</h4>
+					<h4 class="modal-title" id="myModalLabel">Gesti&oacute;n de Docentes Asignados</h4>
 				</div>
 				<div class="modal-body">
 					<form name="frmDocAsignado" class="form-horizontal" novalidate="">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia">
+								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia" ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option value="{{x.id}}" ng-repeat="x in materias">{{x.materia.desc_mat}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.materia.$invalid && frmDocAsignado.materia.$touched">Seleccionar una materia es obligatorio</span>
@@ -321,7 +324,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Docente</label>
 							<div class="col-sm-9">
-								<select id="docente" class="form-control" name="docente" placeholder="Seleccione Docente" ng-model="modal.id_docente">
+								<select id="docente" class="form-control" name="docente" placeholder="Seleccione Docente" ng-model="modal.id_docente" ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option value="{{x.id}}" ng-repeat="x in docentes">{{x.apellido}} , {{x.nombre}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.docente.$invalid && frmDocAsignado.docente.$touched">Seleccionar un Docente es obligatorio</span>
@@ -330,7 +334,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cargo</label>
 							<div class="col-sm-9">
-								<select id="cargo" class="form-control" name="cargo" placeholder="Seleccione Cargo" ng-model="modal.id_cargo">
+								<select id="cargo" class="form-control" name="cargo" placeholder="Seleccione Cargo" ng-model="modal.id_cargo" ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option value="{{x.id}}" ng-repeat="x in cargos">{{x.desc_cargo}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.cargo.$invalid && frmDocAsignado.cargo.$touched">Seleccionar un Cargo es obligatorio</span>
@@ -523,6 +528,7 @@
 							<label class="col-sm-3 control-label">Nombre</label>
 							<div class="col-sm-9">
 								<select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Nombre" ng-model="modal.alumno.nombre" ng-required="true" value="{{modal.alumno.nombre}}">
+									<option value="">-- Seleccione --</option>
 									<option ng-repeat="x in alumnos" value="{{x.nombre}}"> {{x.nombre}}, {{x.apellido}}</option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.nombre.$invalid && frmInscriptos.nombre.$touched">El campo Nombre es obligatorio</span>
@@ -531,18 +537,19 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
 							<div class="col-sm-9">
-								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.materia.desc_mat" value={{modal.materia.desc_mat}}>
+								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.materia.desc_mat" value={{modal.materia.desc_mat}} ng-required="true">
+									<option value="">-- Seleccione --</option>
 									<option ng-repeat="x in materias" value="{{x.desc_mat}}">{{x.desc_mat}}</option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.materia.$invalid && frmInscriptos.materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Cant. Faltas Acumuladas</label>
+							<label class="col-sm-3 control-label">Cant. Faltas Actuales</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="cant_faltas_act" name="cant_faltas_act" placeholder="Ingrese Cantidad de Faltas Actuales"
 								 value="{{cant_faltas_act}}" ng-model="modal.cant_faltas_act" ng-required="true">
-								<span style="color:red" ng-show="frmInscriptos.cant_faltas_act.$invalid && frmInscriptos.cant_faltas_act.$touched">El campo Cant. Faltas Acumuladas es obligatorio</span>
+								<span style="color:red" ng-show="frmInscriptos.cant_faltas_act.$invalid && frmInscriptos.cant_faltas_act.$touched">El campo Cant. Faltas Actuales es obligatorio</span>
 							</div>
 						</div>
 					</form>

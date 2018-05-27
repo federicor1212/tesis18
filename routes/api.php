@@ -109,7 +109,7 @@ Route::get('/dictado/{id?}', 'DictadoController@index');
 Route::get('/dictado-sin-prof', 'DictadoController@dictadosSinProfesor');
 Route::post('/nuevo-dictado', 'DictadoController@store');
 Route::post('/actualizar-dictado/{id}', 'DictadoController@update');
-Route::post('/eliminar-dictado/{id}', 'DictadoController@destroy');
+Route::post('/eliminar-dictado', 'DictadoController@destroy');
 
 //Docentes
 Route::get('/docente/{id?}', 'DocenteController@index');

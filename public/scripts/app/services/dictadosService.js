@@ -26,7 +26,7 @@ function dictadoService($log, $http, $auth) {
   }
 
   function borrarDictado(dictado) {
-    return $http({ method: "POST", url: '/api/eliminar-dictado/' + dictado});
+    return $http({ method: "POST", url: '/api/eliminar-dictado', data: dictado});
   }
 
   const service = {

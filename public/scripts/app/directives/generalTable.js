@@ -703,7 +703,8 @@ angular
 
 						break;
 
-					case 'dictados':
+					case 'dictados':				
+						$scope.modal.id_dictado_clase = data.id_dictado_clase.toString();
 						$scope.modal.id_materia = data.id_materia.toString();
 						$scope.modal.materia = data.desc_mat;
 						$scope.modal.cuat = data.cuat.toString();
@@ -759,6 +760,48 @@ angular
 				$scope.modal.nuevo = true;
 			}
 		}
+
+		table.confirmDeleteDDO = function(dictado) {
+	      swal({
+			  title: "Estas seguro?",
+			  text: 'Se eliminará el registro '+dictado.id+'. Una vez eliminado no podra recuperarlo',
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+						dictadosService.borrarDictado(dictado).then(
+			              function() {
+			              swal({
+							  title: "Exito!",
+							  text: "Dictado eliminado exitosamente",
+							  icon: "success",
+							  button: "OK",
+								})
+								.then((willContinue) => {
+								  if (willContinue) {
+								    location.reload(true);
+								  }
+								})
+			            }, function(error) {
+						swal({
+						  title: "Atencion!",
+						  text: "Hubo un error eliminando el dictado",
+						  icon: "error",
+						  button: "OK",
+							})
+							.then((willContinue) => {
+							  if (willContinue) {
+							    location.reload(true);
+							  }
+							})
+	              		})
+	             }else {
+				    swal("Los datos no fueron modificados!");
+				 }
+		  })
+	    };		
 
 	    table.confirmDelete = function(id, type) {
 	      swal({
@@ -886,35 +929,7 @@ angular
 							  }
 							})
 	              });
-					break;
-
-					case 'dictados':
-						dictadosService.borrarDictado(id).then(
-			             function() { 
-			              swal({
-							  title: "Exito!",
-							  text: "Dictado eliminado exitosamente",
-							  icon: "success",
-							  button: "OK",
-								})
-								.then((willContinue) => {
-								  if (willContinue) {
-								    location.reload(true);
-								  }
-								})
-			            }, function(error) {
-						swal({
-						  title: "Atencion!",
-						  text: "Hubo un error eliminando el dictado",
-						  icon: "error",
-						  button: "OK",
-							})
-							.then((willContinue) => {
-							  if (willContinue) {
-							    location.reload(true);
-							  }
-							})
-	              });
+					
 					break;
 						
 					case 'docentes':

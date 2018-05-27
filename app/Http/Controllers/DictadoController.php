@@ -30,7 +30,7 @@ class DictadoController extends Controller
                  ->join('dictados_clases','dictados.id','=','dictados_clases.id_dictado')
                  ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
                  ->join('dias','dictados_clases.id_dia','=','dias.id')
-                 ->select('dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max')
+                 ->select('dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max','dictados_clases.id AS id_dictado_clase')
                  ->orderby('materias.desc_mat')
                  ->get();
 
@@ -127,10 +127,10 @@ class DictadoController extends Controller
             }
           }
 
-        $dictadoClase = DictadoClase::where('id_dictado', $id)
-                      ->update(['id_alternativa' => $request->input('id_alternativa'), 
-                                'id_dia' => $request->input('id_dia')]
-                              );
+        $dictadoClase = DictadoClase::find($request->input('id_dictado_clase'));
+        $dictadoClase->id_alternativa = $request->input('id_alternativa');
+        $dictadoClase->id_dia = $request->input('id_dia');
+        $dictadoClase->save();
 
         $dateInicio = $request->input('fecha_inicio');
         $dateFin = $request->input('fecha_fin');
@@ -148,7 +148,7 @@ class DictadoController extends Controller
         return 'Dictado record successfully updated with id ' . $dictado->id;
     }
 
-    public function destroy($id) {
+    public function destroy(Request $request) {
         $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();
           $token = $auth->getAuthenticatedUser($userRequest);
@@ -158,10 +158,19 @@ class DictadoController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-          
-        $dictadoClase = DictadoClase::where('id_dictado','=',$id)->delete();
 
-        $dictado = Dictado::find($id)->delete();
-        return 'Dictado record successfully deleted';
-    }
+        $dictadoClase = DictadoClase::find($request->input('id_dictado_clase'));
+        $dictadoClase->delete();
+
+        $qtyDictadosClases = DictadoClase::join('dictados','dictados_clases.id_dictado','=','dictados.id')
+                          ->where('dictados_clases.id_dictado', '=',$request->input('id'))                
+                          ->select(DB::raw('count(1) AS qty'))
+                          ->get();
+
+        foreach ($qtyDictadosClases as $value) {    
+            /*Si se elimina el último dictado clase tmb tengo que eliminar el dictado!*/
+            if($value->qty == 0)
+                $dictado = Dictado::find($request->input('id'))->delete();
+        }    
+    }    
 }
