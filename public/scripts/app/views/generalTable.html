@@ -527,12 +527,12 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre</label>
 							<div class="col-sm-9">
-						        <select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Nombre" ng-model="modal.alumno.nombre" ng-required="true" value="{{modal.alumno.nombre}}">
-						         <option value="">-- Seleccione --</option>
-						         <option ng-repeat="x in alumnos" value="{{x.id}}"> {{x.nombre}}, {{x.apellido}}</option>
-						        </select>
-						        <span style="color:red" ng-show="frmInscriptos.nombre.$invalid && frmInscriptos.nombre.$touched">El campo Nombre es obligatorio</span>
-					       </div>
+								<select id="nombre" class="form-control" name="nombre" placeholder="Seleccione Nombre" ng-model="modal.alumno.nombre" ng-required="true" value="{{modal.alumno.nombre}}">
+									<option value="">-- Seleccione --</option>
+									<option ng-repeat="x in alumnos" value="{{x}}"> {{x.nombre}}, {{x.apellido}}</option>
+								</select>
+								<span style="color:red" ng-show="frmInscriptos.nombre.$invalid && frmInscriptos.nombre.$touched">El campo Nombre es obligatorio</span>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Materia</label>
@@ -584,7 +584,7 @@
 							<div class="col-sm-9">
 								 <select id="materia" class="form-control" name="materia" placeholder="Seleccione la Carrera" ng-model="modal.carrera.desc_carr" value={{modal.carrera.id}}>
 								 	<option value="">-- Seleccione --</option>
-									<option ng-repeat="x in carreras" value="{{x.desc_carr}}" >{{x.desc_carr}} / {{x.plan}}</option>
+									<option ng-repeat="x in carreras" value="{{x}}" >{{x.desc_carr}} / {{x.plan}}</option>
 								</select>
 								<span style="color:red" ng-show="frmMateria.carrera.$invalid && frmMateria.carrera.$touched">Seleccionar una Carrera es obligatorio</span>
 							</div>
