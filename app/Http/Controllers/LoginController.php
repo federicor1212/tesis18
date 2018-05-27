@@ -22,10 +22,10 @@ class LoginController extends Controller
         
    }    
   
-   public function authenticate(Request $request)
+ public function authenticate(Request $request)
    {
         $credentials = $request->only('email', 'password');
-
+ $isDocente = $request->only('is_docente');
         if($request->input('email') == null || $request->input('password') == null) {
           return response()->json(['error' => 'credentials_are_missing'], 401);
         }
@@ -39,8 +39,12 @@ class LoginController extends Controller
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
+$user = JWTAuth::toUser($token);
+if ($user->estado == 1 && ($user->id_permiso == 1 || $isDocente == 1)) {
+return response()->json(compact('token')); 
+} else { return response()->json(['error' => 'invalid_credentials'], 401);}
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
-   }
-    
+   }    
+} 
 }
