@@ -61,7 +61,7 @@
                       <label class="col-sm-4 control-label">Materia</label>
                       <div class="col-sm-4">
                         <select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" value="{{materia}}" ng-model="materia">
-                          <option value=" ">-- Seleccione --</option>
+                          <option value="">-- Seleccione --</option>
                           <option value="{{x.id}} " ng-repeat="x in materias ">{{x.desc_mat}}</option>
                         </select>
                       </div>
@@ -72,7 +72,7 @@
                     <div google-chart chart="inscriptos " style="height:600px; width:100%; "></div>
                   </div>
                   <br>
-                  <div ng-if="inscriptos.empty" style="position: center;">
+                  <div ng-if="inscriptos.empty" style="position: center; padding-bottom: 10px"> 
                     No se detecto informacion de asistencia para el periodo seleccionado, por favor seleccione un nuevo periodo
                   </div>
                   
@@ -103,12 +103,10 @@
                     </div>
                   </div>
                   <div ng-if="!materia ">
-                    <div ng-if="asistentes.empty" style="position: center;">
-                      <br>
+                    <div ng-if="asistentes.empty" style="position: center; padding-bottom: 10px">
                       No se detecto informacion de alumnos inscriptos para el periodo seleccionado, por favor seleccione un nuevo periodo
                     </div>
-                    <div ng-if="libres.empty" style="position: center;">
-                      <br>
+                    <div ng-if="libres.empty" style="position: center; padding-bottom: 10px">
                       No se detecto informacion de alumnos libres para el periodo seleccionado, por favor seleccione un nuevo periodo
                     </div>
                     <div ng-if="!asistentes.empty" style="position: center;">
