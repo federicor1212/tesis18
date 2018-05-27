@@ -50,6 +50,7 @@ class UsuarioController extends Controller
       if ($id == null){
         $usuario = Usuario::join('permisos','usuarios.id_permiso','=','permisos.id')            
                  ->select('usuarios.id','usuarios.nombre','usuarios.apellido','usuarios.estado','usuarios.email','permisos.descripcion AS permiso')
+                 ->orderby('usuarios.id')
                  ->get();
 
         foreach ($usuario as $u) {
