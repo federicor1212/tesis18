@@ -72,12 +72,20 @@ class MateriaController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
+        
+        $request = $request->all();
 
-        $materia = new Materia;
-        $materia->id_carrera = $request->input('id_carrera');
-        $materia->desc_mat = $request->input('desc_mat');
-        $materia->save();
-        return 'Materia record successfully created with id' . $materia->id;
+        $idCarrera = Carrera::where('desc_carr',$request['carrera']['desc_carr'])->first();
+        $materia = new Materia();
+        $materia->id_carrera = $idCarrera->id;
+        $materia->desc_mat = $request['desc_mat'];
+        $planCheck = Carrera::where('desc_carr',$request['carrera']['desc_carr'])->where('plan',$request['carrera']['plan'])->first();
+
+          $materia->plan = $request['carrera']['plan'];
+          return 'Materia record successfully created with id' . $materia->id;
+        } else {
+          return response()->json($materia, 500);
+        }
     }
     
     public function update(Request $request, $id) {
@@ -92,8 +100,13 @@ class MateriaController extends Controller
           }
 
         $materia = Materia::find($id);
-        $materia->id_carrera = $request->input('id_carrera');
-        $materia->desc_mat = $request->input('desc_mat');
+
+        $request = $request->all();
+
+        $idCarrera = Carrera::where('desc_carr',$request['carrera']['desc_carr'])->first();
+
+        $materia->id_carrera = $idCarrera->id;
+        $materia->desc_mat = $request['desc_mat'];
         $materia->save();
         return 'Materia record successfully updated with id ' . $materia->id;
     }
