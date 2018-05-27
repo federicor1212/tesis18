@@ -6,8 +6,9 @@
         </header>
         <form class="login col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-4 col-lg-4">
             <div class="col-xs-12 col-sm-12">
-                <h4 class=""> Asistencia - M&oacute;dulo de Administraci&oacute;n - Ingreso</h4>
+                <h6 style="font-weight: bold; font-size: 10">  Asistencia - M&oacute;dulo de Administraci&oacute;n</h6>
             </div>
+            </br>
             <div class="wrapper-form col-xs-12 col-sm-12">
                 <div class="form-group input-group col-xs-12 col-sm-12">
                     <span class="input-group-addon i"><i class="fa fa-user fa-lg"></i></span>
@@ -17,10 +18,12 @@
                     <span class="input-group-addon i"><i class="fa fa-cog fa-spin fa-lg"></i></span>
                     <input id="password" class="form-control inp" placeholder="Contrase&ntilde;a" type="password" ng-model="login.userInfo.password">
                 </div>
-                <p ng-class="{hidden: error === 'true'}" id="error">Usuario o contrase&ntildea incorrectos</p>
+                <p style="color:red;" ng-class="{hidden: error === 'true'}" id="error">Usuario o contrase&ntildea incorrectos</p></br>
                 <button id="inp" type="submit" class="btn btn-lg btn-block btn-login" ng-click="login.logIn()">Iniciar Sesi&oacute;n</button>
-            </div>    
+            </div>   
+            </br> 
         </form>
+
         <footer class="col-xs-12 col-sm-12">
             <h5>&copy; {{date| date:'yyyy'}} - Asistencia</h5>
         </footer>
