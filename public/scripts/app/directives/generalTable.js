@@ -375,8 +375,13 @@
         };
 
         table.saveInscripto = function(inscripto) {
+		   var nuevoInscripto = $scope.materias.find(function(mat) {
+		    return inscripto.materia.desc_mat === mat.desc_mat;
+		  });
+		   nuevoInscripto.id_alumno = inscripto.alumno.nombre;
+		   nuevoInscripto.cant_faltas_act = inscripto.cant_faltas_act;
           if (inscripto.nuevo) {
-            inscriptosService.guardarInscripto(inscripto).then(
+            inscriptosService.guardarInscripto(nuevoInscripto).then(
               function() {
                 swal({
                   title: 'Exito!',
@@ -437,6 +442,7 @@
             var nuevaMateria = $scope.carreras.find(function(mat) {
               return materia.carrera.desc_carr === mat.desc_carr;
             });
+            nuevaMateria.desc_mat = materia.desc_mat;
             materiasService.guardarMateria(nuevaMateria).then(
               function() {
                 swal({

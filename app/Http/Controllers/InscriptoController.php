@@ -73,7 +73,7 @@ class InscriptoController extends Controller
 
         $inscripto = new Inscripto;
         $inscripto->id_alumno = $request->input('id_alumno');
-        $inscripto->id_dictado = $request->input('id_dictado');
+        $inscripto->id_dictado = $request->input('id');
         $inscripto->cant_faltas_act = $request->input('cant_faltas_act');
         $inscripto->save();
         return 'Inscripto record successfully created with id' . $inscripto->id;
