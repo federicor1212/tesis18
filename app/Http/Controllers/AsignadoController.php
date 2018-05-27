@@ -106,7 +106,7 @@ class AsignadoController extends Controller
             }
           }
           
-        $asignado = Asignado::find($id)->destroy();
+        $asignado = Asignado::find($id)->delete();
         return 'Asignado record successfully deleted';
     }
 }
