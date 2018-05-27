@@ -434,10 +434,7 @@
 
         table.saveMateria = function(materia) {
           if (materia.nuevo) {
-            var nuevaMateria = $scope.carreras.find(function(mat) {
-              return materia.carrera.desc_carr === mat.desc_carr;
-            });
-            materiasService.guardarMateria(nuevaMateria).then(
+            materiasService.guardarMateria(materia).then(
               function() {
                 swal({
                   title: 'Exito!',
