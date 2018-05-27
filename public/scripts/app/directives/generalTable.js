@@ -146,7 +146,7 @@
               function() {
                 swal({
                   title: 'Éxito!',
-                  text: 'La carrera fue creado exitosamente',
+                  text: 'La carrera fue creada exitosamente',
                   icon: 'success',
                   button: 'OK'
                 }).then(willContinue => {
@@ -173,7 +173,7 @@
               function() {
                 swal({
                   title: 'Éxito!',
-                  text: 'La carrera fue actualizando exitosamente',
+                  text: 'La carrera fue actualizada exitosamente',
                   icon: 'success',
                   button: 'OK'
                 }).then(willContinue => {
@@ -361,7 +361,7 @@
               function(error) {
                 swal({
                   title: 'Atención!',
-                  text: 'Hubo un error actualizado el docente',
+                  text: 'Hubo un error actualizando el docente',
                   icon: 'error',
                   button: 'OK'
                 }).then(willContinue => {
@@ -397,7 +397,7 @@
               function(error) {
                 swal({
                   title: 'Atención!',
-                  text: 'Hubo un error guardando la inscripcion',
+                  text: 'Hubo un error guardando la inscripción',
                   icon: 'error',
                   button: 'OK'
                 }).then(willContinue => {
@@ -412,7 +412,7 @@
               function() {
                 swal({
                   title: 'Éxito!',
-                  text: 'Inscripcion actualizada exitosamente',
+                  text: 'Inscripción actualizada exitosamente',
                   icon: 'success',
                   button: 'OK'
                 }).then(willContinue => {
@@ -424,7 +424,7 @@
               function(error) {
                 swal({
                   title: 'Atención!',
-                  text: 'Hubo un error actualizando la inscripcion',
+                  text: 'Hubo un error actualizando la inscripción',
                   icon: 'error',
                   button: 'OK'
                 }).then(willContinue => {
@@ -793,7 +793,7 @@
             text:
               'Se eliminará el registro ' +
               dictado.id +
-              '. Una vez eliminado no podra recuperarlo',
+              '. Una vez eliminado no podrá recuperarlo',
             icon: 'warning',
             buttons: true,
             dangerMode: true
@@ -837,7 +837,7 @@
             text:
               'Se eliminará el registro ' +
               id +
-              '. Una vez eliminado no podra recuperarlo',
+              '. Una vez eliminado no podrá recuperarlo',
             icon: 'warning',
             buttons: true,
             dangerMode: true
