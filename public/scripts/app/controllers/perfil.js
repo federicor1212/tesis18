@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('app')
-    .controller('perfilController', function($scope, usuariosService) {
+    .controller('perfilController', function($scope, $state, usuariosService) {
       var perfil = {};
       usuariosService.getUserIdentity().then(function(data) {
         $scope.perfil = data.data;
