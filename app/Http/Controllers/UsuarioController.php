@@ -36,6 +36,37 @@ class UsuarioController extends Controller
         return $user;
     }
 
+    public function getUsuariosDocentes() {
+      $auth = new UsuarioController;
+          $userRequest = new \Illuminate\Http\Request();
+          $token = $auth->getAuthenticatedUser($userRequest);
+          if ($token instanceof \Illuminate\Http\JsonResponse) {
+            $userData = json_decode($token->getContent());
+            if(isset($userData->error)){
+                return response()->json($userData, $token->status());
+            }
+          }
+
+      $docentes = Usuario::where('id_permiso',2)->get();
+      $docentesAsignados = Usuario::join('docentes','usuarios.id','docentes.id_usuario')->where('usuarios.id_permiso',2)->get();
+      $docenteReg = [];
+      foreach ($docentes as $docente) {
+        $found = 0;
+        foreach ($docentesAsignados as $doc) {
+          if ($doc->id_usuario == $docente->id) {
+            $found = 1;
+          }
+          if ($found == 1) {
+            break;
+          }
+        }
+        if ($found == 0) {
+          $docenteReg[] = $docente; 
+        } 
+      }
+      return $docenteReg;
+    }
+
     public function index($id = null) {
       $auth = new UsuarioController;
           $userRequest = new \Illuminate\Http\Request();

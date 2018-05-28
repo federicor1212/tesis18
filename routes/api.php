@@ -25,8 +25,9 @@ Route::post('/authenticate', 'LoginController@authenticate')->middleware('cors')
 
 
 //Usuario
-Route::post('/identity','UsuarioController@getAuthenticatedUser');
 Route::get('/usuario/{id?}', 'UsuarioController@index');
+Route::get('/usuarios-docentes', 'UsuarioController@getUsuariosDocentes');
+Route::post('/identity','UsuarioController@getAuthenticatedUser');
 Route::post('/crear-usuario', 'UsuarioController@store');
 Route::post('/actualizar-usuario/{id}', 'UsuarioController@store');
 Route::post('/eliminar-usuario/{id}', 'UsuarioController@destroy');

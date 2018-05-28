@@ -48,9 +48,8 @@ class DocenteController extends Controller
                 return response()->json($userData, $token->status());
             }
           }
-
         $docente = new Docente;
-        $docente->id_usuario = $request->input('id_usuario');
+        $docente->id_usuario = $request['docente']['id'];
         $docente->nombre = $request->input('nombre');
         $docente->apellido = $request->input('apellido');
         $docente->telefono = $request->input('telefono');

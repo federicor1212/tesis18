@@ -35,12 +35,21 @@ function usuariosService($log, $http, $auth) {
     });
   }
 
+  function getUsuariosDocentes(){
+  return $http({
+      method: 'GET',
+      url: '/api/usuarios-docentes',
+      cache: false
+    });
+}
+
   const service = {
     getUsuarios,
     guardarUsuario,
     getUserIdentity,
     actualizarUsuario,
-    borrarUsuario
+    borrarUsuario,
+    getUsuariosDocentes
   };
 
   return service;

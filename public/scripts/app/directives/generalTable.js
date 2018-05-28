@@ -584,6 +584,10 @@
                 apellido: null,
                 telefono: null
               };
+
+              usuariosService.getUsuariosDocentes().then(response => {
+                $scope.docentes = response.data;
+              });
               break;
 
             case 'inscriptos':
