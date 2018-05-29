@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Docente;
+use App\Usuario;
+use App\Enums\Status;
 
 class DocenteController extends Controller
 {
@@ -19,7 +21,20 @@ class DocenteController extends Controller
           }
 
       if ($id == null){
-        return Docente::all()->toArray();
+        $usuario = Usuario::all();
+        $docente = Docente::all();
+        
+
+        foreach ($docente as $doc) {
+            $doc['usuarios'] = $usuario->find($doc['id_usuario']);
+            if ($doc['usuarios']->estado == Status::ACTIVO) {
+                $doc['estado'] = 'Activo';
+            } else {
+                $doc['estado'] = 'Inactivo';
+            }
+            unset($doc['usuarios']);
+        }
+        return $docente;
       } else {
         return Docente::find($id);
       }

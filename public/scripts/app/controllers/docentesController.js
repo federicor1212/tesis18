@@ -14,7 +14,7 @@ angular
 	docentesService.getDocente().then(function (data) {
     	$scope.tableData = data.data;
   	});
-  	$scope.headers = ['ID', 'Nombre', 'Apellido', 'Tel\u00E9fono','Usuario ID'];
+  	$scope.headers = ['ID', 'Nombre', 'Apellido', 'Tel\u00E9fono', 'Estado','Usuario ID'];
   	$scope.type = 'docentes';
 });
 })();
