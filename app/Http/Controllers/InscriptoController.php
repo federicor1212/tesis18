@@ -37,7 +37,7 @@ class InscriptoController extends Controller
             $insc['alumno'] = $alumno->find($insc['id_alumno']);
             $insc['dictado'] = $dictados->find($insc['id_dictado']);
             $insc['materia'] = $materias->find($insc['dictado']->id_materia);
-            unset($insc['dictado']);
+            //unset($insc['dictado']);
         }
 
         return $inscripciones;

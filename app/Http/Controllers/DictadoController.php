@@ -61,7 +61,7 @@ class DictadoController extends Controller
                         ->join('dictados_clases','dictados.id','dictados_clases.id_dictado')
                         ->where('dictados.ano','=',$date->year) 
                         ->where('dictados.cuat','=',$cuat)
-                        ->select('dictados.id AS id','materias.desc_mat')
+                        ->select('dictados.id AS id','materias.desc_mat','dictados.cuat','dictados.ano')
                         ->get(); 
         
 

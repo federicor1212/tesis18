@@ -14,7 +14,7 @@ angular
 	inscriptosService.getInscriptos().then(function (data) {
     	$scope.tableData = data.data;
   	});
-  	$scope.headers = ['ID', 'Nombre', 'Materia', 'Faltas acumuladas', 'Libre'];
+  	$scope.headers = ['ID', 'Nombre', 'Materia', 'Cuat', 'A\u00F1o', 'Faltas acumuladas', 'Libre'];
   	$scope.type = 'inscriptos';
 });
 })();

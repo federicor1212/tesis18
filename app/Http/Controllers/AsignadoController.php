@@ -25,9 +25,11 @@ class AsignadoController extends Controller
         $asignado = Asignado::all();
         $docentes = Docente::all();
         $materias = Materia::all();
+        $dictados = Dictado::all();
 
         foreach ($asignado as $asign) {
             $asign['docente'] = $docentes->find($asign['id_docente']);
+            $asign['dictados'] = $dictados->find($asign['id_dictado']);
             $dictInfo = Dictado::where('id',$asign['id_dictado'])->first();
             $asign['dictado'] = $dictInfo;
             $asign['materia'] = $materias->find($dictInfo['id_materia']);

@@ -14,7 +14,7 @@ angular
 	docentesAsignadosService.getDocenteAsignado().then(function (data) {
     	$scope.tableData = data.data;
   	});
-  	$scope.headers = ['ID', 'Materia', 'Docente', 'Cargo'];
+  	$scope.headers = ['ID', 'Materia', 'Cuat', 'A\u00F1o', 'Docente', 'Cargo'];
   	$scope.type = 'docenteasignado';
 });
 })();

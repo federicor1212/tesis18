@@ -60,6 +60,8 @@
 			<tr ng-if="type === 'docenteasignado'" ng-repeat="d in data">
 				<td>{{d.id}}</td>
 				<td>{{d.materia.desc_mat}}</td>
+				<td>{{d.dictados.cuat}}</td>
+				<td>{{d.dictados.ano}}</td>
 				<td>{{d.docente.apellido}}, {{d.docente.nombre}}</td>
 				<td>{{d.desc_cargo}}</td>
 				<td>{{d.email}}</td>
@@ -113,6 +115,8 @@
 				<td>{{d.id}}</td>
 				<td>{{d.alumno.nombre}}, {{d.alumno.apellido}}</td>
 				<td>{{d.materia.desc_mat}}</td>
+				<td>{{d.dictado.cuat}}</td>
+				<td>{{d.dictado.ano}}</td>
 				<td>{{d.cant_faltas_act}}</td>
 				<td>{{d.libre}}</td>
 				<td>
@@ -318,7 +322,7 @@
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia" ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}} / {{x.cuat}} / {{x.ano}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.materia.$invalid && frmDocAsignado.materia.$touched">Seleccionar una materia es obligatorio</span>
 							</div>
@@ -429,39 +433,39 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Fecha de Inicio</label>
 							<div class="col-sm-9">
-								<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{modal.fecha_inicio}}" ng-model="modal.fecha_inicio" ng-required="true">
-								<span style="color:red" ng-show="frmDictado.fecha_inicio.$invalid && frmDictado.fecha_inicio.$touched">El campo Fecha de Inicio es obligatorio</span>
+								<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{modal.fecha_inicio}}" ng-model="modal.fecha_inicio" ng-required="true" max="{{modal.fecha_fin}}">
+								<span style="color:red" ng-show="frmDictado.fecha_inicio.$invalid && frmDictado.fecha_inicio.$touched">El campo Fecha de Inicio es obligatorio y debe ser menor a la fecha de fin</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Fecha de Fin</label>
 							<div class="col-sm-9">
-								<input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{modal.fecha_fin}}" ng-model="modal.fecha_fin" ng-required="true">
-								<span style="color:red" ng-show="frmDictado.fecha_fin.$invalid && frmDictado.fecha_fin.$touched">El campo Fecha de Fin es obligatorio</span>
+								<input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{modal.fecha_fin}}" ng-model="modal.fecha_fin" ng-required="true" min="{{modal.fecha_inicio}}">
+								<span style="color:red" ng-show="frmDictado.fecha_fin.$invalid && frmDictado.fecha_fin.$touched">El campo Fecha de Fin es obligatorio y debe ser mayor a la fecha de inicio</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cant. Inscriptos</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="cant_insc_act" name="cant_insc_act" placeholder="Ingrese Cantidad de Inscriptos"
-								 value="{{cant_insc_act}}" ng-model="modal.cant_insc_act" ng-required="true">
-								<span style="color:red" ng-show="frmDictado.cant_insc_act.$invalid && frmDictado.cant_insc_act.$touched">El campo Cant. Inscriptos es obligatorio</span>
+								<input type="number" class="form-control" id="cant_insc_act" name="cant_insc_act" placeholder="Ingrese Cantidad de Inscriptos"
+								 value="{{cant_insc_act}}" ng-model="modal.cant_insc_act" ng-required="true" min="1">
+								<span style="color:red" ng-show="frmDictado.cant_insc_act.$invalid && frmDictado.cant_insc_act.$touched">El campo Cant. Inscriptos es obligatorio y tiene que ser mayor a cero</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cant. Clases</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="cant_clases" name="cant_clases" placeholder="Ingrese la Cantidad de Clases" value="{{cant_clases}}"
-								 ng-model="modal.cant_clases" ng-required="true">
-								<span style="color:red" ng-show="frmDictado.cant_clases.$invalid && frmDictado.cant_clases.$touched">El campo Cant. Clases es obligatorio</span>
+								<input type="number" class="form-control" id="cant_clases" name="cant_clases" placeholder="Ingrese la Cantidad de Clases" value="{{modal.cant_clases}}"
+								 ng-model="modal.cant_clases" ng-required="true" min="1">
+								<span style="color:red" ng-show="frmDictado.cant_clases.$invalid && frmDictado.cant_clases.$touched">El campo Cant. Clases es obligatorio y tiene que ser mayor a cero</span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cant. Faltas Max</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="cant_faltas_max" name="cant_faltas_max" placeholder="Ingrese la Cantidad Máxima de Faltas"
-								 value="{{cant_faltas_max}}" ng-model="modal.cant_faltas_max" ng-required="true">
-								<span style="color:red" ng-show="frmDictado.cant_faltas_max.$invalid && frmDictado.cant_faltas_max.$touched">El campo Cant. Faltas Max es obligatorio</span>
+								<input type="number" class="form-control" id="cant_faltas_max" name="cant_faltas_max" placeholder="Ingrese la Cantidad Máxima de Faltas"
+								 value="{{modal.cant_faltas_max}}" ng-model="modal.cant_faltas_max" ng-required="true" max="{{modal.cant_clases}}" min="0">
+								<span style="color:red" ng-show="frmDictado.cant_faltas_max.$invalid && frmDictado.cant_faltas_max.$touched">El campo Cant. Faltas Max es obligatorio, mayor o igual a cero y debe ser menor o igual a Cant. Clases</span>
 							</div>
 						</div>
 					</form>
@@ -547,11 +551,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Materia</label>
+							<label class="col-sm-3 control-label">Dictado</label>
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.materia.desc_mat" value={{modal.materia.desc_mat}} ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option ng-repeat="x in materias" value="{{x.desc_mat}}">{{x.desc_mat}}</option>
+									<option ng-repeat="x in materias" value="{{x.desc_mat}}">{{x.desc_mat}} /	 {{x.cuat}} / {{x.ano}} </option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.materia.$invalid && frmInscriptos.materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
@@ -559,9 +563,9 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cant. Faltas Actuales</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="cant_faltas_act" name="cant_faltas_act" placeholder="Ingrese Cantidad de Faltas Actuales"
-								 value="{{cant_faltas_act}}" ng-model="modal.cant_faltas_act" ng-required="true">
-								<span style="color:red" ng-show="frmInscriptos.cant_faltas_act.$invalid && frmInscriptos.cant_faltas_act.$touched">El campo Cant. Faltas Actuales es obligatorio</span>
+								<input type="number" class="form-control" id="cant_faltas_act" name="cant_faltas_act" placeholder="Ingrese Cantidad de Faltas Actuales"
+								 value="{{cant_faltas_act}}" ng-model="modal.cant_faltas_act" ng-required="true" min="0">
+								<span style="color:red" ng-show="frmInscriptos.cant_faltas_act.$invalid && frmInscriptos.cant_faltas_act.$touched">El campo Cant. Faltas Actuales es obligatorio y mayor o igual a cero</span>
 							</div>
 						</div>
 					</form>
