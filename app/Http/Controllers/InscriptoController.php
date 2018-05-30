@@ -49,7 +49,9 @@ class InscriptoController extends Controller
                           'dictados.ano',
                           'inscriptos.cant_faltas_act',
                           'inscriptos.libre',
-                          'asistencias_cursos.estado_curso')
+                          'asistencias_cursos.estado_curso',
+                          'asistentes.cod_asist',
+                          '')
                  ->orderBy('inscriptos.id')
                  ->get();
 
@@ -61,11 +63,11 @@ class InscriptoController extends Controller
                   $result['libre'] = 'No';
               }
 
-              if ($result['asistencias_cursos.estado_curso'] == 'G' && $result['cod_asist'] == "1"){
+              if ($result['estado_curso'] == 'G' && $result['cod_asist'] == "1"){
 
                   $result['cant_faltas_act'] = $result['cant_faltas_act'] - 1;
 
-              }else if ($result['asistencias_cursos.estado_curso'] == 'G' && $result['cod_asist'] == "2"){
+              }else if ($result['estado_curso'] == 'G' && $result['cod_asist'] == "2"){
 
                   $result['cant_faltas_act'] = $result['cant_faltas_act'] - 0.5;
 
