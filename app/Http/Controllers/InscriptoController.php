@@ -143,7 +143,7 @@ class InscriptoController extends Controller
         try {
             $inscripto = Inscripto::find($id)->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            var_dump('PEPE'.$e);
+            var_dump('Error: '.$e);
             return false;
         }
         return 'Inscripto record successfully deleted';
