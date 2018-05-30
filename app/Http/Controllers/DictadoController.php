@@ -32,6 +32,7 @@ class DictadoController extends Controller
                  ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
                  ->join('dias','dictados_clases.id_dia','=','dias.id')
                  ->select('carreras.id as id_carrera','carreras.desc_carr','dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max','dictados_clases.id AS id_dictado_clase')
+                 ->groupby('dictados.id')
                  ->orderby('materias.desc_mat', 'dictados.ano', 'dictados.cuat')
                  ->get();
 
@@ -74,6 +75,7 @@ class DictadoController extends Controller
                         ->where('dictados.ano','=',$date->year) 
                         ->where('dictados.cuat','=',$cuat)
                         ->select('dictados.id AS id','materias.desc_mat','dictados.cuat','dictados.ano','carreras.desc_carr')
+                        ->groupby('dictados.id')
                         ->get(); 
         
 
