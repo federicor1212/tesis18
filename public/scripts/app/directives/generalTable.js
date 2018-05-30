@@ -538,13 +538,13 @@
         };
 
         table.saveInscripto = function(inscripto) {
-		   var nuevoInscripto = $scope.materias.find(function(mat) {
+		   /*var nuevoInscripto = $scope.materias.find(function(mat) {
 		    return inscripto.materia.desc_mat === mat.desc_mat;
-		  });
-		   nuevoInscripto.id_alumno = inscripto.alumno.nombre;
-		   nuevoInscripto.cant_faltas_act = inscripto.cant_faltas_act;
+		  });*/
+		   //nuevoInscripto.id_alumno = inscripto.alumno.nombre;
+		   //nuevoInscripto.cant_faltas_act = inscripto.cant_faltas_act;
           if (inscripto.nuevo) {
-            inscriptosService.guardarInscripto(nuevoInscripto).then(
+            inscriptosService.guardarInscripto(inscripto).then(
               function() {
                 swal({
                   title: 'Éxito!',

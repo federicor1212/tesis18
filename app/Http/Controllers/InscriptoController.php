@@ -7,6 +7,7 @@ use App\Inscripto;
 use App\Materia;
 use App\Alumno;
 use App\Dictado;
+use App\AsistenciaCurso;
 use App\Enums\Generic;
 
 class InscriptoController extends Controller
@@ -23,22 +24,50 @@ class InscriptoController extends Controller
           }
 
       if ($id == null){
-        $materias = Materia::all();
-        $alumno = Alumno::all();
-        $inscripciones = Inscripto::all();
-        $dictados = Dictado::all();
 
-        foreach ($inscripciones as $insc) {
-            if ($insc['libre'] == Generic::SI) {
-                $insc['libre'] = 'Si';
-            } else {
-                $insc['libre'] = 'No';
-            }
-            $insc['alumno'] = $alumno->find($insc['id_alumno']);
-            $insc['dictado'] = $dictados->find($insc['id_dictado']);
-            $insc['materia'] = $materias->find($insc['dictado']->id_materia);
-            //unset($insc['dictado']);
-        }
+        $today = date("Y-m-d");
+        $inscripciones = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
+                 ->join('alumnos','inscriptos.id_alumno','=','alumnos.id')
+                 ->join('materias','dictados.id_materia','=','materias.id')
+                 ->leftJoin('asistencias_cursos', function ($query) use ($today) {
+                          $query->on('dictados.id','=','asistencias_cursos.id_dictado')
+                                ->whereDate('asistencias_cursos.created_at','=',$today)
+                                ->where('asistencias_cursos.estado_curso','=','G');
+                  })
+                 ->leftJoin('asistentes', function ($query) use ($today) {
+                          $query->on('inscriptos.id_alumno','=','asistentes.id_alumno')
+                                ->on('inscriptos.id_dictado','=','asistentes.id_dictado')
+                                ->whereDate('asistentes.created_at','=',$today);;
+                  })
+                 ->select('inscriptos.id',
+                          'alumnos.nombre',
+                          'alumnos.apellido',
+                          'materias.desc_mat',
+                          'dictados.cuat',
+                          'dictados.ano',
+                          'inscriptos.cant_faltas_act',
+                          'inscriptos.libre')
+                 ->orderBy('inscriptos.id')
+                 ->get();
+
+          foreach ($inscripciones as $result) {    
+
+              if ($result['libre'] == Generic::SI) {
+                  $result['libre'] = 'Si';
+              } else {
+                  $result['libre'] = 'No';
+              }
+
+              if ($result['cod_asist'] == "1"){
+
+                  $result['cant_faltas_act'] = $result['cant_faltas_act'] - 1;
+
+              }else if ($result['cod_asist'] == "2"){
+
+                  $result['cant_faltas_act'] = $result['cant_faltas_act'] - 0.5;
+
+              }
+          }                 
 
         return $inscripciones;
       } else {
@@ -72,8 +101,8 @@ class InscriptoController extends Controller
           }
 
         $inscripto = new Inscripto;
-        $inscripto->id_alumno = $request->input('id_alumno');
-        $inscripto->id_dictado = $request->input('id');
+        $inscripto->id_alumno = $request['alumno']['nombre'];
+        $inscripto->id_dictado = $request['materia']['desc_mat'];
         $inscripto->cant_faltas_act = $request->input('cant_faltas_act');
         $inscripto->save();
         return 'Inscripto record successfully created with id' . $inscripto->id;

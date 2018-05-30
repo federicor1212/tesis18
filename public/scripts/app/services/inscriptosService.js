@@ -13,7 +13,7 @@ function inscriptosService($log, $http, $auth) {
     return $http({ method: "GET", url: '/api/inscripto', cache: false });
   }
 
-  function guardarInscripto(inscripto) {
+  function guardarInscripto(inscripto) {debugger;
     return $http({ method: "POST", url: '/api/nuevo-inscripto', data: inscripto});
   }
 
