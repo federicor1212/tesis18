@@ -152,9 +152,9 @@
             var hiddenData = $scope.data.hiddenData;
             var i = 0;
             $scope.data.hiddenData.find(function(data) {
-                var nombre = data.alumno.nombre.toUpperCase().search(newValue.toUpperCase());
-                var apellido = data.alumno.apellido.toUpperCase().search(newValue.toUpperCase());
-                var materia = data.materia.desc_mat.toUpperCase().search(newValue.toUpperCase());
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var materia = data.desc_mat.toUpperCase().search(newValue.toUpperCase());
                 var cant_faltas = data.cant_faltas_act.toString().search(newValue);
                 var libre = data.libre.toUpperCase().search(newValue.toUpperCase());
                 if (nombre != -1 || apellido != -1 || materia != -1 || cant_faltas != -1 || libre != -1) {
