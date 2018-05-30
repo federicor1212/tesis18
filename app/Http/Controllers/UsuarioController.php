@@ -125,39 +125,27 @@ class UsuarioController extends Controller
         if ($request->input('id') != null) {
             $usuario = Usuario::find($request->input('id'));
             $usuario->password = Hash::make($request->input('contrasenia'));
-            if ($request->input('estado') == 1) {
-              $estado = 'Activo';
-            }
         } else {
             $usuario = new Usuario;
-            $usuario->password = Hash::make($request->input('password'));
-            if ($request->input('estado') == 'Activo') {
-             $estado = 'Activo';
-            }
+            $usuario->password = Hash::make('temporal');
         }
 
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
-        if (null !== $request->input('permiso')) {
-          if ($request->input('permiso') === 'Administrador') {
-              $usuario->id_permiso = UserRoles::ADMIN;
-          } else {
-              $usuario->id_permiso = UserRoles::DOCENTE;
-          }
+        
+        if ($request->input('permiso') === 'Administrador' || $request->input('id_permiso') == 1) {
+            $usuario->id_permiso = UserRoles::ADMIN;
         } else {
-          if ($request->input('id_permiso') === 1) {
-              $usuario->id_permiso = UserRoles::ADMIN;
-          } else {
-              $usuario->id_permiso = UserRoles::DOCENTE;
-          }
-        } 
+            $usuario->id_permiso = UserRoles::DOCENTE;
+        }
 
-        if ($estado) {
+        if ($request->input('estado') === 'Activo' || $request->input('estado') == 1) {
             $usuario->estado = Status::ACTIVO;
         } else {
             $usuario->estado = Status::INACTIVO;
-        }
+        }  
+        
         $usuario->save();
 
         return 'Usuario record successfully saved with id' . $usuario->id;
