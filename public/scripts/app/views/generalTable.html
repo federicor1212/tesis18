@@ -443,21 +443,21 @@
 																<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Fecha de Inicio</label>
-							<div class="col-sm-9">
-								<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{modal.fecha_inicio}}" ng-model="modal.fecha_inicio" ng-required="true" max="{{modal.fecha_fin}}">
-								<span style="color:red" ng-show="frmDictado.fecha_inicio.$invalid && frmDictado.fecha_inicio.$touched">El campo Fecha de Inicio es obligatorio y debe ser menor a la fecha de fin</span>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Fecha de Fin</label>
-							<div class="col-sm-9">
-								<input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{modal.fecha_fin}}" ng-model="modal.fecha_fin" ng-required="true" min="{{modal.fecha_inicio}}">
-								<span style="color:red" ng-show="frmDictado.fecha_fin.$invalid && frmDictado.fecha_fin.$touched">El campo Fecha de Fin es obligatorio y debe ser mayor a la fecha de inicio</span>
-							</div>
-						</div>
 							<div ng-if="mostrarCampos">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Fecha de Inicio</label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{modal.fecha_inicio}}" ng-model="modal.fecha_inicio" ng-required="true" max="{{modal.fecha_fin}}">
+									<span style="color:red" ng-show="frmDictado.fecha_inicio.$invalid && frmDictado.fecha_inicio.$touched">El campo Fecha de Inicio es obligatorio y debe ser menor a la fecha de fin</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Fecha de Fin</label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{modal.fecha_fin}}" ng-model="modal.fecha_fin" ng-required="true" min="{{modal.fecha_inicio}}">
+									<span style="color:red" ng-show="frmDictado.fecha_fin.$invalid && frmDictado.fecha_fin.$touched">El campo Fecha de Fin es obligatorio y debe ser mayor a la fecha de inicio</span>
+								</div>
+							</div>
 								<div class="form-group">
 							<label class="col-sm-3 control-label">Cant. Inscriptos</label>
 							<div class="col-sm-9">
