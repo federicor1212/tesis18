@@ -76,6 +76,7 @@
 
 			<tr ng-if="type === 'dictados'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
+				<td>{{d.desc_carr}}</td>
 				<td>{{d.desc_mat}}</td>
 				<td>{{d.cuat}}</td>
 				<td>{{d.ano}}</td>
