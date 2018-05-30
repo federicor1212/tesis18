@@ -83,61 +83,66 @@
             }
           }
           if ($scope.type === 'docenteasignado' && $scope.data !== undefined) {
-            var nuevoAlumno = [];
+            var nuevoDocente = [];
             var hiddenData = $scope.data.hiddenData;
             var i = 0;
             $scope.data.hiddenData.find(function(data) {
-                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
-                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
-                var email = data.email.toUpperCase().search(newValue.toUpperCase());
-                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
-                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
-                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
-                  nuevoAlumno[i] = data;
+                var ano = data.dictados.ano.toUpperCase().search(newValue.toUpperCase());
+                var cuat = data.dictados.cuat.toString().search(newValue.toUpperCase());
+                var materia = data.materia.desc_mat.toUpperCase().search(newValue.toUpperCase());
+                var nombre = data.docente.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.docente.apellido.toUpperCase().search(newValue.toUpperCase());
+                var cargo = data.desc_cargo.toUpperCase().search(newValue.toUpperCase());
+                if (cuat != -1 || ano != -1 || materia != -1 || nombre != -1 || apellido != -1 || cargo != -1) {
+                  nuevoDocente[i] = data;
                   i +=1;
                 }
             });
-            $scope.data = nuevoAlumno;
+            $scope.data = nuevoDocente;
             if ($scope.data != undefined) {
               $scope.data.hiddenData =  hiddenData;
             }
           }
           if ($scope.type === 'dictados' && $scope.data !== undefined) {
-            var nuevoAlumno = [];
+            var nuevoDictado = [];
             var hiddenData = $scope.data.hiddenData;
             var i = 0;
             $scope.data.hiddenData.find(function(data) {
-                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
-                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
-                var email = data.email.toUpperCase().search(newValue.toUpperCase());
-                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
-                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
-                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
-                  nuevoAlumno[i] = data;
+                var alternativa = data.alt_hor.toUpperCase().search(newValue.toUpperCase());
+                var ano = data.ano.toUpperCase().search(newValue.toUpperCase());
+                var cant_clases = data.cant_clases.toString().search(newValue.toUpperCase());
+                var cant_faltas_max = data.cant_faltas_max.toString().search(newValue.toUpperCase());
+                var cant_insc_act = data.cant_insc_act.toString().search(newValue.toUpperCase());
+                var cuat = data.cuat.toString().search(newValue.toUpperCase());
+                var desc_mat = data.desc_mat.toUpperCase().search(newValue.toUpperCase());
+                var dia_cursada = data.dia_cursada.toUpperCase().search(newValue.toUpperCase());
+                
+                if (alternativa != -1 || ano != -1 || cant_clases != -1 || cant_faltas_max != -1 || cant_insc_act != -1 || cuat!= -1 || desc_mat != -1 || dia_cursada != -1) {
+                  nuevoDictado[i] = data;
                   i +=1;
                 }
             });
-            $scope.data = nuevoAlumno;
+            $scope.data = nuevoDictado;
             if ($scope.data != undefined) {
               $scope.data.hiddenData =  hiddenData;
             }
           }
           if ($scope.type === 'docentes' && $scope.data !== undefined) {
-            var nuevoAlumno = [];
+            var nuevoProfe = [];
             var hiddenData = $scope.data.hiddenData;
             var i = 0;
             $scope.data.hiddenData.find(function(data) {
                 var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
                 var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
-                var email = data.email.toUpperCase().search(newValue.toUpperCase());
-                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
                 var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
-                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
-                  nuevoAlumno[i] = data;
+                var estado = data.estado.toUpperCase().search(newValue.toUpperCase());
+                var id_usuario = data.id_usuario.toString().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || estado != -1 || id_usuario != -1 || telefono != -1) {
+                  nuevoProfe[i] = data;
                   i +=1;
                 }
             });
-            $scope.data = nuevoAlumno;
+            $scope.data = nuevoProfe;
             if ($scope.data != undefined) {
               $scope.data.hiddenData =  hiddenData;
             }
