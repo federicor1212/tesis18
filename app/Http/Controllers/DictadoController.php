@@ -28,9 +28,10 @@ class DictadoController extends Controller
         
         $dictado = Dictado::join('materias','dictados.id_materia','=','materias.id')
                  ->join('dictados_clases','dictados.id','=','dictados_clases.id_dictado')
+                 ->join('carreras','materias.id_carrera','=','carreras.id')
                  ->join('alternativas','dictados_clases.id_alternativa','=','alternativas.id')
                  ->join('dias','dictados_clases.id_dia','=','dias.id')
-                 ->select('dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max','dictados_clases.id AS id_dictado_clase')
+                 ->select('carreras.id as id_carrera','dictados.id','materias.id AS id_materia','materias.desc_mat','dictados.cuat','dictados.ano','dias.id AS id_dia','dias.descripcion As dia_cursada','alternativas.id AS id_alternativa','alternativas.codigo AS alt_hor','dictados.fecha_inicio','dictados.fecha_fin','dictados.cant_insc_act','dictados.cant_clases','dictados.cant_faltas_max','dictados_clases.id AS id_dictado_clase')
                  ->orderby('materias.desc_mat', 'dictados.ano', 'dictados.cuat')
                  ->get();
 
@@ -38,6 +39,16 @@ class DictadoController extends Controller
       } else {
         return Dictado::find($id);
       }
+    }
+
+    public function consultar(Request $request){
+      $materia = $request->input('id_materia');
+      $cuat = $request->input('cuat');
+      $ano = $request->input('ano');
+
+      $result = Dictado::where('id_materia',$materia)->where('cuat',$cuat)->where('ano',$ano)->first();
+
+      return $result;
     }
 
     public function dictadosSinProfesor(){

@@ -29,12 +29,17 @@ function dictadoService($log, $http, $auth) {
     return $http({ method: "POST", url: '/api/eliminar-dictado', data: dictado});
   }
 
+  function verificarSiDictadoExiste(dictado) {
+    return $http({ method: "POST", url: '/api/consultar-dictado', data: dictado});
+  }
+
   const service = {
     getDictado,
     guardarDictado,
     actualizarDictado,
     borrarDictado,
-    getDictadoSinProf
+    getDictadoSinProf,
+    verificarSiDictadoExiste
   };
 
   return service;

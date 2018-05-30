@@ -18,7 +18,8 @@
         $state.go('login', {});
       };
       carrerasService.getCarrera().then(function(data) {
-        $scope.tableData = data.data;
+        $scope.tableData = [];
+        $scope.tableData.hiddenData = data.data;
       });
       $scope.headers = ['ID', 'Carrera', 'Plan'];
       $scope.type = 'carreras';

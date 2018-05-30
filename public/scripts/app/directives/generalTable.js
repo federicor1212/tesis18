@@ -23,7 +23,165 @@
         $state
       ) {
         var table = this;
+        $scope.filter = {};
+        $scope.$watch('searchAlumno', function(newValue, oldValue) {
+          if ($scope.type === 'usuarios' && $scope.data !== undefined) {
+            var nuevoUsuario = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var email = data.email.toUpperCase().search(newValue.toUpperCase());
+                var permiso = data.permiso.toUpperCase().search(newValue.toUpperCase());
+                var estado = data.estado.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || email != -1 || permiso != -1 || estado != -1) {
+                  nuevoUsuario[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoUsuario;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'alumno' && $scope.data !== undefined) {
+            var nuevoAlumno = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var email = data.email.toUpperCase().search(newValue.toUpperCase());
+                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
+                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
+                  nuevoAlumno[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoAlumno;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'carreras' && $scope.data !== undefined) {
+            var nuevaCarrera = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var desc = data.desc_carr.toUpperCase().search(newValue.toUpperCase());
+                var plan = data.plan.toUpperCase().search(newValue.toUpperCase());
+               if (desc != -1 || plan != -1) {
+                  nuevaCarrera[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevaCarrera;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'docenteasignado' && $scope.data !== undefined) {
+            var nuevoAlumno = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var email = data.email.toUpperCase().search(newValue.toUpperCase());
+                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
+                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
+                  nuevoAlumno[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoAlumno;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'dictados' && $scope.data !== undefined) {
+            var nuevoAlumno = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var email = data.email.toUpperCase().search(newValue.toUpperCase());
+                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
+                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
+                  nuevoAlumno[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoAlumno;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'docentes' && $scope.data !== undefined) {
+            var nuevoAlumno = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.apellido.toUpperCase().search(newValue.toUpperCase());
+                var email = data.email.toUpperCase().search(newValue.toUpperCase());
+                var matricula = data.matricula.toUpperCase().search(newValue.toUpperCase());
+                var telefono = data.telefono.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || email != -1 || matricula != -1 || telefono != -1) {
+                  nuevoAlumno[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoAlumno;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'inscriptos' && $scope.data !== undefined) {
+            var nuevoInscripto = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.alumno.nombre.toUpperCase().search(newValue.toUpperCase());
+                var apellido = data.alumno.apellido.toUpperCase().search(newValue.toUpperCase());
+                var materia = data.materia.desc_mat.toUpperCase().search(newValue.toUpperCase());
+                var cant_faltas = data.cant_faltas_act.toString().search(newValue);
+                var libre = data.libre.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || apellido != -1 || materia != -1 || cant_faltas != -1 || libre != -1) {
+                  nuevoInscripto[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevoInscripto;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
+          if ($scope.type === 'materias' && $scope.data !== undefined) {
+            var nuevaMateria = [];
+            var hiddenData = $scope.data.hiddenData;
+            var i = 0;
+            $scope.data.hiddenData.find(function(data) {
+                var nombre = data.desc_mat.toUpperCase().search(newValue.toUpperCase());
+                var carrera = data.carrera.desc_carr.toUpperCase().search(newValue.toUpperCase());
+                var plan = data.carrera.plan.toUpperCase().search(newValue.toUpperCase());
+                if (nombre != -1 || carrera != -1 || plan != -1) {
+                  nuevaMateria[i] = data;
+                  i +=1;
+                }
+            });
+            $scope.data = nuevaMateria;
+            if ($scope.data != undefined) {
+              $scope.data.hiddenData =  hiddenData;
+            }
+          }
 
+        });
         table.saveUsuario = function(usuario) {
           if (usuario.nuevo) {
             usuariosService.guardarUsuario(usuario).then(
@@ -566,6 +724,7 @@
                 alt_hor: null,
                 fecha_inicio: null,
                 fecha_fin: null,
+                id_carrera: null,
                 cant_insc_act: null,
                 cant_clases: null,
                 cant_faltas_max: null
@@ -573,8 +732,61 @@
 
               $scope.modal.materia = null;
 
-              materiasService.getMaterias().then(response => {
-                $scope.materias = response.data;
+              $scope.$watch('modal.id_materia', function(newValue, oldValue) {
+                  $scope.mostrarCampos = false;
+                  dictadosService
+                    .verificarSiDictadoExiste($scope.modal)
+                    .then(function(response) {
+                      if (response.data == "") {
+                        $scope.mostrarCampos = true;
+                      }
+                    });
+              });
+
+              $scope.$watch('modal.cuat', function(newValue, oldValue) {
+                  $scope.mostrarCampos = false;
+                  dictadosService
+                    .verificarSiDictadoExiste($scope.modal)
+                    .then(function(response) {
+                      if (response.data == "") {
+                        $scope.mostrarCampos = true;
+                      }
+                    });
+              });
+
+              $scope.$watch('modal.ano', function(newValue, oldValue) {
+                  $scope.mostrarCampos = false;
+                  dictadosService
+                    .verificarSiDictadoExiste($scope.modal)
+                    .then(function(response) {
+                      if (response.data == "") {
+                        $scope.mostrarCampos = true;
+                      }
+                    });
+              });
+
+              $scope.$watch('modal.id_carrera', function(newValue, oldValue) {
+                  $scope.showModalDictado = false;
+                  if (newValue) {
+                    $scope.showModalDictado = true;
+                    if ($scope.modal.nuevo) {
+                      materiasService
+                        .buscarMateriasDeCarrera(Number(newValue))
+                        .then(function(materias) {
+                          $scope.materias = materias.data;
+                        });
+                    } else {
+                      materiasService.getMaterias().then(response => {
+                        $scope.materias = response.data;
+                      });
+                    }
+                  } else {
+                    $scope.showModalDictado = false;
+                  }
+              });
+
+              carrerasService.getCarrera().then(response => {
+                $scope.carreras = response.data;
               });
               break;
 
@@ -679,7 +891,9 @@
               $scope.frmMateria.$setUntouched();
               $('#modal-materia').modal('show');
               break;
-
+            case 'search':
+              $scope.frmSearch.$setUntouched();
+              $("#search-modal").modal('show');
             default:
               break;
           }
@@ -753,6 +967,7 @@
                 $scope.modal.cant_insc_act = data.cant_insc_act;
                 $scope.modal.cant_clases = data.cant_clases;
                 $scope.modal.cant_faltas_max = data.cant_faltas_max;
+                $scope.modal.id_carrera = data.id_carrera.toString();
                 $scope.modal.nuevo = false;
                 $scope.modal.id = data.id;
                 $('#modal-dictado').modal('show');

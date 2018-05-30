@@ -12,7 +12,8 @@ angular
 		$state.go('login', {});
 	}
 	alumnoService.getAlumnos().then(function (data) {
-    	$scope.tableData = data.data;
+    	$scope.tableData = [];
+    	$scope.tableData.hiddenData = data.data;
   	});
 
   	$scope.headers = ['ID', 'Nombre', 'Apellido', 'Tel\u00E9fono', 'Email', 'Matr\u00EDcula'];

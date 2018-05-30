@@ -18,7 +18,8 @@
         $state.go('login', {});
       };
       materiasService.getMaterias().then(function(data) {
-        $scope.tableData = data.data;
+        $scope.tableData = [];
+        $scope.tableData.hiddenData = data.data;
       });
       $scope.headers = ['ID', 'Nombre de la Materia', 'Carrera', 'Plan'];
       $scope.type = 'materias';

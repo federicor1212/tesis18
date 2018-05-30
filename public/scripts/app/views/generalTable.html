@@ -5,11 +5,12 @@
 				<th ng-repeat="header in headers track by $index">{{header}}</th>
 				<th>
 					<button id="btn-add" class="btn btn-success" ng-click="table.openModal(type)">Nuevo</button>
+					<input placeholder="Busca aqui" style="border-radius: 5px;" ng-model="searchAlumno" id="filter"> 
 				</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-if="type === 'usuarios'" ng-repeat="d in data">
+			<tr ng-if="type === 'usuarios'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.nombre}}</td>
 				<td>{{d.apellido}}</td>
@@ -26,7 +27,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'alumno'" ng-repeat="d in data">
+			<tr ng-if="type === 'alumno'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.nombre}}</td>
 				<td>{{d.apellido}}</td>
@@ -43,7 +44,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'carreras'" ng-repeat="d in data">
+			<tr ng-if="type === 'carreras'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.desc_carr}}</td>
 				<td>{{d.plan}}</td>
@@ -57,7 +58,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'docenteasignado'" ng-repeat="d in data">
+			<tr ng-if="type === 'docenteasignado'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.materia.desc_mat}}</td>
 				<td>{{d.dictados.cuat}}</td>
@@ -73,7 +74,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'dictados'" ng-repeat="d in data">
+			<tr ng-if="type === 'dictados'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.desc_mat}}</td>
 				<td>{{d.cuat}}</td>
@@ -95,7 +96,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'docentes'" ng-repeat="d in data">
+			<tr ng-if="type === 'docentes'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.nombre}}</td>
 				<td>{{d.apellido}}</td>
@@ -112,7 +113,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'inscriptos'" ng-repeat="d in data">
+			<tr ng-if="type === 'inscriptos'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.alumno.nombre}}, {{d.alumno.apellido}}</td>
 				<td>{{d.materia.desc_mat}}</td>
@@ -130,7 +131,7 @@
 				</td>
 			</tr>
 
-			<tr ng-if="type === 'materias'" ng-repeat="d in data">
+			<tr ng-if="type === 'materias'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.desc_mat}}</td>
 				<td>{{d.carrera.desc_carr}}</td>
@@ -368,67 +369,78 @@
 				<div class="modal-body">
 					<form name="frmDictado" class="form-horizontal" novalidate="">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Materia</label>
+							<label class="col-sm-3 control-label">Carrera</label>
 							<div class="col-sm-9">
-								<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_materia}}" ng-model="modal.id_materia" ng-required="true">
+								<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_carrera}}" ng-model="modal.id_carrera" ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+									<option value="{{x.id}}" ng-repeat="x in carreras">{{x.desc_carr}}</option>
 								</select>
-								<span style="color:red" ng-show="frmDictado.id_materia.$invalid && frmDictado.id_materia.$touched">Seleccionar una Materia es obligatorio</span>
+								<span style="color:red" ng-show="frmDictado.id_materia.$invalid && frmDictado.id_materia.$touched">Seleccionar una Carrera es obligatorio</span>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Cuatrimestre</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="cuat" name="cuat" placeholder="Seleccione el Cuatrimestre" value="{{modal.cuat}}" ng-model="modal.cuat" ng-required="true">
-									<option value="">-- Seleccione --</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-								</select>
-								<span style="color:red" ng-show="frmDictado.cuat.$invalid && frmDictado.cuat.$touched">Seleccionar un Cuatrimestre es obligatorio</span>
+						<div ng-if="showModalDictado && modal.nuevo || !modal.nuevo">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Materia</label>
+								<div class="col-sm-9">
+									<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_materia}}" ng-model="modal.id_materia" ng-required="true">
+										<option value="">-- Seleccione --</option>
+										<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
+									</select>
+									<span style="color:red" ng-show="frmDictado.id_materia.$invalid && frmDictado.id_materia.$touched">Seleccionar una Materia es obligatorio</span>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">A&ntilde;o</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="ano" name="ano" placeholder="Seleccione el año" value="{{modal.ano}}" ng-model="modal.ano" ng-required="true">
-									<option value="">-- Seleccione --</option>
-									<option value="2017">2017</option>
-									<option value="2018">2018</option>
-									<option value="2019">2019</option>
-									<option value="2020">2020</option>
-								</select>
-								<span style="color:red" ng-show="frmDictado.ano.$invalid && frmDictado.ano.$touched">Seleccionar un Año es obligatorio</span>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Cuatrimestre</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="cuat" name="cuat" placeholder="Seleccione el Cuatrimestre" value="{{modal.cuat}}" ng-model="modal.cuat" ng-required="true">
+										<option value="">-- Seleccione --</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+									</select>
+									<span style="color:red" ng-show="frmDictado.cuat.$invalid && frmDictado.cuat.$touched">Seleccionar un Cuatrimestre es obligatorio</span>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">D&iacute;a de cursada</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="id_dia" name="id_dia" placeholder="Seleccione el Día de cursada" value="{{id_dia}}"
-								 ng-model="modal.id_dia" ng-required="true">
-									<option value="">-- Seleccione --</option>
-									<option value="1">Lunes</option>
-									<option value="2">Martes</option>
-									<option value="3">Miercoles</option>
-									<option value="4">Jueves</option>
-									<option value="5">Viernes</option>
-									<option value="6">Sabado</option>
-									<option value="7">Domingo</option>
-								</select>
-								<span style="color:red" ng-show="frmDictado.id_dia.$invalid && frmDictado.id_dia.$touched">El campo Día de cursada es obligatorio</span>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">A&ntilde;o</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="ano" name="ano" placeholder="Seleccione el año" value="{{modal.ano}}" ng-model="modal.ano" ng-required="true">
+										<option value="">-- Seleccione --</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+									</select>
+									<span style="color:red" ng-show="frmDictado.ano.$invalid && frmDictado.ano.$touched">Seleccionar un Año es obligatorio</span>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Alternativa</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="id_alternativa" name="id_alternativa" placeholder="Seleccione Alternativa" value="{{modal.id_alternativa}}" ng-model="modal.id_alternativa"
-								 ng-required="true">
-									<option value="">-- Seleccione --</option>
-									<option value="1">AM</option>
-									<option value="2">IM</option>
-									<option value="3">PM</option>
-								</select>
-								<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">D&iacute;a de cursada</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="id_dia" name="id_dia" placeholder="Seleccione el Día de cursada" value="{{id_dia}}"
+									 ng-model="modal.id_dia" ng-required="true">
+										<option value="">-- Seleccione --</option>
+										<option value="1">Lunes</option>
+										<option value="2">Martes</option>
+										<option value="3">Miercoles</option>
+										<option value="4">Jueves</option>
+										<option value="5">Viernes</option>
+										<option value="6">Sabado</option>
+										<option value="7">Domingo</option>
+									</select>
+									<span style="color:red" ng-show="frmDictado.id_dia.$invalid && frmDictado.id_dia.$touched">El campo Día de cursada es obligatorio</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Alternativa</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="id_alternativa" name="id_alternativa" placeholder="Seleccione Alternativa" value="{{modal.id_alternativa}}" ng-model="modal.id_alternativa"
+									 ng-required="true">
+										<option value="">-- Seleccione --</option>
+										<option value="1">AM</option>
+										<option value="2">IM</option>
+										<option value="3">PM</option>
+									</select>
+																<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
 							</div>
 						</div>
 						<div class="form-group">
