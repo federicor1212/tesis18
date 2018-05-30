@@ -210,7 +210,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -237,7 +237,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -268,7 +268,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -295,7 +295,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -326,7 +326,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -353,7 +353,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -384,7 +384,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -413,7 +413,7 @@
                     button: 'OK'
                   }).then(willContinue => {
                     if (willContinue) {
-                      location.reload(true);
+                      //location.reload(true);
                     }
                   });
                 }
@@ -444,7 +444,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -471,7 +471,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -502,7 +502,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -529,7 +529,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -565,7 +565,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -592,7 +592,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -627,7 +627,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -654,7 +654,7 @@
                   button: 'OK'
                 }).then(willContinue => {
                   if (willContinue) {
-                    location.reload(true);
+                    //location.reload(true);
                   }
                 });
               }
@@ -1044,7 +1044,7 @@
                     button: 'OK'
                   }).then(willContinue => {
                     if (willContinue) {
-                      location.reload(true);
+                      //location.reload(true);
                     }
                   });
                 }
@@ -1090,7 +1090,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1119,7 +1119,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1148,7 +1148,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1177,7 +1177,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1207,7 +1207,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1236,7 +1236,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
@@ -1265,7 +1265,7 @@
                         button: 'OK'
                       }).then(willContinue => {
                         if (willContinue) {
-                          location.reload(true);
+                          //location.reload(true);
                         }
                       });
                     }
