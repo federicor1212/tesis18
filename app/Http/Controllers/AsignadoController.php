@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Asignado;
 use App\Docente;
 use App\Materia;
+use App\Carrera;
 use App\Dictado;
 
 class AsignadoController extends Controller
@@ -26,6 +27,7 @@ class AsignadoController extends Controller
         $docentes = Docente::all();
         $materias = Materia::all();
         $dictados = Dictado::all();
+        $carreras = Carrera::all();
 
         foreach ($asignado as $asign) {
             $asign['docente'] = $docentes->find($asign['id_docente']);
@@ -33,6 +35,7 @@ class AsignadoController extends Controller
             $dictInfo = Dictado::where('id',$asign['id_dictado'])->first();
             $asign['dictado'] = $dictInfo;
             $asign['materia'] = $materias->find($dictInfo['id_materia']);
+            $asign['carrera'] = $carreras->find($asign['materia']['id_carrera']);
             unset($asign['dictado']);
         }
         return $asignado;

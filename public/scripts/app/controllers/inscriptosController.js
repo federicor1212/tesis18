@@ -15,7 +15,7 @@ angular
     	$scope.tableData = [];
     	$scope.tableData.hiddenData = data.data;
   	});
-  	$scope.headers = ['ID', 'Nombre', 'Materia', 'Cuat', 'A\u00F1o', 'Faltas acumuladas', 'Libre'];
+  	$scope.headers = ['ID', 'Nombre', 'Carrera', 'Materia', 'Cuat', 'A\u00F1o', 'Faltas acumuladas', 'Libre'];
   	$scope.type = 'inscriptos';
 });
 })();

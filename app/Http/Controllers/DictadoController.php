@@ -70,9 +70,10 @@ class DictadoController extends Controller
         }
         $allDictados = Dictado::join('materias','dictados.id_materia','=','materias.id')
                         ->join('dictados_clases','dictados.id','dictados_clases.id_dictado')
+                        ->join('carreras','materias.id_carrera','carreras.id')
                         ->where('dictados.ano','=',$date->year) 
                         ->where('dictados.cuat','=',$cuat)
-                        ->select('dictados.id AS id','materias.desc_mat','dictados.cuat','dictados.ano')
+                        ->select('dictados.id AS id','materias.desc_mat','dictados.cuat','dictados.ano','carreras.desc_carr')
                         ->get(); 
         
 

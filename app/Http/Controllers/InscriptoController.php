@@ -29,6 +29,7 @@ class InscriptoController extends Controller
         $inscripciones = Inscripto::join('dictados','inscriptos.id_dictado','=','dictados.id')
                  ->join('alumnos','inscriptos.id_alumno','=','alumnos.id')
                  ->join('materias','dictados.id_materia','=','materias.id')
+                 ->join('carreras','materias.id_carrera','=','carreras.id')
                  ->leftJoin('asistencias_cursos', function ($query) use ($today) {
                           $query->on('dictados.id','=','asistencias_cursos.id_dictado')
                                 ->whereDate('asistencias_cursos.created_at','=',$today)
@@ -43,6 +44,7 @@ class InscriptoController extends Controller
                           'alumnos.nombre',
                           'alumnos.apellido',
                           'materias.desc_mat',
+                          'carreras.desc_carr',
                           'dictados.cuat',
                           'dictados.ano',
                           'inscriptos.cant_faltas_act',

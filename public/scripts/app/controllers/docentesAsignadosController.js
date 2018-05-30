@@ -25,7 +25,7 @@ angular
     	$scope.tableData = docentesActivos;
     	$scope.tableData.hiddenData = data.data;
   	});
-  	$scope.headers = ['ID', 'Materia', 'Cuat', 'A\u00F1o', 'Docente', 'Cargo'];
+  	$scope.headers = ['ID', 'Carrera', 'Materia', 'Cuat', 'A\u00F1o', 'Docente', 'Cargo'];
   	$scope.type = 'docenteasignado';
 });
 })();

@@ -60,6 +60,7 @@
 
 			<tr ng-if="type === 'docenteasignado'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
+				<td>{{d.carrera.desc_carr}}</td>
 				<td>{{d.materia.desc_mat}}</td>
 				<td>{{d.dictados.cuat}}</td>
 				<td>{{d.dictados.ano}}</td>
@@ -117,6 +118,7 @@
 			<tr ng-if="type === 'inscriptos'" ng-repeat="d in data | filter:search:strict">
 				<td>{{d.id}}</td>
 				<td>{{d.nombre}}, {{d.apellido}}</td>
+				<td>{{d.desc_carr}}</td>
 				<td>{{d.desc_mat}}</td>
 				<td>{{d.cuat}}</td>
 				<td>{{d.ano}}</td>
@@ -325,7 +327,7 @@
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.id_materia" ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}} / {{x.cuat}} / {{x.ano}}</option>
+									<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_carr}} / {{x.desc_mat}} / {{x.cuat}} / {{x.ano}}</option>
 								</select>
 								<span style="color:red" ng-show="frmDocAsignado.materia.$invalid && frmDocAsignado.materia.$touched">Seleccionar una materia es obligatorio</span>
 							</div>
@@ -573,7 +575,7 @@
 							<div class="col-sm-9">
 								<select id="materia" class="form-control" name="materia" placeholder="Seleccione Materia" ng-model="modal.materia.desc_mat" value={{modal.materia.desc_mat}} ng-required="true">
 									<option value="">-- Seleccione --</option>
-									<option ng-repeat="x in materias" value="{{x.id}}">{{x.desc_mat}} /	 {{x.cuat}} / {{x.ano}} </option>
+									<option ng-repeat="x in materias" value="{{x.id}}">{{x.desc_carr}} / {{x.desc_mat}} /	 {{x.cuat}} / {{x.ano}} </option>
 								</select>
 								<span style="color:red" ng-show="frmInscriptos.materia.$invalid && frmInscriptos.materia.$touched">Seleccionar una Materia es obligatorio</span>
 							</div>
