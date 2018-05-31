@@ -107,7 +107,9 @@ Route::post('/eliminar-dia/{id}', 'DiaController@destroy');
 
 //Dictados
 Route::get('/dictado/{id?}', 'DictadoController@index');
+Route::get('/dictado-modal/{id?}', 'DictadoController@indexModal');
 Route::get('/dictado-sin-prof', 'DictadoController@dictadosSinProfesor');
+Route::get('/dictado-sin-prof-modal', 'DictadoController@dictadosSinProfesorModal');
 Route::post('/nuevo-dictado', 'DictadoController@store');
 Route::post('/actualizar-dictado/{id}', 'DictadoController@update');
 Route::post('/eliminar-dictado', 'DictadoController@destroy');

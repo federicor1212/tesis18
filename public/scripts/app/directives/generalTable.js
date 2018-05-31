@@ -712,7 +712,7 @@
                 $scope.docentes = response.data;
               });
 
-              dictadosService.getDictadoSinProf().then(response => {
+              dictadosService.getDictadoSinProfModal().then(response => {
                 $scope.materias = response.data;
               });
               $scope.cargos = [
@@ -825,7 +825,7 @@
                 $scope.alumnos = response.data;
               });
 
-              dictadosService.getDictado().then(response => {
+              dictadosService.getDictadoModal().then(response => {
                 $scope.materias = response.data;
               });
 

@@ -13,8 +13,16 @@ function dictadoService($log, $http, $auth) {
     return $http({ method: "GET", url: '/api/dictado', cache: false });
   }
 
+  function getDictadoModal() {
+    return $http({ method: "GET", url: '/api/dictado-modal', cache: false });
+  }
+
   function getDictadoSinProf() {
     return $http({ method: "GET", url: '/api/dictado-sin-prof', cache: false});
+  }
+
+  function getDictadoSinProfModal() {
+    return $http({ method: "GET", url: '/api/dictado-sin-prof-modal', cache: false});
   }
 
   function guardarDictado(dictado) {
@@ -39,7 +47,9 @@ function dictadoService($log, $http, $auth) {
     actualizarDictado,
     borrarDictado,
     getDictadoSinProf,
-    verificarSiDictadoExiste
+    verificarSiDictadoExiste,
+    getDictadoSinProfModal,
+    getDictadoModal
   };
 
   return service;
