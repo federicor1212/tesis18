@@ -134,10 +134,15 @@ class UsuarioController extends Controller
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
         
-        if ($request->input('permiso') === 'Administrador' || $request->input('id_permiso') == 1) {
-            $usuario->id_permiso = UserRoles::ADMIN;
+        $checkIfAsignado = Docente::where('id_usuario',$usuario->id_permiso)->first();
+        if (empty($checkIfAsignado)) {
+          if ($request->input('permiso') === 'Administrador' || $request->input('id_permiso') == 1) {
+              $usuario->id_permiso = UserRoles::ADMIN;
+          } else {
+              $usuario->id_permiso = UserRoles::DOCENTE;
+          }
         } else {
-            $usuario->id_permiso = UserRoles::DOCENTE;
+          throw new Exception("El usuario ya se encuentra asociado a un docente", 500);
         }
 
         if ($request->input('estado') === 'Activo' || $request->input('estado') == 1) {
