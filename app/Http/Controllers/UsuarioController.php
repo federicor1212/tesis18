@@ -8,6 +8,7 @@ use App\Permiso;
 use Hash;
 use App\Enums\Status;
 use App\Enums\UserRoles;
+use App\Docente;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuthExceptions\JWTException;
 use Carbon\Carbon;
