@@ -25,7 +25,7 @@ angular
     	$scope.tableData = dictadosActivos;
 		$scope.tableData.hiddenData = data.data;
   	});
-  	$scope.headers = ['ID', 'Carrera', 'Materia', 'Cuat.', 'A\u00F1o', 'D\u00EDa de Cursada', 'Alt.','Inicio','Fin','Inscriptos','Clases','Faltas m\u00E1x.'];
+  	$scope.headers = ['ID', 'Carrera', 'Materia', 'Cuat.', 'A\u00F1o', 'Inicio','Fin','Inscriptos','Clases','Faltas m\u00E1x.'];
   	$scope.type = 'dictados';
 });
 })();

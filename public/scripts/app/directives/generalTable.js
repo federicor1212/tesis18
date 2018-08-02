@@ -108,16 +108,16 @@
             var hiddenData = $scope.data.hiddenData;
             var i = 0;
             $scope.data.hiddenData.find(function(data) {
-                var alternativa = data.alt_hor.toUpperCase().search(newValue.toUpperCase());
+                //var alternativa = data.alt_hor.toUpperCase().search(newValue.toUpperCase());
                 var ano = data.ano.toUpperCase().search(newValue.toUpperCase());
                 var cant_clases = data.cant_clases.toString().search(newValue.toUpperCase());
                 var cant_faltas_max = data.cant_faltas_max.toString().search(newValue.toUpperCase());
                 var cant_insc_act = data.cant_insc_act.toString().search(newValue.toUpperCase());
                 var cuat = data.cuat.toString().search(newValue.toUpperCase());
                 var desc_mat = data.desc_mat.toUpperCase().search(newValue.toUpperCase());
-                var dia_cursada = data.dia_cursada.toUpperCase().search(newValue.toUpperCase());
+                //var dia_cursada = data.dia_cursada.toUpperCase().search(newValue.toUpperCase());
                 
-                if (alternativa != -1 || ano != -1 || cant_clases != -1 || cant_faltas_max != -1 || cant_insc_act != -1 || cuat!= -1 || desc_mat != -1 || dia_cursada != -1) {
+                if (ano != -1 || cant_clases != -1 || cant_faltas_max != -1 || cant_insc_act != -1 || cuat!= -1 || desc_mat != -1 ) {
                   nuevoDictado[i] = data;
                   i +=1;
                 }

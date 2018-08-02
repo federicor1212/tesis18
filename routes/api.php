@@ -105,6 +105,9 @@ Route::post('/nuevo-dia', 'DiaController@store');
 Route::post('/actualizar-dia/{id}', 'DiaController@update');
 Route::post('/eliminar-dia/{id}', 'DiaController@destroy');
 
+//Dictados Clases
+Route::get('/dictado-clase/{id?}', 'DictadosClasesController@index');
+
 //Dictados
 Route::get('/dictado/{id?}', 'DictadoController@index');
 Route::get('/dictado-modal/{id?}', 'DictadoController@indexModal');
