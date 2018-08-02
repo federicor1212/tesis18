@@ -17,6 +17,10 @@ function dictadoService($log, $http, $auth) {
     return $http({ method: "GET", url: '/api/dictado-modal', cache: false });
   }
 
+  function getDaysOfCourse(idDictado){
+    return $http({ method: "GET", url: '/api/dictado-clase/' + idDictado, cache: false});
+  }
+
   function getDictadoSinProf() {
     return $http({ method: "GET", url: '/api/dictado-sin-prof', cache: false});
   }
@@ -49,7 +53,8 @@ function dictadoService($log, $http, $auth) {
     getDictadoSinProf,
     verificarSiDictadoExiste,
     getDictadoSinProfModal,
-    getDictadoModal
+    getDictadoModal,
+    getDaysOfCourse
   };
 
   return service;

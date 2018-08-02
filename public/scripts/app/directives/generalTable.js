@@ -737,58 +737,62 @@
 
               $scope.modal.materia = null;
 
-              $scope.$watch('modal.id_materia', function(newValue, oldValue) {
-                  $scope.mostrarCampos = false;
-                  dictadosService
-                    .verificarSiDictadoExiste($scope.modal)
-                    .then(function(response) {
-                      if (response.data == "") {
-                        $scope.mostrarCampos = true;
-                      }
-                    });
-              });
-
-              $scope.$watch('modal.cuat', function(newValue, oldValue) {
-                  $scope.mostrarCampos = false;
-                  dictadosService
-                    .verificarSiDictadoExiste($scope.modal)
-                    .then(function(response) {
-                      if (response.data == "") {
-                        $scope.mostrarCampos = true;
-                      }
-                    });
-              });
-
-              $scope.$watch('modal.ano', function(newValue, oldValue) {
-                  $scope.mostrarCampos = false;
-                  dictadosService
-                    .verificarSiDictadoExiste($scope.modal)
-                    .then(function(response) {
-                      if (response.data == "") {
-                        $scope.mostrarCampos = true;
-                      }
-                    });
-              });
-
-              $scope.$watch('modal.id_carrera', function(newValue, oldValue) {
-                  $scope.showModalDictado = false;
-                  if (newValue) {
-                    $scope.showModalDictado = true;
-                    if ($scope.modal.nuevo) {
-                      materiasService
-                        .buscarMateriasDeCarrera(Number(newValue))
-                        .then(function(materias) {
-                          $scope.materias = materias.data;
+              if ($scope.modal.isEdit !== undefined || $scope.mostrarOpen) {
+                  $scope.$watch('modal.id_materia', function(newValue, oldValue) {
+                      $scope.mostrarCampos = false;
+                      dictadosService
+                        .verificarSiDictadoExiste($scope.modal)
+                        .then(function(response) {
+                          if (response.data == "") {
+                            $scope.mostrarCampos = true;
+                          }
                         });
-                    } else {
-                      materiasService.getMaterias().then(response => {
-                        $scope.materias = response.data;
-                      });
-                    }
-                  } else {
-                    $scope.showModalDictado = false;
-                  }
-              });
+                  });
+
+                  $scope.$watch('modal.cuat', function(newValue, oldValue) {
+                      $scope.mostrarCampos = false;
+                      dictadosService
+                        .verificarSiDictadoExiste($scope.modal)
+                        .then(function(response) {
+                          if (response.data == "") {
+                            $scope.mostrarCampos = true;
+                          }
+                        });
+                  });
+
+                  $scope.$watch('modal.ano', function(newValue, oldValue) {
+                      $scope.mostrarCampos = false;
+                      dictadosService
+                        .verificarSiDictadoExiste($scope.modal)
+                        .then(function(response) {
+                          if (response.data == "") {
+                            $scope.mostrarCampos = true;
+                          }
+                        });
+                  });
+
+              } else {
+                $scope.mostrarCampos = true;
+              }
+                  $scope.$watch('modal.id_carrera', function(newValue, oldValue) {
+                      $scope.showModalDictado = false;
+                      if (newValue) {
+                        $scope.showModalDictado = true;
+                        if ($scope.modal.nuevo) {
+                          materiasService
+                            .buscarMateriasDeCarrera(Number(newValue))
+                            .then(function(materias) {
+                              $scope.materias = materias.data;
+                            });
+                        } else {
+                          materiasService.getMaterias().then(response => {
+                            $scope.materias = response.data;
+                          });
+                        }
+                      } else {
+                        $scope.showModalDictado = false;
+                      }
+                  });
 
               carrerasService.getCarrera().then(response => {
                 $scope.carreras = response.data;
@@ -854,6 +858,7 @@
         };
 
         table.openModal = function(type) {
+          $scope.mostrarOpen = true;
           $scope.initScope(type);
           $scope.modal.nuevo = true;
           switch (type) {
@@ -915,6 +920,7 @@
                 $scope.modal.email = data.email;
                 $scope.modal.matricula = data.matricula;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-alumno').modal('show');
                 break;
@@ -923,6 +929,7 @@
                 $scope.modal.desc_carr = data.desc_carr;
                 $scope.modal.plan = data.plan;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-carrera').modal('show');
                 break;
@@ -935,6 +942,7 @@
                 $scope.modal.estado = data.estado;
                 $scope.modal.usuarioid = data.id;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-usuario').modal('show');
                 break;
@@ -947,6 +955,7 @@
                 $scope.email = data.email;
                 $scope.matricula = data.matricula;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-docasignado').modal('show');
 
@@ -974,6 +983,7 @@
                 $scope.modal.cant_faltas_max = data.cant_faltas_max;
                 $scope.modal.id_carrera = data.id_carrera.toString();
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-dictado').modal('show');
                 break;
@@ -983,6 +993,7 @@
                 $scope.modal.apellido = data.apellido;
                 $scope.modal.telefono = data.telefono;
                 $scope.modal.id = data.id;
+                $scope.modal.isEdit = true;
                 $('#modal-docente').modal('show');
                 break;
 
@@ -990,6 +1001,7 @@
                 $scope.modal.alumno = data.alumno;
                 $scope.modal.materia = data.materia;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $scope.modal.cant_faltas_act = data.cant_faltas_act;
                 $('#modal-inscripto').modal('show');
@@ -999,6 +1011,7 @@
                 $scope.modal.carrera = data.carrera;
                 $scope.modal.desc_mat = data.desc_mat;
                 $scope.modal.nuevo = false;
+                $scope.modal.isEdit = true;
                 $scope.modal.id = data.id;
                 $('#modal-materia').modal('show');
                 break;
@@ -1010,6 +1023,24 @@
             $scope.modal.nuevo = true;
           }
         };
+
+        table.openDaysModal = function(dictado) {
+
+          dictadosService.getDaysOfCourse(dictado.id).then(response => {
+                $scope.materia = response.data[0].desc_mat;
+                $scope.carrera = response.data[0].desc_carr;
+                $scope.cuatrim = response.data[0].cuat;
+                $scope.ano = response.data[0].ano;
+                var fullData = response.data;
+                $scope.days = {};
+                fullData.forEach( function(element, index) {
+                  $scope.days[index] = element.dia_cursada + ' - ' + element.alt_hor;
+                });
+                $("#modal-dias-cursada").modal('show');
+          });
+
+
+        }
 
         table.confirmDeleteDDO = function(dictado) {
           swal({
