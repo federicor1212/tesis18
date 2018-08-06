@@ -397,18 +397,17 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Carrera</label>
 							<div class="col-sm-9">
-								<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_carrera}}" ng-model="modal.id_carrera" ng-required="true">
+								<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_carrera}}" ng-model="modal.id_carrera" ng-required="true" ng-disabled="modal.edit=='T'">
 									<option value="">-- Seleccione --</option>
 									<option value="{{x.id}}" ng-repeat="x in carreras">{{x.desc_carr}}</option>
-								</select>
+								</select>								
 								<span style="color:red" ng-show="frmDictado.id_materia.$invalid && frmDictado.id_materia.$touched">Seleccionar una Carrera es obligatorio</span>
 							</div>
 						</div>
-						<div ng-if="showModalDictado && modal.nuevo || !modal.nuevo">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Materia</label>
 								<div class="col-sm-9">
-									<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_materia}}" ng-model="modal.id_materia" ng-required="true">
+									<select id="id_materia" class="form-control" name="id_materia" placeholder="Seleccione Materia" value="{{modal.id_materia}}" ng-model="modal.id_materia" ng-required="true" ng-disabled="modal.edit=='T'">
 										<option value="">-- Seleccione --</option>
 										<option value="{{x.id}}" ng-repeat="x in materias">{{x.desc_mat}}</option>
 									</select>
@@ -469,8 +468,6 @@
 									</select>
 																<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
 							</div> -->
-						</div>
-							<div ng-if="mostrarCampos">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Fecha de Inicio</label>
 								<div class="col-sm-9">
@@ -510,7 +507,6 @@
 									<span style="color:red" ng-show="frmDictado.id_alternativa.$invalid && frmDictado.id_alternativa.$touched">El campo Alternativa es obligatorio</span>
 								</div>
 						</div>
-							</div>
 						</div>
 					</form>
 				</div>
