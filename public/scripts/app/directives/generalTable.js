@@ -962,14 +962,14 @@
                 break;
 
               case 'dictados':
-                $scope.modal.id_dictado_clase = data.id_dictado_clase.toString();
+                //$scope.modal.id_dictado_clase = data.id_dictado_clase.toString();
                 $scope.modal.id_materia = data.id_materia.toString();
                 $scope.modal.materia = data.desc_mat;
                 $scope.modal.cuat = data.cuat.toString();
                 $scope.modal.ano = data.ano;
-                $scope.modal.id_dia = data.id_dia.toString();
-                $scope.modal.dia_cursada = data.dia_cursada;
-                $scope.modal.id_alternativa = data.id_alternativa.toString();
+                //$scope.modal.id_dia = data.id_dia.toString();
+                //$scope.modal.dia_cursada = data.dia_cursada;
+                //$scope.modal.id_alternativa = data.id_alternativa.toString();
                 var startDateInit = new Date(Date.parse(data.fecha_inicio));
                 var day = 60 * 60 * 24 * 1000;
                 var endDateInit = new Date(startDateInit.getTime() + day);
