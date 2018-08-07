@@ -14,6 +14,9 @@
     <script src="/../scripts/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="/../scripts/node_modules/ui-select/dist/select.min.js"></script>
     <script src="/../scripts/js/vendor/jQuery-viewport-checker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
     <script src="/../scripts/node_modules/satellizer/dist/satellizer.min.js"></script>
     <script src="/../scripts/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/../scripts/node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>

@@ -1033,14 +1033,109 @@
                 $scope.ano = response.data[0].ano;
                 var fullData = response.data;
                 $scope.days = {};
-                fullData.forEach( function(element, index) {
-                  $scope.days[index] = element.dia_cursada + ' - ' + element.alt_hor;
-                });
+                
+                $scope.selectedListLun = {};
+                $scope.selectedListMar = {};
+                $scope.selectedListMier = {};
+                $scope.selectedListJue = {};
+                $scope.selectedListVier = {};
+                $scope.selectedListSab = {};
+                $scope.selectedListDom = {};
+
+                $scope.selectedListLun['AM'] = true;
+
+                $scope.selectDaysLun = ['AM','IM ','PM'];
+                $scope.selectDaysMar = ['AM','IM ','PM'];
+                $scope.selectDaysMier = ['AM','IM ','PM'];
+                $scope.selectDaysJue = ['AM','IM ','PM'];
+                $scope.selectDaysVier = ['AM','IM ','PM'];
+                $scope.selectDaysSab= ['AM','IM ','PM'];
+                $scope.selectDaysDom = ['AM','IM ','PM'];
                 $("#modal-dias-cursada").modal('show');
           });
-
-
         }
+
+        $scope.submit = function () {
+            var finalDays = [];
+            finalDays['lunes'] = [];
+            finalDays['martes'] = [];
+            finalDays['miercoles'] = [];
+            finalDays['jueves'] = [];
+            finalDays['viernes'] = [];
+            finalDays['sabado'] = [];
+            finalDays['domingo'] = [];
+
+            angular.forEach($scope.selectedListLun, function (selected, day) {
+                if (selected) {
+                  finalDays['lunes'].push(day);
+                }
+            });
+            
+            angular.forEach($scope.selectedListMar, function (selected, day) {
+                if (selected) {
+                  finalDays['martes'].push(day);
+                }
+            });
+            
+            angular.forEach($scope.selectedListMier, function (selected, day) {
+                if (selected) {
+                  finalDays['miercoles'].push(day);
+                }
+            });
+
+            angular.forEach($scope.selectedListJue, function (selected, day) {
+                if (selected) {
+                  finalDays['jueves'].push(day);
+                }
+            });
+
+            angular.forEach($scope.selectedListVier, function (selected, day) {
+                if (selected) {
+                  finalDays['viernes'].push(day);
+                }
+            });
+
+            angular.forEach($scope.selectedListSab, function (selected, day) {
+                if (selected) {
+                  finalDays['sabado'].push(day);
+                }
+            });
+
+            angular.forEach($scope.selectedListDom, function (selected, day) {
+                if (selected) {
+                  finalDays['domingo'].push(day);
+                }
+            });
+        };
+
+        table.saveDiasMateria = function(dias) {
+            materiasService.actualizarDiasMateria(materia).then(
+              function() {
+                swal({
+                  title: 'Éxito!',
+                  text: 'Los dias fue actualizada exitosamente',
+                  icon: 'success',
+                  button: 'OK'
+                }).then(willContinue => {
+                  if (willContinue) {
+                    location.reload(true);
+                  }
+                });
+              },
+              function(error) {
+                swal({
+                  title: 'Atención!',
+                  text: 'Hubo un error actualizando los dias',
+                  icon: 'error',
+                  button: 'OK'
+                }).then(willContinue => {
+                  if (willContinue) {
+                    //location.reload(true);
+                  }
+                });
+              }
+            );
+        };
 
         table.confirmDeleteDDO = function(dictado) {
           swal({

@@ -321,13 +321,68 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">{{carrera}}/{{materia}} - {{cuatrim}}/{{ano}}</h4>
 				</div>
-				<div class="modal-body">
-					<div ng-repeat="x in days">
-						<label class="col-sm-3 control-label">{{x}}</label>
-						<br>
+				<div style="margin-left: 25px;">
+					Lunes
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysLun">
+						    <input type="checkbox" id="lun-{{day}}" ng-model="selectedListLun[day]" ng-checked="selectedListLun[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Martes
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysMar">
+						    <input type="checkbox" id="mar-{{day}}" ng-model="selectedListMar[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Miercoles
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysMier">
+						    <input type="checkbox" id="mier-{{day}}" ng-model="selectedListMier[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Jueves
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysJue">
+						    <input type="checkbox" id="jue-{{day}}" ng-model="selectedListJue[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Viernes
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysVier">
+						    <input type="checkbox" id="vier-{{day}}" ng-model="selectedListVier[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Sabado
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysSab">
+						    <input type="checkbox" id="sab-{{day}}" ng-model="selectedListSab[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
+					</div>
+					<br>
+					Domingo
+					<div style="margin-left: 25px;">
+						<span ng-repeat="day in selectDaysDom">
+						    <input type="checkbox" id="dom-{{day}}" ng-model="selectedListDom[day]"/>
+						    <label for="{{day}}">{{day}}</label>
+						</span>
 					</div>
 					<br>
 				</div>
+			</div>
+			<br>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="btn-save" ng-click="submit()">Guardar</button>
 			</div>
 		</div>
 	</div>
