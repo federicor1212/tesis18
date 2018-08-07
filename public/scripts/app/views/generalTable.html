@@ -333,7 +333,7 @@
 					Martes
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysMar">
-						    <input type="checkbox" id="mar-{{day}}" ng-model="selectedListMar[day]"/>
+						    <input type="checkbox" id="mar-{{day}}" ng-model="selectedListMar[day]" ng-checked="selectedListMar[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
@@ -341,7 +341,7 @@
 					Miercoles
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysMier">
-						    <input type="checkbox" id="mier-{{day}}" ng-model="selectedListMier[day]"/>
+						    <input type="checkbox" id="mier-{{day}}" ng-model="selectedListMier[day]" ng-checked="selectedListMier[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
@@ -349,7 +349,7 @@
 					Jueves
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysJue">
-						    <input type="checkbox" id="jue-{{day}}" ng-model="selectedListJue[day]"/>
+						    <input type="checkbox" id="jue-{{day}}" ng-model="selectedListJue[day]" ng-checked="selectedListJue[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
@@ -357,7 +357,7 @@
 					Viernes
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysVier">
-						    <input type="checkbox" id="vier-{{day}}" ng-model="selectedListVier[day]"/>
+						    <input type="checkbox" id="vier-{{day}}" ng-model="selectedListVier[day]" ng-checked="selectedListVier[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
@@ -365,7 +365,7 @@
 					Sabado
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysSab">
-						    <input type="checkbox" id="sab-{{day}}" ng-model="selectedListSab[day]"/>
+						    <input type="checkbox" id="sab-{{day}}" ng-model="selectedListSab[day]" ng-checked="selectedListSab[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
@@ -373,7 +373,7 @@
 					Domingo
 					<div style="margin-left: 25px;">
 						<span ng-repeat="day in selectDaysDom">
-						    <input type="checkbox" id="dom-{{day}}" ng-model="selectedListDom[day]"/>
+						    <input type="checkbox" id="dom-{{day}}" ng-model="selectedListDom[day]" ng-checked="selectedListDom[day]"/>
 						    <label for="{{day}}">{{day}}</label>
 						</span>
 					</div>
