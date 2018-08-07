@@ -884,6 +884,7 @@
 
             case 'dictados':
               $scope.frmDictado.$setUntouched();
+              $scope.modal.edit = '';
               $('#modal-dictado').modal('show');
               break;
 
@@ -962,7 +963,7 @@
                 break;
 
               case 'dictados':
-                //$scope.modal.id_dictado_clase = data.id_dictado_clase.toString();
+                $scope.modal.edit = 'T';
                 $scope.modal.id_materia = data.id_materia.toString();
                 $scope.modal.materia = data.desc_mat;
                 $scope.modal.cuat = data.cuat.toString();

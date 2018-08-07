@@ -209,11 +209,6 @@ class DictadoController extends Controller
             }
           }
 
-        $dictadoClase = DictadoClase::find($request->input('id_dictado_clase'));
-        $dictadoClase->id_alternativa = $request->input('id_alternativa');
-        $dictadoClase->id_dia = $request->input('id_dia');
-        $dictadoClase->save();
-
         $dateInicio = $request->input('fecha_inicio');
         $dateFin = $request->input('fecha_fin');
         $dictado = Dictado::find($id);
