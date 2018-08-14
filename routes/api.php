@@ -107,6 +107,8 @@ Route::post('/eliminar-dia/{id}', 'DiaController@destroy');
 
 //Dictados Clases
 Route::get('/dictado-clase/{id?}', 'DictadosClasesController@index');
+Route::get('/dictado-clase-sel/{id?}', 'DictadosClasesController@alternativasSel');
+Route::post('/actualizar-dictado-clase/{id?}', 'DictadosClasesController@update');
 
 //Dictados
 Route::get('/dictado/{id?}', 'DictadoController@index');

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permiso extends Model
+class Dia extends Model
 {
     protected $table = 'dias';
     
