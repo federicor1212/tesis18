@@ -45,6 +45,18 @@ function dictadoService($log, $http, $auth) {
     return $http({ method: "POST", url: '/api/consultar-dictado', data: dictado});
   }
 
+  function getAlternativas(){
+    return $http({ method: "GET", url: '/api/alternativa', cache: false});
+  }
+
+  function getAlternativasSeleccionada(id_dictado){
+    return $http({ method: "GET", url: '/api/dictado-clase-sel/' + id_dictado});
+  }
+
+  function saveAlternativasSeleccionadas(alternativa){
+    return $http({ method: "POST", url: '/api/actualizar-dictado-clase' , data: alternativa});
+  }
+
   const service = {
     getDictado,
     guardarDictado,
@@ -54,7 +66,10 @@ function dictadoService($log, $http, $auth) {
     verificarSiDictadoExiste,
     getDictadoSinProfModal,
     getDictadoModal,
-    getDaysOfCourse
+    getDaysOfCourse,
+    getAlternativas,
+    getAlternativasSeleccionada,
+    saveAlternativasSeleccionadas
   };
 
   return service;

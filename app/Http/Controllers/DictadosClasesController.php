@@ -121,16 +121,17 @@ class DictadosClasesController extends Controller
     }
 
     //PASAR ID DE DICTADO
-    public function test2(Request $request) {
+    public function update(Request $request) {
 
         //Arreglo Original.    
-        $altAux = AsistenciaController::alternativasSel($id_dictado);
 
         //Arreglo Final.
-        $altUpdAux = $request->data;
-        $altUpd =json_decode($altUpdAux,true); //true devuelve un arreglo asociativo.
+        $altUpd = $request->all(); //true devuelve un arreglo asociativo.
+        $id_dictado = $altUpd[7][0]['idDictado'];
+        $altAux = $this->alternativasSel($id_dictado);
 
         $cant_record = count($altUpd);
+        $cant_record-=1;
         //Recorro el Arreglo Final.
         for ($i=0 ; $i<$cant_record ; $i++){
 
@@ -181,6 +182,7 @@ class DictadosClasesController extends Controller
 
             }
         }
+      return 'true';
     }
       
 }

@@ -1043,70 +1043,175 @@
                 $scope.selectedListSab = {};
                 $scope.selectedListDom = {};
 
-                $scope.selectedListLun['AM'] = true;
+                var alternativa = [];
+                dictadosService.getAlternativas().then( response => { 
+                  response.data.forEach( function(element, index) {
+                    alternativa.push(element.codigo);
+                  });
+                  $scope.selectDaysLun = alternativa;
+                  $scope.selectDaysMar = alternativa;
+                  $scope.selectDaysMier = alternativa;
+                  $scope.selectDaysJue = alternativa;
+                  $scope.selectDaysVier = alternativa;
+                  $scope.selectDaysSab= alternativa;
+                  $scope.selectDaysDom = alternativa;
+                  
+                  dictadosService.getAlternativasSeleccionada(dictado.id).then (response => {
+                    response.data.forEach( function(element, index) {
+                      if (element.dia === 'lunes' && element.alt !== null) {
+                        $scope.selectedListLun[element.alt] = true;
+                      } 
+                      if (element.dia === 'martes' && element.alt !== null) {
+                        $scope.selectedListMar[element.alt] = true;
+                      }
+                      if (element.dia === 'miercoles' && element.alt !== null) {
+                        $scope.selectedListMier[element.alt] = true;
+                      }
+                      if (element.dia === 'jueves' && element.alt !== null) {
+                        $scope.selectedListJue[element.alt] = true;
+                      }
+                      if (element.dia === 'viernes' && element.alt !== null) {
+                        $scope.selectedListVier[element.alt] = true;
+                      }
+                      if (element.dia === 'sabado' && element.alt !== null) {
+                        $scope.selectedListSab[element.alt] = true;
+                      }
+                      if (element.dia === 'domingo' && element.alt !== null) {
+                        $scope.selectedListDom[element.alt] = true;
+                      }
+                      $scope.dictadoId = dictado.id;
+                      $("#modal-dias-cursada").modal('show');
+                    });
+                  })
 
-                $scope.selectDaysLun = ['AM','IM ','PM'];
-                $scope.selectDaysMar = ['AM','IM ','PM'];
-                $scope.selectDaysMier = ['AM','IM ','PM'];
-                $scope.selectDaysJue = ['AM','IM ','PM'];
-                $scope.selectDaysVier = ['AM','IM ','PM'];
-                $scope.selectDaysSab= ['AM','IM ','PM'];
-                $scope.selectDaysDom = ['AM','IM ','PM'];
-                $("#modal-dias-cursada").modal('show');
+                });
+
+
           });
         }
 
         $scope.submit = function () {
             var finalDays = [];
-            finalDays['lunes'] = [];
-            finalDays['martes'] = [];
-            finalDays['miercoles'] = [];
-            finalDays['jueves'] = [];
-            finalDays['viernes'] = [];
-            finalDays['sabado'] = [];
-            finalDays['domingo'] = [];
+            var success = true;
+            finalDays[0] = {dia:"lunes",alt: null};
+            finalDays[1] = {dia:"martes",alt: null};
+            finalDays[2] = {dia:"miercoles",alt: null};
+            finalDays[3] = {dia:"jueves",alt: null};
+            finalDays[4] = {dia:"viernes",alt: null};
+            finalDays[5] = {dia:"sabado",alt: null};
+            finalDays[6] = {dia:"domingo",alt: null};
 
+            var contLun = 0;
             angular.forEach($scope.selectedListLun, function (selected, day) {
-                if (selected) {
-                  finalDays['lunes'].push(day);
+                if (selected && contLun == 0) {
+                  finalDays[0] = {dia:"lunes",alt: day};
+                  contLun +=1;
+                } else {
+                  if (contLun >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
             
+            var contMar = 0;
             angular.forEach($scope.selectedListMar, function (selected, day) {
-                if (selected) {
-                  finalDays['martes'].push(day);
+                if (selected && contMar == 0) {
+                  finalDays[1] = {dia:"martes",alt: day};
+                  contMar +=1;
+                } else {
+                  if (contMar >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
             
+            var contMier = 0;
             angular.forEach($scope.selectedListMier, function (selected, day) {
-                if (selected) {
-                  finalDays['miercoles'].push(day);
+                if (selected && contMier == 0) {
+                  finalDays[2] = {dia:"miercoles",alt: day};
+                  contMier+=1;
+                } else {
+                  if (contMier >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
 
+            var contJue = 0;
             angular.forEach($scope.selectedListJue, function (selected, day) {
-                if (selected) {
-                  finalDays['jueves'].push(day);
+                if (selected && contJue == 0) {
+                  finalDays[3] = {dia:"jueves",alt: day};
+                  contJue+=1;
+                } else {
+                  if (contJue >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
 
+            var contVie = 0;
             angular.forEach($scope.selectedListVier, function (selected, day) {
-                if (selected) {
-                  finalDays['viernes'].push(day);
+                if (selected && contVie == 0) {
+                  finalDays[4] = {dia:"viernes",alt: day};
+                  contVie+=1;
+                } else {
+                  if (contVie >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
 
+            var contSab = 0;
             angular.forEach($scope.selectedListSab, function (selected, day) {
-                if (selected) {
-                  finalDays['sabado'].push(day);
+                if (selected && contSab == 0) {
+                  finalDays[5] = {dia:"sabado",alt: day};
+                  contSab+=1;
+                } else {
+                  if (contSab >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
 
+            var contDom = 0;
             angular.forEach($scope.selectedListDom, function (selected, day) {
-                if (selected) {
-                  finalDays['domingo'].push(day);
+                if (selected && contDom == 0) {
+                  finalDays[6] = {dia:"domingo",alt: day};
+                  contDom+=1;
+                } else {
+                  if (contDom >= 1 && selected) {
+                    success = false;
+                  }
                 }
             });
+
+            finalDays[7] = [{idDictado: $scope.dictadoId}];
+
+            if (!success) {
+              swal({
+                  title: 'Atención!',
+                  text: 'No se puede seleccionar mas de una alternativa para un mismo día',
+                  icon: 'error',
+                  button: 'OK'
+                }).then(willContinue => {
+                  if (willContinue) {
+                    //location.reload(true);
+                  }
+                }); 
+            } else {
+              dictadosService.saveAlternativasSeleccionadas(finalDays).then(response => {
+                    swal({
+                      title: 'Éxito!',
+                      text: 'Las alternativas selecionadas fueron guardadas exitosamente',
+                      icon: 'success',
+                      button: 'OK'
+                    }).then(willContinue => {
+                      if (willContinue) {
+                        location.reload(true);
+                      }
+                    });
+                  });
+            }
         };
 
         table.saveDiasMateria = function(dias) {
