@@ -84,7 +84,6 @@ class DocenteController extends Controller
           }
 
         $docente = Docente::find($id);
-        $docente->id_usuario = $request->input('id_usuario');
         $docente->nombre = $request->input('nombre');
         $docente->apellido = $request->input('apellido');
         $docente->telefono = $request->input('telefono');
