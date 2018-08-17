@@ -1199,7 +1199,7 @@
                   }
                 }); 
             } else {
-              if (contLun > 0 || contMar > 0 || contMier > 0 || contJue > 0 || contVie > 0 || contSab > 0 || contDom > 0) {
+              //if (contLun > 0 || contMar > 0 || contMier > 0 || contJue > 0 || contVie > 0 || contSab > 0 || contDom > 0) {
                 dictadosService.saveAlternativasSeleccionadas(finalDays).then(response => {
                       swal({
                         title: 'Éxito!',
@@ -1212,7 +1212,7 @@
                         }
                       });
                     });
-              } else {
+              /*} else {
                 swal({
                   title: 'Atención!',
                   text: 'Debe seleccionar al menos una alternativa',
@@ -1223,7 +1223,7 @@
                     //location.reload(true);
                   }
                 }); 
-              }
+              }*/
             }
         };
 
