@@ -50,8 +50,7 @@ class InscriptoController extends Controller
                           'inscriptos.cant_faltas_act',
                           'inscriptos.libre',
                           'asistencias_cursos.estado_curso',
-                          'asistentes.cod_asist',
-                          '')
+                          'asistentes.cod_asist')
                  ->orderBy('inscriptos.id')
                  ->get();
 
