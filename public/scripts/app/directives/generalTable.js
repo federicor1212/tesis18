@@ -1199,18 +1199,31 @@
                   }
                 }); 
             } else {
-              dictadosService.saveAlternativasSeleccionadas(finalDays).then(response => {
-                    swal({
-                      title: 'Éxito!',
-                      text: 'Las alternativas selecionadas fueron guardadas exitosamente',
-                      icon: 'success',
-                      button: 'OK'
-                    }).then(willContinue => {
-                      if (willContinue) {
-                        location.reload(true);
-                      }
+              if (contLun > 0 || contMar > 0 || contMier > 0 || contJue > 0 || contVie > 0 || contSab > 0 || contDom > 0) {
+                dictadosService.saveAlternativasSeleccionadas(finalDays).then(response => {
+                      swal({
+                        title: 'Éxito!',
+                        text: 'Las alternativas selecionadas fueron guardadas exitosamente',
+                        icon: 'success',
+                        button: 'OK'
+                      }).then(willContinue => {
+                        if (willContinue) {
+                          location.reload(true);
+                        }
+                      });
                     });
-                  });
+              } else {
+                swal({
+                  title: 'Atención!',
+                  text: 'Debe seleccionar al menos una alternativa',
+                  icon: 'error',
+                  button: 'OK'
+                }).then(willContinue => {
+                  if (willContinue) {
+                    //location.reload(true);
+                  }
+                }); 
+              }
             }
         };
 
