@@ -14,10 +14,19 @@ angular
 	dictadosService.getDictado().then(function (data) {
 		var i = 0;
 		var dictadosActivos = [];
+		var today = new Date();
+		var mes = today.getMonth()+1;
+		var cuat;
+		var year = today.getFullYear();
+		if (mes <= 7) {
+			cuat = 1;
+		} else {
+			cuat = 2;
+		}
 		data.data.find(function(data) {
-                var ano = data.ano.search('2018');
-                var cuat = data.cuat.toString().search('1');
-                if (ano != -1 && cuat != -1) {
+                var ano = data.ano.search(year);
+                var cuatr = data.cuat.toString().search(cuat);
+                if (ano != -1 && cuatr != -1) {
                   dictadosActivos[i] = data;
                   i +=1;
                 }

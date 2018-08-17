@@ -14,10 +14,19 @@ angular
 	docentesAsignadosService.getDocenteAsignado().then(function (data) {
 		var i = 0;
 		var docentesActivos = [];
+		var today = new Date();
+		var mes = today.getMonth()+1;
+		var cuat;
+		var year = today.getFullYear();
+		if (mes < 8) {
+			cuat = 1;
+		} else {
+			cuat = 2;
+		}
 		data.data.find(function(data) {
-                var ano = data.dictados.ano.search('2018');
-                var cuat = data.dictados.cuat.toString().search('1');
-                if (ano != -1 && cuat != -1) {
+                var ano = data.dictados.ano.search(year);
+                var cuatr = data.dictados.cuat.toString().search(cuat);
+                if (ano != -1 && cuatr != -1) {
                   docentesActivos[i] = data;
                   i +=1;
                 }
